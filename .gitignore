@@ -1,0 +1,16 @@
+# 파이썬 가상환경 (용량이 크고 환경마다 다르므로 제외)
+venv/
+__pycache__/
+*.pyc
+
+# 설정 및 비밀번호 파일 (보안상 절대 올리면 안 됨)
+.env
+secrets.json
+config.ini
+
+# 데이터 파일 (대용량 데이터는 깃허브에 올리지 않음)
+*.csv
+*.xlsx
+*.log
+/data/
+Logs/*
