@@ -157,4 +157,3 @@ class AppDBContext:
                 await LoggerService.logToDB(session, proc_name, params_dict, e)
 
                 raise e
-        

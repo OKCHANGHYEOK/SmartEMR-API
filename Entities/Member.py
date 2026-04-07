@@ -20,7 +20,13 @@ class Member(BaseEntity):
     MEM_EndDate = Column(String(10))
     MEM_OperationStatus = Column(Integer, default=1)
     MEM_AdminUser = Column(Integer, default=0)
-    MEM_AdminUserName = Column(String)
     MEM_Date = Column(String(20))
     MEM_YYMMDD = Column(String(10))
     MEM_IsValid = Column(Boolean)
+
+class Member_Req(Member):
+    MUR_Idx = Column(Integer)
+    PAT_Idx = Column(Integer)
+
+class Member_Res(Member):
+    MEM_AdminUserName = Column(String)

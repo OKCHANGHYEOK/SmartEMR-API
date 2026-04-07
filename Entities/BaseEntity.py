@@ -6,6 +6,8 @@ Base = declarative_base()
 class BaseEntity(Base):
     __abstract__ = True
 
+    sDay = Column(String(10))
+    eDay =Column(String(10))
     keyword = Column(String(500))
     PageIndex = Column(Integer)
     PageSize = Column(Integer, default=10)
