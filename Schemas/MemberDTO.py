@@ -23,6 +23,10 @@ class MemberDTO(BaseDTO):
 
 class Member_Req(MemberDTO):
     MUR_Idx : Optional[int] = None
+    sStartDay : Optional[str] = None
+    eStartDay : Optional[str] = None
+    sEndDay : Optional[str] = None
+    eEndDay : Optional[str] = None
 
 class Member_Res(MemberDTO):
-    MEM_AdminUserName : Optional[str] = None        
+    MEM_AdminUserName : Optional[str] = None

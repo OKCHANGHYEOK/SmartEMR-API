@@ -12,5 +12,5 @@ for loader, moduleName, isPkg in pkgutil.walk_packages(__path__):
     # 모듈 안에 router 객체가 있다면 v1_router 에 등록
     if hasattr(module, "router"):
         # 파일 이름을 prefix 로 사용
-        prefix = f"{moduleName.replace('Router', '')}"
+        prefix = f"/{moduleName.replace('Router', '')}"
         v1_router.include_router(module.router, prefix=prefix, tags=[moduleName])

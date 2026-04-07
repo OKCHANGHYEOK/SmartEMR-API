@@ -2,7 +2,6 @@ import time
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from Common import LoggerService
-from Schemas.DataResponse import DataResponse
 from Dependencies.dependencies import _loggerService
 from Exceptions.ApiException import ApiException
 

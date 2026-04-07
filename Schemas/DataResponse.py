@@ -1,19 +1,33 @@
-from typing import TypeVar, Generic, List, Optional, Any
+# Entities/DataResponse.py
+from Schemas.BaseDTO import BaseDTO
+from typing import Generic, TypeVar, List, Optional, Type
 
-T = TypeVar('T')
+T = TypeVar("T", bound=BaseDTO) 
 
-class DataResponse(Generic[T]):
-    def __init__(self, item : Optional[T] = None, items : List[T] = [], db : Any = None, IsSuccess=True):
-        if db:
-            self.IsSuccess : bool = getattr(db, 'retIsSuccess', IsSuccess)
-            self.Message : str = getattr(db, 'retMessage', "")
-            self.count : int = getattr(db, 'retCount', 0)
-            self.item = item
-            self.items = items
+class DataResponse(BaseDTO, Generic[T]): 
+    Item: Optional[T] = None
+    Items: Optional[List[T]] = None
+    Message: Optional[str] = ""
+    TotalCount: int = 0
+    IsSuccess: bool = True
 
-        else:
-            self.IsSuccess = IsSuccess
-            self.Message = ""
-            self.count = 0
-            self.item = None
-            self.items = None
+    # Factory Method: DB 결과를 받아서 DTO로 변환하며 응답 객체 생성
+    @classmethod
+    def CreateJsonResult(cls, 
+               res_type: Type[T] = type(T),
+               item: Optional[T] = None, 
+               items: Optional[List] = None, 
+               message: str = "", 
+               isSuccess: bool = True):
+        
+        # 여기서 실제 클래스(res_type)를 사용해 변환 작업을 수행합니다.
+        retItems = [res_type.model_validate(row) for row in items] if items else []
+        
+        return cls(
+            Item=item,
+            Items=retItems,
+            Message=message,
+            IsSuccess=isSuccess,
+            TotalCount=len(retItems)
+        )
+    

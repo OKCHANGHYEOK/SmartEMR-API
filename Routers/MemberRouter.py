@@ -1,11 +1,14 @@
 from fastapi import APIRouter, Depends
-from Entities.Member import Member_Req
+from Schemas.MemberDTO import Member_Req, Member_Res
+from Schemas.DataResponse import DataResponse
 from Services import MemberService
+from Dependencies.dependencies import ServiceProvider
 
 router = APIRouter()
 
 class MemberRouter():
-    @router.get("/GetMember")
-    async def GetMember(self, request : Member_Req):
-        return MemberService.GetMember(request)
+    @router.post("/GetMember", response_model=DataResponse[Member_Res])
+    async def GetMember(request : Member_Req, 
+                        service : MemberService = Depends(ServiceProvider(MemberService))):
+        return await service.GetMember(request)
         

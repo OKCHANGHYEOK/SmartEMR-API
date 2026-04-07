@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
 class BaseDTO(BaseModel):
@@ -11,6 +11,4 @@ class BaseDTO(BaseModel):
     SortField: Optional[str] = None
     SortDir: Optional[str] = None
 
-    class Config:
-        # 이 설정이 있으면 SQLAlchemy 객체를 Pydantic으로 자동 변환해줍니다.
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

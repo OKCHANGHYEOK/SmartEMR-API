@@ -23,3 +23,9 @@ class Member(BaseEntity):
     MEM_Date = Column(String(20))
     MEM_YYMMDD = Column(String(10))
     MEM_IsValid = Column(Boolean)
+
+    sStartDay = Column(String(10))
+    eStartDay = Column(String(10))
+    sEndDay = Column(String(10))
+    eEndDay = Column(String(10))
+    

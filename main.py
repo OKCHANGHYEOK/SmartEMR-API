@@ -5,7 +5,7 @@ from Routers import v1_router
 app = FastAPI()
 
 # 미들웨어 설정
-app.middleware("http")(ExceptionMiddleWare)
+app.middleware("http")(ExceptionMiddleWare.exceute)
 
 # 라우터 설정
-app.include_router(v1_router, prefix="/")
+app.include_router(v1_router)
