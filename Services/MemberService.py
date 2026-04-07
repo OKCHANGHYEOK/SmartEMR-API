@@ -1,7 +1,10 @@
-from Entities.Member import Member, Member_Req, Member_Res
-from Entities.DataResponse import DataResponse
+from Exceptions.ApiException import ApiException
+from Schemas.MemberDTO import Member_Req, Member_Res
+from Schemas.DataResponse import DataResponse
+from Entities import Member
 from Common import eSP
 from .BaseService import BaseSerivce
+
 
 class MemberService(BaseSerivce):
     async def GetMember(self, request : Member_Req):
@@ -23,9 +26,6 @@ class MemberService(BaseSerivce):
         ret : DataResponse[Member_Res] = await self.dbContext.GetItems(eSP.proc_Member_GetMember, item)
 
         if ret is None or ret.IsSuccess == False:
-            ## API예외 발생키기기
+            raise ApiException(ret)
 
-                
-            return None
-
-        ## JSON 응답 본문 반환        
+        return ret     

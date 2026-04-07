@@ -2,8 +2,6 @@ from Entities.BaseEntity import BaseEntity
 from sqlalchemy import Column, Integer, String, Boolean
 
 class Member(BaseEntity):
-    __tablename__ = 'Member'
-    
     MEM_Idx = Column(Integer, primary_key=True, autoincrement=True)
     MEM_Name = Column(String(100), nullable=False)
     MEM_MediNo = Column(String(20))
@@ -23,10 +21,3 @@ class Member(BaseEntity):
     MEM_Date = Column(String(20))
     MEM_YYMMDD = Column(String(10))
     MEM_IsValid = Column(Boolean)
-
-class Member_Req(Member):
-    MUR_Idx = Column(Integer)
-    PAT_Idx = Column(Integer)
-
-class Member_Res(Member):
-    MEM_AdminUserName = Column(String)
