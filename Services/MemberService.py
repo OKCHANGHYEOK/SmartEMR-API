@@ -8,14 +8,13 @@ from .BaseService import BaseSerivce
 class MemberService(BaseSerivce):
     async def GetMember(self, request : Member_Req):
         ## 로그인 유저 체크 로직 추후 구현
-        
-        print(request.keyword)
 
         item : Member = Member()
         item.MEM_Idx = request.MEM_Idx
         item.MEM_Name = request.MEM_Name
         item.MEM_OperationStatus = request.MEM_OperationStatus
-        
+        item.MEM_Address = request.MEM_Address
+
         item.sStartDay = request.sStartDay
         item.eStartDay = request.eStartDay
         item.sEndDay = request.sEndDay

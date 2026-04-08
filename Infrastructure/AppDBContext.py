@@ -99,6 +99,7 @@ class AppDBContext:
                         @sVal = @s OUTPUT;
                     SELECT @t as TotalQuery, @s as sVal;
                 """
+
                 sql = text(sql_str)
 
                 # 실행 (비동기 방식)

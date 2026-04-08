@@ -7,6 +7,7 @@ class MemberDTO(BaseDTO):
     MEM_MediNo : Optional[str] = None
     MEM_BizNum : Optional[str] = None
     MEM_BizType : Optional[str] = None
+    MEM_Address : Optional[str] = None
     MEM_Address1 : Optional[str] = None
     MEM_Address2 : Optional[str] = None
     MEM_Address3 : Optional[str] = None

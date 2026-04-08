@@ -6,8 +6,8 @@ class BaseDTO(BaseModel):
     sDay: Optional[str] = None
     eDay: Optional[str] = None
     keyword: Optional[str] = None
-    PageIndex: int = 1
-    PageSize: int = 10
+    PageIndex: Optional[int] = 1
+    PageSize: Optional[int] = 10
     SortField: Optional[str] = None
     SortDir: Optional[str] = None
 
