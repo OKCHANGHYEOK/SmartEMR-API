@@ -1,9 +1,8 @@
 import time
 from fastapi import Request
-from fastapi.responses import JSONResponse
-from Common import LoggerService
 from Dependencies.dependencies import _loggerService
 from Exceptions.ApiException import ApiException
+from Common.Enums import eResponseCode
 
 async def exceute(request : Request, callNext):
     sTime = time.time()
@@ -25,8 +24,10 @@ async def exceute(request : Request, callNext):
         _loggerService.error(f"Request Failed: {request.method} {request.url}")
         _loggerService.error(f"Error Detail: {str(exc)}", exc_info=True)
     
+        response = exc.response
+
+        if response:
+            response.responseCode = eResponseCode.INTERNAL_SERVER_ERROR
+
         # 실패 응답 반환
-        return JSONResponse(
-            status_code = 500,
-            content = exc.response
-        )
+        return exc.response

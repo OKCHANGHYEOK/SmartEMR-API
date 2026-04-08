@@ -1,5 +1,6 @@
 from typing import Generic, TypeVar, List, Optional, Type, get_args
 from Schemas.BaseDTO import BaseDTO
+from Common.Enums import eResponseCode
 
 T = TypeVar("T", bound=BaseDTO)
 
@@ -7,6 +8,7 @@ class DataResponse(BaseDTO, Generic[T]):
     Item: Optional[T] = None
     Items: Optional[List[T]] = None
     Message: Optional[str] = ""
+    ResponseCode : eResponseCode = eResponseCode.SUCCESS
     TotalCount: int = 0
     IsSuccess: bool = True
 
@@ -15,6 +17,7 @@ class DataResponse(BaseDTO, Generic[T]):
                          items: Optional[List] = None, 
                          item: Optional[T] = None, 
                          message: str = "", 
+                         responseCode : eResponseCode = eResponseCode.SUCCESS,
                          isSuccess: bool = True):
         
         orig_bases = getattr(cls, "__orig_bases__", None)
@@ -38,6 +41,7 @@ class DataResponse(BaseDTO, Generic[T]):
             Item=item,
             Items=retItems,
             Message=message,
+            responseCode = responseCode,
             IsSuccess=isSuccess,
             TotalCount=len(retItems)
         )

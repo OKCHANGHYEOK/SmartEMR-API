@@ -12,4 +12,11 @@ class ApiException(HTTPException):
             Message=dbContext.retMessage,
             items = []
         )
+
+    def __init__(self, msg : str):
+        self.response = DataResponse[T](
+            IsSuccess=False,
+            Message=msg
+        )
+
         
