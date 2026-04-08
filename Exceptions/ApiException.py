@@ -2,6 +2,7 @@ from fastapi import HTTPException
 from Infrastructure import AppDBContext
 from Schemas.DataResponse import DataResponse
 from typing import TypeVar
+from Common.Enums import eResponseCode
 
 T = TypeVar("T")
 
@@ -13,10 +14,11 @@ class ApiException(HTTPException):
             items = []
         )
 
-    def __init__(self, msg : str):
+    def __init__(self, msg : str = "", res_code : eResponseCode = None):
         self.response = DataResponse[T](
             IsSuccess=False,
-            Message=msg
+            Message=msg,
+            ResponseCode=res_code
         )
 
         

@@ -26,8 +26,8 @@ async def exceute(request : Request, callNext):
     
         response = exc.response
 
-        if response:
-            response.responseCode = eResponseCode.INTERNAL_SERVER_ERROR
+        if response.ResponseCode is None:
+            response.ResponseCode = eResponseCode.INTERNAL_SERVER_ERROR 
 
         # 실패 응답 반환
         return exc.response
