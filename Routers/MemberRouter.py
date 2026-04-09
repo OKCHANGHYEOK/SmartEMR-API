@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from Schemas.MemberDTO import Member_Req, Member_Res
 from Schemas.DataResponse import DataResponse
-from Services import MemberService
+from Services.Domain import MemberService
 from Dependencies.dependencies import ServiceProvider
 
 router = APIRouter()

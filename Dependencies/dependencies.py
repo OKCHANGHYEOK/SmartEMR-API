@@ -2,7 +2,7 @@ from typing import Type, TypeVar
 from fastapi import Depends
 from Infrastructure import AppDBContext
 from Common import LoggerService
-from Services import AuthenticatedUserService
+from Services.Authentication import AuthenticatedUserService
 
 # 제네릭 타입 선언
 T = TypeVar("T")

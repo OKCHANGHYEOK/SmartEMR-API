@@ -1,7 +1,7 @@
 from fastapi import Request, Depends
 from Exceptions.ApiException import ApiException
 from Common.Enums import eResponseCode
-from Services import AuthenticatedUserService
+from Services.Authentication import AuthenticatedUserService
 from Entities import MemberUser
 from Dependencies.dependencies import GetAuthenticatedUserService
 
