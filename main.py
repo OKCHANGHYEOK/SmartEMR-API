@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from MiddleWares import ExceptionMiddleWare
 from Routers import v1_router
-from Services.AuthenticateService import AuthenticateService
+from Services.Authentication import AuthenticateService
 from Exceptions.Handlers import RegisterExceptionHandlers
 
 app = FastAPI()
