@@ -1,23 +1,21 @@
-import os
 import Common.common as Common
-from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 from Common.loggerService import LoggerService
+from fastapi import Depends
+from Config import settings
 
 class AppDBContext:
     retMessage = "" 
     retCount = 0
     retIsSuccess = False
 
-    def __init__(self, logger=None):
-        self.logger = logger if logger else LoggerService().getLogger()
+    def __init__(self, logger = None):
+        self.logger = logger or LoggerService.getLogger()
 
-        load_dotenv() # 환경설정 파일 로드s
-        
         connection_str = self.__getDBConnectionString()
-        echo_mode = os.getenv("DB_ECHO") == "True"
+        echo_mode = settings.db.echo == True
 
         # 비동기 엔진 생성
         self.engine = create_async_engine(
@@ -34,15 +32,15 @@ class AppDBContext:
         )
 
     def __getDBConnectionString(self):
-        if os.getenv("DB_ISHOME", "False").lower() == "true":
-            currentIP = os.getenv("DB_IP")
+        if settings.db.is_home == True:
+            currentIP = settings.db.ip
         else:    
             currentIP = Common.getLocalIP()
 
-        dbUser = os.getenv("DB_USER")
-        dbPW = os.getenv("DB_PW")
-        dbName = os.getenv("DB_NAME")
-        dbPort = os.getenv("DB_PORT")
+        dbUser = settings.db.user
+        dbPW = settings.db.pw
+        dbName = settings.db.name
+        dbPort = settings.db.port
 
         connectionStr = (
             f"Driver={{ODBC Driver 17 for SQL Server}};"

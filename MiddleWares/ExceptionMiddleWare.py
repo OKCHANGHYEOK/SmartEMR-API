@@ -23,11 +23,6 @@ async def exceute(request : Request, callNext):
         # 에러 로깅
         _loggerService.error(f"Request Failed: {request.method} {request.url}")
         _loggerService.error(f"Error Detail: {str(exc)}", exc_info=True)
-    
-        response = exc.response
-
-        if response.ResponseCode is None:
-            response.ResponseCode = eResponseCode.INTERNAL_SERVER_ERROR 
 
         # 실패 응답 반환
-        return exc.response
+        return exc

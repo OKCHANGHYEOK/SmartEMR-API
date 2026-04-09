@@ -8,8 +8,8 @@ from Services import AuthenticatedUserService
 T = TypeVar("T")
 
 # 프로그램에 필요한 모듈 선언
-_AppDbContext = AppDBContext()
 _loggerService = LoggerService.getLogger()
+_AppDbContext = AppDBContext(_loggerService)
 
 # 서비스 의존성 주입을 위한 공용 클래스
 class ServiceProvider:
@@ -21,3 +21,6 @@ class ServiceProvider:
 
 def GetAuthenticatedUserService() -> AuthenticatedUserService:
     return AuthenticatedUserService()
+
+def GetLoggerSerivce() -> LoggerService:
+    return _loggerService

@@ -29,6 +29,6 @@ class MemberService(BaseSerivce):
         ret = await self.DbContext.GetItems(eSP.proc_Member_GetMember, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
-            raise ApiException(self.DbContext)
+            raise ApiException(self.DbContext.retMessage)
 
         return DataResponse[Member_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, isSuccess=True)     

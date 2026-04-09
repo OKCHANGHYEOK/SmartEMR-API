@@ -3,7 +3,8 @@ from MiddleWares import ExceptionMiddleWare
 from Routers import v1_router
 from Services.AuthenticateService import AuthenticateService
 
-app = FastAPI(dependencies=[Depends(AuthenticateService.AuthenticateUserByJWT)])
+app = FastAPI()
+# app = FastAPI(dependencies=[Depends(AuthenticateService.AuthenticateUserByJWT)])
 
 # 미들웨어 설정
 app.middleware("http")(ExceptionMiddleWare.exceute)
