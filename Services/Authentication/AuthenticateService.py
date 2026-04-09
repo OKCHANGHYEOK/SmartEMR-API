@@ -3,13 +3,10 @@ from Exceptions.ApiException import ApiException
 from Common.Enums import eResponseCode
 from Services.Authentication import AuthenticatedUserService
 from Entities import MemberUser
-from Dependencies.dependencies import GetAuthenticatedUserService
 
 class AuthenticateService:
-    def __init__(self,
-                 _authenticatedUserService : AuthenticatedUserService = Depends(GetAuthenticatedUserService)
-                 ):
-        self.authenticatedUserService = _authenticatedUserService            
+    def __init__(self, _authenticatedUserService: AuthenticatedUserService):
+        self.authenticatedUserService = _authenticatedUserService           
 
     async def AuthenticateUserByJWT(self, request : Request):
         # 헤더에서 토큰 추출
