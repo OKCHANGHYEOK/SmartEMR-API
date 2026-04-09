@@ -10,7 +10,7 @@ class Chart(BaseEntity):
     MUR_Idx_STF = Column(Integer)
     PAT_Idx = Column(Integer)
     PAT_ChartNo = Column(String(20))
-    PAT_NAme = Column(String(50))
+    PAT_Name = Column(String(50))
     PAT_Sex = Column(String(1))
     CHT_VisitType = Column(Integer)
     CHT_CHTType = Column(String(10))

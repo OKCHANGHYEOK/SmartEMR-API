@@ -5,7 +5,7 @@ class MemberUserDTO(BaseDTO):
     MUR_Idx : Optional[int] = None
     MEM_Idx : Optional[int] = None
     MUR_Id : Optional[str] = None
-    MUR_Password : Optional[str] = None
+    MUR_PassWord : Optional[str] = None
     MUR_Name : Optional[str] = None
     MUR_Role : Optional[str] = None
     MUR_JobCode : Optional[str] = None
@@ -23,6 +23,7 @@ class MemberUserDTO(BaseDTO):
     MUR_Email : Optional[str] = None
     MUR_Date : Optional[str] = None
     MUR_YYMMDD : Optional[str] = None
+    MUR_IsValid : Optional[bool] = None
 
 class MemberUser_Req(MemberUserDTO):
     pass

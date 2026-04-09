@@ -9,7 +9,7 @@ class MemberUser(BaseEntity):
     MUR_Role = Column(String(3))
     vMUR_Role = Column(String(3))
     MUR_Id = Column(String(50))
-    MUR_Password = Column(String(50))
+    MUR_PassWord = Column(String(200))
     MUR_Name = Column(String(50))
     MUR_Gender = Column(String(1))
     vMUR_Gender = Column(String(1))
