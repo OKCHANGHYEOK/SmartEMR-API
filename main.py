@@ -1,8 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from MiddleWares import ExceptionMiddleWare
 from Routers import v1_router
+from Services.AuthenticateService import AuthenticateService
 
-app = FastAPI()
+app = FastAPI(dependencies=[Depends(AuthenticateService.AuthenticateUserByJWT)])
 
 # 미들웨어 설정
 app.middleware("http")(ExceptionMiddleWare.exceute)

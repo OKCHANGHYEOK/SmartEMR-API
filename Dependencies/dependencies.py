@@ -2,7 +2,7 @@ from typing import Type, TypeVar
 from fastapi import Depends
 from Infrastructure import AppDBContext
 from Common import LoggerService
-from Services import MemberService
+from Services import AuthenticatedUserService
 
 # 제네릭 타입 선언
 T = TypeVar("T")
@@ -18,3 +18,6 @@ class ServiceProvider:
 
     def __call__(self) -> T:
         return self.service_type(_AppDbContext)    
+
+def GetAuthenticatedUserService() -> AuthenticatedUserService:
+    return AuthenticatedUserService()
