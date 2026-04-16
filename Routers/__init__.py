@@ -4,13 +4,17 @@ from fastapi import APIRouter
 
 v1_router = APIRouter()
 
+# 인증이 필요 없는 라우터 목록
+EXCLUDE_ROUTERS = ["LoginRouter"] 
+
 for loader, moduleName, isPkg in pkgutil.walk_packages(__path__):
-    # 각 모듈을 동적으로 임포트
+    # 제외 목록에 포함된 모듈은 건너뜁니다.
+    if moduleName in EXCLUDE_ROUTERS:
+        continue
+
     full_module_name = f"{__name__}.{moduleName}"
     module = importlib.import_module(full_module_name)
 
-    # 모듈 안에 router 객체가 있다면 v1_router 에 등록
     if hasattr(module, "router"):
-        # 파일 이름을 prefix 로 사용
         prefix = f"/{moduleName.replace('Router', '')}"
         v1_router.include_router(module.router, prefix=prefix, tags=[moduleName])
