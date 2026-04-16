@@ -24,14 +24,9 @@ class LoginService:
         if not HashService.VerifyPassword(item.MUR_PassWord, loginUser.MUR_PassWord):
             raise ApiException("incorrect password.", status_code=401)
 
-        token = JWTService.CreateAccessToken(
-            userId = loginUser.MUR_Id,
-            additionalClaims = {
-                "MEM_Idx" : loginUser.MEM_Idx
-            }
-        )
+        token = JWTService.CreateAccessToken(loginUser.MUR_Idx)
 
-        return TokenResponse(AccessToken=token, TokenType="Bearer", ExpireMinutes=120)
+        return TokenResponse(AccessToken=token, TokenType="Bearer", ExpireMinutes=120, User=loginUser)
     
     async def GetHashedPassWord(self, request : MemberUser_Req):
         return {

@@ -4,14 +4,14 @@ from Config import settings
 
 class JWTService:
     @staticmethod
-    def CreateAccessToken(userId : str, additionalClaims : dict = None) -> str:
+    def CreateAccessToken(MUR_Idx : int, additionalClaims : dict = None) -> str:
         """
             사용자 ID와 추가 정보를 담은 JWT 액세스 토큰 생성
         """
 
         # 페이로드 구성
         payload = {
-            "sub" : str(userId),
+            "sub" : str(MUR_Idx),
             "iat" : datetime.now(timezone.utc),
             "exp" : datetime.now(timezone.utc) + timedelta(minutes=settings.jwt.token_expire_minutes)
         }
