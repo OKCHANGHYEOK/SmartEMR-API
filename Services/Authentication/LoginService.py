@@ -3,6 +3,7 @@ from Services.Domain import MemberUserService
 from Services.Authentication import JWTService, HashService
 from Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
 from Schemas.DataResponse import DataResponse
+from Schemas.TokenResponse import TokenResponse
 from Exceptions import ApiException
 
 class LoginService:
@@ -30,10 +31,7 @@ class LoginService:
             }
         )
 
-        return {
-            "AccessToken" : token,
-            "TokenType" : "bearer"
-        }
+        return TokenResponse(AccessToken=token, TokenType="Bearer", ExpireMinutes=120)
     
     async def GetHashedPassWord(self, request : MemberUser_Req):
         return {
