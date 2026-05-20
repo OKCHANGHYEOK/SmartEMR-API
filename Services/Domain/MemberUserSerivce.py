@@ -19,6 +19,20 @@ class MemberUserService(BaseSerivce):
       
       return DataResponse[MemberUser_Res](Item=ret, Message=self.DbContext.retMessage, IsSuccess=self.DbContext.retIsSuccess)
    
+   async def GetMemberUser(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
+      item = MemberUser()
+
+      item.MEM_Idx = request.MEM_Idx
+      item.MUR_Idx = request.MUR_Idx
+      item.MUR_Name = request.MUR_Name
+
+      ret : MemberUser_Res = await self.DbContext.GetItems(eSP.proc_MemberUser_GetMemberUser, item)
+
+      if ret is None or self.DbContext.retIsSuccess == False:
+         raise ApiException(self.DbContext.retMessage)
+      
+      return DataResponse[MemberUser_Res].CreateJsonResult(item=ret)
+
    async def SetMemberUser(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
       item = MemberUser()
 

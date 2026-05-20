@@ -7,6 +7,10 @@ from Dependencies.dependencies import ServiceProvider
 router = APIRouter()
 
 class MemberUserRouter():
+    @router.post("/GetMemberUser", response_model=DataResponse[MemberUser_Res])
+    async def GetMemberUser(request: MemberUser_Req, services : MemberUserService = Depends(ServiceProvider(MemberUserService))):
+        return await services.GetMemberUser(request)
+
     @router.post("/SetMemberUser", response_model=DataResponse[MemberUser_Res])
     async def SetMemberUser(request : MemberUser_Req,
                             service : MemberUserService = Depends(ServiceProvider(MemberUserService))):

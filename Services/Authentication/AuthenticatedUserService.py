@@ -1,6 +1,6 @@
 from contextvars import ContextVar
 from typing import Optional
-from Entities import MemberUser
+from Entities.MemberUser import MemberUser
 from Exceptions import ApiException
 from Common.Enums import eResponseCode
 
@@ -11,7 +11,7 @@ class AuthenticatedUserService:
     def SetUser(self, item : MemberUser):
         self.authUser = item
 
-    def GetUser(self):
+    def GetUser(self) -> MemberUser:
         user = self.authUser.get()
         if not user:
             raise ApiException(
