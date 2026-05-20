@@ -1,6 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Depends
-from MiddleWares import ExceptionMiddleWare
+from MiddleWares import ExceptionMiddleWare, RequestInfoMiddleWare
 from Routers.LoginRouter import router as LoginRouter
 from Routers import v1_router
 from Services.Authentication import AuthenticateService
@@ -10,6 +10,7 @@ app = FastAPI()
 
 # 미들웨어 설정
 app.middleware("http")(ExceptionMiddleWare.exceute)
+app.middleware("http")(RequestInfoMiddleWare.LogRequestBody)
 
 # 라우터 설정
 app.include_router(LoginRouter, prefix="/Login", tags=["Login"])

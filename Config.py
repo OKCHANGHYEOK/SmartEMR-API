@@ -19,7 +19,7 @@ class DBSesttings(BaseSettings):
     name : str
     port : str
     echo : bool
-    is_home : bool = False
+    ishome : bool = False
 
     model_config = SettingsConfigDict(
                     env_file=".env",

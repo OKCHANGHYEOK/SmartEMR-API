@@ -11,18 +11,27 @@ class LoginService:
         self.memberUserService = _memberUserService
 
     async def login(self, item : MemberUser_Req):
-        ret : DataResponse[MemberUser_Res]  = await self.memberUserService.GetMemberUserForLogin(item)
+        if item.MUR_Idx and not item.MUR_PassWord:
+            ret = await self.memberUserService.GetMemberUser(item)
+            
+            if ret is None or not ret.Item:
+                raise ApiException("디버깅 모드 로그인에 실패했습니다. 일치하는 유저가 없습니다.", status_code=404)\
+                
+            loginUser = ret.Item    
 
-        if ret is None or ret.IsSuccess == False:
-            raise ApiException("internal server error", status_code=500)
-        
-        loginUser = ret.Item
+        else:    
+            ret : DataResponse[MemberUser_Res]  = await self.memberUserService.GetMemberUserForLogin(item)
 
-        if not loginUser:
-            raise ApiException("no such user", status_code=404)
+            if ret is None or ret.IsSuccess == False:
+                raise ApiException("internal server error", status_code=500)
+            
+            loginUser = ret.Item
 
-        if not HashService.VerifyPassword(item.MUR_PassWord, loginUser.MUR_PassWord):
-            raise ApiException("incorrect password.", status_code=401)
+            if not loginUser:
+                raise ApiException("no such user", status_code=404)
+
+            if not HashService.VerifyPassword(item.MUR_PassWord, loginUser.MUR_PassWord):
+                raise ApiException("incorrect password.", status_code=401)
 
         token = JWTService.CreateAccessToken(loginUser.MUR_Idx)
 

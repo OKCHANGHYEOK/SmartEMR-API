@@ -10,6 +10,7 @@ class MemberUserService(BaseSerivce):
    async def GetMemberUserForLogin(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
       item = MemberUser()
 
+      item.MUR_Idx = request.MUR_Idx
       item.MUR_Id = request.MUR_Id
 
       ret : MemberUser_Res = await self.DbContext.GetItem(eSP.proc_MemberUser_GetMemberUserForLogin, item)

@@ -32,7 +32,7 @@ class AppDBContext:
         )
 
     def __getDBConnectionString(self):
-        if settings.db.is_home == True:
+        if settings.db.ishome == True:
             currentIP = settings.db.ip
         else:    
             currentIP = Common.getLocalIP()
@@ -85,6 +85,11 @@ class AppDBContext:
                 # 엔티티 객체에서 내부 필드 제외하고 파라미터 추출
                 params = {k: v for k, v in entity_obj.__dict__.items() if not k.startswith('_')}
                 
+                # None 값 처리
+                for key, value in params.items():
+                    if value is None:
+                        params[key] = 0 if key.endswith('Idx') else ""
+
                 # 파라미터 동적 생성 (@param = :param)
                 param_placeholders = ", ".join([f"@{k} = :{k}" for k in params.keys()])
                 

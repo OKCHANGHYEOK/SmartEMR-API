@@ -31,5 +31,5 @@ class MemberUser_Req(MemberUserDTO):
 class MemberUser_Res(MemberUserDTO):
     MUR_Idx_DOC : Optional[int] = None
     MUR_Name_DOC : Optional[str] = None
-    MUR_Idx_STF : Optional[str] = None
+    MUR_Idx_STF : Optional[int] = None
     MUR_Name_STF : Optional[str] = None
