@@ -3,7 +3,7 @@ from fastapi import Depends
 from Infrastructure import AppDBContext
 from Common import LoggerService
 from Services.Authentication import AuthenticatedUserService, AuthenticateService, LoginService
-from Services.Domain import MemberUserService
+from Services.Domain import MemberUserService, MemberService
 
 # 제네릭 타입 선언
 T = TypeVar("T")
@@ -26,6 +26,6 @@ def GetAuthenticatedUserService() -> AuthenticatedUserService:
 def GetAuthenticateService(authenticatedUserService: AuthenticatedUserService = Depends(GetAuthenticatedUserService)) -> AuthenticateService:
     return AuthenticateService(authenticatedUserService)
 
-def GetLoginService(_memberUserService : MemberUserService= Depends(ServiceProvider(MemberUserService))) -> LoginService:
-    return LoginService(_memberUserService)
+def GetLoginService(_memberServce : MemberService = Depends(ServiceProvider(MemberService)),_memberUserService : MemberUserService= Depends(ServiceProvider(MemberUserService))) -> LoginService:
+    return LoginService(_memberServce, _memberUserService)
 

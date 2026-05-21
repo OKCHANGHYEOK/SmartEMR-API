@@ -35,10 +35,10 @@ class DataResponse(BaseDTO, Generic[T]):
             retItems = [res_type.model_validate(row) for row in items] if items else []
         else:
             # 타입을 찾지 못한 경우 (그냥 DataResponse.CreateJsonResult() 호출 시)
-            retItems = items if items else []
+            retItems = items if items else [] 
 
         return cls(
-            Item=item,
+            Item=(item if item else retItems[0]),
             Items=retItems,
             Message=message,
             responseCode = responseCode,

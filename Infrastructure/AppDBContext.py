@@ -56,7 +56,7 @@ class AppDBContext:
         """
         저장 프로시저를 비동기로 호출하는 공용 메서드 - 단일 항목 반환
         """
-        ret = await self._ExecuteQuery(proc_name, entity_obj)
+        ret : T = await self._ExecuteQuery(proc_name, entity_obj)
 
         if isinstance(ret, list):
             return ret[0] if len(ret) > 0 else None
@@ -67,7 +67,7 @@ class AppDBContext:
         """
         저장 프로시저를 비동기로 호출하는 공용 메서드 - 리스트 반환
         """
-        ret = await self._ExecuteQuery(proc_name, entity_obj)
+        ret : list[T] = await self._ExecuteQuery(proc_name, entity_obj)
         
         return ret if ret else []
             
@@ -83,12 +83,25 @@ class AppDBContext:
                 proc_name = str(proc_name).split("eSP.")[1]
 
                 # 엔티티 객체에서 내부 필드 제외하고 파라미터 추출
-                params = {k: v for k, v in entity_obj.__dict__.items() if not k.startswith('_')}
-                
-                # None 값 처리
-                for key, value in params.items():
-                    if value is None:
-                        params[key] = 0 if key.endswith('Idx') else ""
+                annotations = getattr(entity_obj, '__annotations__', {})
+
+                params = {}
+
+                for k, v in entity_obj.__dict__.items():
+                    if k.startswith('_'):
+                        continue
+                        
+                    if v is None:
+                        # 타입 힌트를 기반으로 기본값 결정 (기본값은 string이면 '', 그 외는 숫자형태 고려하여 0)
+                        field_type = annotations.get(k, str) # 타입 힌트가 없으면 안전하게 str 취급
+                        
+                        # Optional[str] 이나 str | None 형태일 수 있으므로 string 타입인지 검사
+                        if field_type is str or (hasattr(field_type, '__args__') and str in field_type.__args__):
+                            v = ''
+                        else:
+                            v = 0
+                            
+                    params[k] = v
 
                 # 파라미터 동적 생성 (@param = :param)
                 param_placeholders = ", ".join([f"@{k} = :{k}" for k in params.keys()])
@@ -147,7 +160,7 @@ class AppDBContext:
                 self.retCount = totalQueryVal
                 self.retIsSuccess = True            
 
-                return arrMap[0] if len(arrMap) == 1 else arrMap
+                return arrMap
                 
             except Exception as e:
                 await session.rollback()
@@ -155,9 +168,6 @@ class AppDBContext:
                 # 파일 로그
                 self.logger.error(f"DB Error: {e}", exc_info=True)
             
-                # DB 로그 
-                params_dict = {k: v for k, v in entity_obj.__dict__.items() if not k.startswith('_')}
-
-                await LoggerService.logToDB(session, proc_name, params_dict, e)
+                await LoggerService.logToDB(session, proc_name, params, e)
 
                 raise e
