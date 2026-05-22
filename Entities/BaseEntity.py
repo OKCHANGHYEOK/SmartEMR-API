@@ -8,7 +8,7 @@ class BaseEntity(Base):
 
     sDay = Column(String(10))
     eDay =Column(String(10))
-    keyword = Column(String(500))
+    Keyword = Column(String(500))
     PageIndex = Column(Integer)
     PageSize = Column(Integer, default=10)
     SortField = Column(String(50))

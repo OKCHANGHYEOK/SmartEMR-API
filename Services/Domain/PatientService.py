@@ -24,7 +24,7 @@ class PatientService(BaseSerivce):
         item.PAT_Name = request.PAT_Name
         item.PAT_ChartNo = request.PAT_ChartNo
         item.PAT_Sex = request.PAT_Sex
-        item.keyword = request.keyword
+        item.Keyword = request.Keyword
         item.PageSize = request.PageSize
         item.PageIndex = request.PageIndex
         item.SortField = request.SortField

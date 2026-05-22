@@ -20,7 +20,7 @@ class MemberService(BaseSerivce):
         item.sEndDay = request.sEndDay
         item.eEndDay= request.eEndDay
 
-        item.keyword = request.keyword
+        item.Keyword = request.Keyword
         item.PageSize = request.PageSize
         item.PageIndex = request.PageIndex
         item.SortField = request.SortField
