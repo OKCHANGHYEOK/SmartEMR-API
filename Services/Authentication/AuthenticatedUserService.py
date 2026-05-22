@@ -6,15 +6,16 @@ from Common.Enums import eResponseCode
 
 class AuthenticatedUserService:
     def __init__(self):
-        self.authUser = ContextVar[Optional[any]] = ContextVar("auth_user", default=None)
-
-    def SetUser(self, item : MemberUser):
-        self.authUser = item
+        self.authUser : ContextVar[Optional[any]] = ContextVar("auth_user", default=None)
 
     def GetUser(self) -> MemberUser:
         user = self.authUser.get()
+        
         if not user:
             raise ApiException(
                     msg="Cannot find a authenticated user.",
                     res_code=eResponseCode.UNAUTHORIZED) 
         return user       
+    
+    def SetUser(self, item : MemberUser):
+        self.authUser.set(item)

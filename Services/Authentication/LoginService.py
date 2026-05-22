@@ -9,7 +9,7 @@ from Schemas.TokenResponse import TokenResponse
 from Exceptions import ApiException
 
 class LoginService:
-    def __init__(self, _memberService : MemberService, _memberUserService : MemberUserService):
+    def __init__(self, _memberService : MemberService = Depends(MemberService), _memberUserService : MemberUserService = Depends(MemberUserService)):
         self.memberService = _memberService
         self.memberUserService = _memberUserService
 

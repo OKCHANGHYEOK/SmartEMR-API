@@ -1,3 +1,4 @@
+from fastapi import Depends
 from Exceptions.ApiException import ApiException
 from Entities.Patient import Patient
 from Services.Domain import BaseSerivce
@@ -7,10 +8,13 @@ from Services.Authentication.AuthenticatedUserService import AuthenticatedUserSe
 from Common import eSP
 
 class PatientService(BaseSerivce):
+    def __init__(self, _authenicatedUserSerivce : AuthenticatedUserService = Depends(AuthenticatedUserService)):
+        self.authenticatedUserService = _authenicatedUserSerivce
+
     async def GetPatient(self, request: Patient_Req):
         item : Patient = Patient()
 
-        user = AuthenticatedUserService.GetUser()
+        user = self.authenticatedUserService.GetUser()
 
         if user == None:
             return
