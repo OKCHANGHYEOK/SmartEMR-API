@@ -8,4 +8,4 @@ router = APIRouter()
 class PatientRouter():
     @router.post("/GetPatient", response_model=DataResponse[Patient_Res])
     async def GetPatient(request : Patient_Req, service : PatientService = Depends(PatientService)):
-        await service.GetPatient(request)
+        return await service.GetPatient(request)

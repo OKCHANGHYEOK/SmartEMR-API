@@ -43,7 +43,7 @@ class LoginService:
             raise ApiException("internal server error", status_cod=404)
 
         member = retMEM.Item
-        token = JWTService.CreateAccessToken(loginUser.MUR_Idx)
+        token = JWTService.CreateAccessToken(loginUser)
 
         return TokenResponse(AccessToken=token, TokenType="Bearer", ExpireMinutes=120, Member=member, User=loginUser)
     

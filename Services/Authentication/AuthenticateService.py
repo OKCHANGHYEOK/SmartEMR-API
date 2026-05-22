@@ -2,7 +2,8 @@ from fastapi import Request, Depends
 from Exceptions.ApiException import ApiException
 from Common.Enums import eResponseCode
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
-from Entities import MemberUser
+from Services.Authentication.JWTService import JWTService
+from Entities.MemberUser import MemberUser
 
 class AuthenticateService:
     # 1. FastAPI가 이 클래스를 스스로 생성할 수 있도록 매개변수에 Depends()를 달아줍니다.
@@ -19,10 +20,19 @@ class AuthenticateService:
         token = authorization.split(" ")[1]
 
         try:
-            # [TODO] 여기에 토큰 검증 로직 구현
+            # 토큰 해독 및 유저 정보 세팅
+            decoded_token = JWTService.DecodeToken(token)
+
+            arrToken = decoded_token.get('sub').split("|")
+
+            if not arrToken or len(arrToken) < 2:
+                raise ApiException("Error Occured While Parsing Token.", res_code=eResponseCode.INTERNAL_SERVER_ERROR)
+            
+            MEM_Idx = int(arrToken[0])
+            MUR_Idx = int(arrToken[1])
             
             # 유저 정보 추출 (예시)
-            user: MemberUser = None 
+            user = MemberUser(MEM_Idx=MEM_Idx, MUR_Idx=MUR_Idx)
 
             # 🌟 오타 수정: autenticated -> authenticated ('h' 추가)
             self.authenticatedUserService.SetUser(user)

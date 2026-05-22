@@ -1,17 +1,20 @@
 import jwt
 from datetime import datetime, timedelta, timezone
 from Config import settings
+from Exceptions import ApiException
+from Common.Enums import eResponseCode
+from Entities.MemberUser import MemberUser
 
 class JWTService:
     @staticmethod
-    def CreateAccessToken(MUR_Idx : int, additionalClaims : dict = None) -> str:
+    def CreateAccessToken(MURItem : MemberUser, additionalClaims : dict = None) -> str:
         """
             사용자 ID와 추가 정보를 담은 JWT 액세스 토큰 생성
         """
 
         # 페이로드 구성
         payload = {
-            "sub" : str(MUR_Idx),
+            "sub" : f"{MURItem.MEM_Idx}|{MURItem.MUR_Idx}",
             "iat" : datetime.now(timezone.utc),
             "exp" : datetime.now(timezone.utc) + timedelta(minutes=settings.jwt.token_expire_minutes)
         }
@@ -28,3 +31,21 @@ class JWTService:
         )    
 
         return token
+    
+    # 토큰 검증 및 해독
+    @staticmethod
+    def DecodeToken(token : str) -> dict:
+        try:
+            payload = jwt.decode(
+                token,
+                settings.jwt.secret_key,
+                algorithms=[settings.jwt.algorithm]
+            )
+
+            return payload
+
+        except jwt.ExpiredSignatureError:
+            raise ApiException("Token has expired.", res_code=eResponseCode.TOKEN_EXPIRED)
+        
+        except jwt.InvalidTokenError:
+            raise ApiException("Invalid token.", res_code=eResponseCode.UNAUTHORIZED)

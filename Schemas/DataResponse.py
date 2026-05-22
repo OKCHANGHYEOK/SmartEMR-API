@@ -38,7 +38,7 @@ class DataResponse(BaseDTO, Generic[T]):
             retItems = items if items else [] 
 
         return cls(
-            Item=(item if item else retItems[0]),
+            Item=(item if item else retItems[0] if retItems else None),
             Items=retItems,
             Message=message,
             responseCode = responseCode,
