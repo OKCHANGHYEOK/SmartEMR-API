@@ -32,6 +32,16 @@ class JWTService:
 
         return token
     
+    @staticmethod
+    def CreateRefreshToken(MURItem : MemberUser) -> str:
+        payload = {
+            "sub" : str(MURItem.MUR_Idx),
+            "iat" : datetime.now(timezone.utc),
+            "exp" : datetime.now(timezone.utc) + timedelta(days=settings.jwt.refresh_token_expire_days)
+        }
+
+        return jwt.encode(payload, settings.jwt.secret_key, algorithm=settings.jwt.algorithm)
+    
     # 토큰 검증 및 해독
     @staticmethod
     def DecodeToken(token : str) -> dict:

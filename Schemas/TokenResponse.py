@@ -5,6 +5,7 @@ from Schemas.MemberUserDTO import MemberUser_Res
 
 class TokenResponse(BaseModel):
     AccessToken : Optional[str] = ""
+    RefreshToken : Optional[str] = ""
     TokenType : Optional[str] = ""
     ExpireMinutes : Optional[float] = 120
     Member : Optional[Member_Res] = None

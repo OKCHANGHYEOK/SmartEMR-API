@@ -12,8 +12,8 @@ def RegisterExceptionHandlers(app : FastAPI):
         return JSONResponse(
             status_code=exc.status_code,
             content={
-                "success" : False,
-                "message" : exc.message,
-                "responseCode" : exc.responseCode.value
+                "IsSuccess" : False,
+                "Message" : exc.message,
+                "ResponseCode" : exc.responseCode.value
             }
         )

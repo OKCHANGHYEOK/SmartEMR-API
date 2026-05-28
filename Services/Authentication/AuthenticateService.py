@@ -34,15 +34,14 @@ class AuthenticateService:
             # 유저 정보 추출 (예시)
             user = MemberUser(MEM_Idx=MEM_Idx, MUR_Idx=MUR_Idx)
 
-            # 🌟 오타 수정: autenticated -> authenticated ('h' 추가)
             self.authenticatedUserService.SetUser(user)
 
         except ApiException:
-            # 이미 발생한 ApiException은 그대로 위로 던짐
             raise
+
         except Exception as E:
-            # 시스템 에러나 AttributeError 등 진짜 버그는 로그로 찍어서 확인 가능하게 처리
             print(f"인증 과정 중 예기치 못한 에러 발생: {E}") 
+            
             raise ApiException("invalid token", res_code=eResponseCode.TOKEN_EXPIRED)    
 
 

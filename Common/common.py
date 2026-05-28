@@ -11,3 +11,6 @@ def getLocalIP():
     finally:
         sc.close()
 
+@staticmethod
+def isNullOrWhiteSpace(s : str) -> bool:
+    return not s or not s.strip()

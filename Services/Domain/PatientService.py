@@ -1,13 +1,13 @@
 from fastapi import Depends
 from Exceptions.ApiException import ApiException
 from Entities.Patient import Patient
-from Services.Domain import BaseSerivce
+from Services.Domain import BaseService
 from Schemas.DataResponse import DataResponse
 from Schemas.PatientDTO import Patient_Req, Patient_Res
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
 from Common import eSP
 
-class PatientService(BaseSerivce):
+class PatientService(BaseService):
     def __init__(self, _authenicatedUserSerivce : AuthenticatedUserService = Depends(AuthenticatedUserService)):
         self.authenticatedUserService = _authenicatedUserSerivce
 

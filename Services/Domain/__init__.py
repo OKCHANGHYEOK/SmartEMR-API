@@ -1,4 +1,4 @@
-from .BaseService import BaseSerivce
+from .BaseService import BaseService
 from .MemberService import MemberService
 from .MemberUserSerivce import MemberUserService
 from .PatientService import PatientService

@@ -4,6 +4,7 @@ class JWTSettings(BaseSettings):
     secret_key : str
     algorithm : str = "HS256"
     token_expire_minutes : int = 30
+    refresh_token_expire_days : int = 14
 
     model_config = SettingsConfigDict(
             env_file=".env",

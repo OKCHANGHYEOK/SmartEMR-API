@@ -1,17 +1,26 @@
+from . import JWTService, HashService
 from fastapi import Depends
+from Services.Authentication.TokenService import TokenService
+from Services.Domain import BaseService
 from Services.Domain import MemberService
 from Services.Domain import MemberUserService
-from Services.Authentication import JWTService, HashService
 from Schemas.MemberDTO import Member_Req, Member_Res
 from Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
 from Schemas.DataResponse import DataResponse
 from Schemas.TokenResponse import TokenResponse
+from Schemas.TokenDTO import Token_Req, Token_Res
 from Exceptions import ApiException
+from Common.common import isNullOrWhiteSpace
+from Common.eSP import eSP
 
-class LoginService:
-    def __init__(self, _memberService : MemberService = Depends(MemberService), _memberUserService : MemberUserService = Depends(MemberUserService)):
+class LoginService(BaseService):
+    def __init__(self, 
+                 _memberService : MemberService = Depends(MemberService), 
+                 _memberUserService : MemberUserService = Depends(MemberUserService),
+                 _tokenService : TokenService = Depends(TokenService)):
         self.memberService = _memberService
         self.memberUserService = _memberUserService
+        self.tokenService = _tokenService
 
     async def login(self, item : MemberUser_Req):
         if item.MUR_Idx and not item.MUR_PassWord:
@@ -43,9 +52,31 @@ class LoginService:
             raise ApiException("internal server error", status_cod=404)
 
         member = retMEM.Item
-        token = JWTService.CreateAccessToken(loginUser)
 
-        return TokenResponse(AccessToken=token, TokenType="Bearer", ExpireMinutes=120, Member=member, User=loginUser)
+        access_token = JWTService.CreateAccessToken(loginUser)
+        refresh_token = JWTService.CreateRefreshToken(loginUser)
+
+        if isNullOrWhiteSpace(access_token) or isNullOrWhiteSpace(refresh_token):
+            raise ApiException("failed to create token.", status_code=500)
+        
+        # 토큰 생성후 리프레쉬 토큰은 DB에 저장해둠
+        setToken = Token_Req()
+        setToken.RTK_Idx = 0
+        setToken.MUR_Idx = loginUser.MUR_Idx
+        setToken.TOKEN_VALUE = refresh_token
+        setToken.ISREVOKED = False
+
+        retToken = await self.tokenService.SetRefreshToken(setToken)
+
+        if not retToken or not isNullOrWhiteSpace(self.DbContext.retMessage):
+            raise ApiException("failed to save token.", status_code=500)
+
+        return TokenResponse(AccessToken=access_token, 
+                             RefreshToken=refresh_token,
+                             TokenType="Bearer", 
+                             ExpireMinutes=120, 
+                             Member=member, 
+                             User=loginUser)
     
     async def GetHashedPassWord(self, request : MemberUser_Req):
         return {

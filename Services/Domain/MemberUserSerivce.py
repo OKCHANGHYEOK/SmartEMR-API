@@ -1,12 +1,12 @@
 from Entities.MemberUser import MemberUser
 from Services.Authentication import HashService
-from Services.Domain import BaseSerivce
+from Services.Domain import BaseService
 from Schemas.DataResponse import DataResponse
 from Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
 from Common import eSP
 from Exceptions import ApiException
 
-class MemberUserService(BaseSerivce):
+class MemberUserService(BaseService):
    async def GetMemberUserForLogin(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
       item = MemberUser()
 

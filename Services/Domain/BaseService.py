@@ -1,7 +1,7 @@
 from fastapi import Depends
 from Infrastructure import AppDBContext
 
-class BaseSerivce:
+class BaseService:
     _dbContext : AppDBContext = AppDBContext()
 
     @property

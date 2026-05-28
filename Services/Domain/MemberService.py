@@ -3,9 +3,9 @@ from Schemas.MemberDTO import Member_Req, Member_Res
 from Schemas.DataResponse import DataResponse
 from Entities.Member import Member
 from Common import eSP
-from .BaseService import BaseSerivce
+from .BaseService import BaseService
 
-class MemberService(BaseSerivce):
+class MemberService(BaseService):
     async def GetMember(self, request : Member_Req):
         ## 로그인 유저 체크 로직 추후 구현
 
