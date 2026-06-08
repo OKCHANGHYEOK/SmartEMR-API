@@ -2,8 +2,8 @@ import logging
 import os
 import traceback
 import json
+from Common import Common
 from logging.handlers import TimedRotatingFileHandler
-from Common import common as Common
 from sqlalchemy import text
 
 class LoggerService:

@@ -7,6 +7,8 @@ class Patient(BaseEntity):
     PAT_Idx = Column(Integer, primary_key=True, autoincrement=True)
     MEM_Idx = Column(Integer)
     MUR_Idx = Column(Integer)
+    MUR_Idx_DOC = Column(Integer)
+    MUR_Idx_STF = Column(Integer)
     PAT_Name = Column(String(50))
     PAT_ChartNo = Column(String(20))
     PAT_Sex = Column(String(1))

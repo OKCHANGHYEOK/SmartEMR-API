@@ -28,9 +28,21 @@ class DBSesttings(BaseSettings):
                     env_prefix='DB_',
                     extra="ignore"
                 )
+    
+class CryptoSettings(BaseSettings):
+    secret_key : str
+    iv : str    
+
+    model_config = SettingsConfigDict(
+            env_file=".env",
+            env_file_encoding="utf-8",
+            env_prefix='CRYPTO_',
+            extra="ignore"
+        )
 
 class Settings(BaseSettings):
     jwt : JWTSettings = JWTSettings()
     db : DBSesttings = DBSesttings()
+    crypto : CryptoSettings = CryptoSettings()
 
 settings = Settings()

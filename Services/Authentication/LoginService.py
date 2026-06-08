@@ -10,7 +10,7 @@ from Schemas.DataResponse import DataResponse
 from Schemas.TokenResponse import TokenResponse
 from Schemas.TokenDTO import Token_Req, Token_Res
 from Exceptions import ApiException
-from Common.common import isNullOrWhiteSpace
+from Common.Common import isNullOrWhiteSpace
 from Common.eSP import eSP
 
 class LoginService(BaseService):

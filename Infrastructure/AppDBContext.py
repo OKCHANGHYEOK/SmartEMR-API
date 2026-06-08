@@ -1,7 +1,7 @@
-import Common.common as Common
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
+from Common import Common
 from Common.loggerService import LoggerService
 from Config import settings
 

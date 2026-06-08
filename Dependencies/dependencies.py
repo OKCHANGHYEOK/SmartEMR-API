@@ -1,5 +1,4 @@
 from typing import Type, TypeVar
-from fastapi import Depends
 from Infrastructure import AppDBContext
 from Common import LoggerService
 from Services.Authentication import AuthenticatedUserService, AuthenticateService, LoginService
