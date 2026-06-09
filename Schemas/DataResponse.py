@@ -15,6 +15,7 @@ class DataResponse(BaseDTO, Generic[T]):
     @classmethod
     def CreateJsonResult(cls, 
                         items: Optional[List] = None, 
+                        item: Optional[T] = None, 
                         message: str = "", 
                         responseCode: eResponseCode = eResponseCode.SUCCESS,
                         isSuccess: bool = True):
@@ -28,26 +29,20 @@ class DataResponse(BaseDTO, Generic[T]):
                 res_type = args[0]
 
         retItems = []
+        
+        # 💡 res_type을 정상적으로 찾았고, TypeVar가 아닐 때만 model_validate를 수행합니다.
+        if res_type and not isinstance(res_type, TypeVar):
+            try:
+                retItems = [res_type.model_validate(row) for row in items] if items else []
+            except Exception:
+                # 변환 실패 시 방어 코드로 원본 데이터 유지
+                retItems = items if items else []
+        else:
+            # 💡 [핵심] res_type이 None이거나 찾지 못했다면, 변환을 생략하고 원본 데이터를 그대로 사용합니다!
+            retItems = items if items else [] 
 
-        if items:
-            for row in items:
-                # 이미 pydantic 모델 인스턴스라면 그대로 쓰고, 아니라면 validate 수행
-                if res_type and not isinstance(res_type, TypeVar):
-                    if isinstance(row, res_type):
-                        retItems.append(row)
-                    else:
-                        try:
-                            retItems.append(res_type.model_validate(row))
-                        except Exception:
-                            # 검증 실패 시 방어 코드 (딕셔너리나 원래 값을 넣거나 로그 처리)
-                            retItems.append(row) 
-                else:
-                    retItems.append(row)
-
-        # 만약 Pydantic 모델 내에서 검증 에러가 발생하는 것을 방지하기 위해 
-        # model_validate 대신 model_construct를 쓰거나 필드 매핑을 확인해야 합니다.
         return cls(
-            Item=retItems[0] if len(retItems) == 1 else None,
+            Item=(item if item else retItems[0] if retItems else None),
             Items=retItems,
             Message=message,
             responseCode=responseCode,

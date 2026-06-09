@@ -1,7 +1,8 @@
+import base64
 from .BaseDTO import BaseDTO
 from typing import Optional
 from datetime import datetime
-
+from pydantic import field_serializer
 
 class PatientDTO(BaseDTO):
     PAT_Idx: Optional[int] = None
@@ -34,10 +35,16 @@ class PatientDTO(BaseDTO):
     PAT_IsForeign: Optional[str] = None
     PAT_IsSMS: Optional[str] = None
     PAT_IsEmail: Optional[str] = None
-    PAT_ImageSource: Optional[str] = None  # varbinary(MAX) 대응
+    PAT_ImageSource: Optional[bytes] = None  # varbinary(MAX) 대응
     PAT_Date: Optional[str] = None
     PAT_YYMMDD: Optional[str] = None
     PAT_IsValid: Optional[bool] = None        # bit 대응
+
+    @field_serializer('PAT_ImageSource')
+    def serialize_image(self, v):
+        if isinstance(v, bytes):
+            return base64.b64encode(v).decode('utf-8')
+        return v
 
 class Patient_Req(PatientDTO):
     pass
