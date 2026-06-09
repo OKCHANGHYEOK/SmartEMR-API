@@ -1,5 +1,5 @@
 from Entities.BaseEntity import BaseEntity
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, BINARY
 
 class Patient(BaseEntity):
     __tablename__ = 'Patient'
@@ -27,6 +27,7 @@ class Patient(BaseEntity):
     PAT_Email = Column(String(50))
     PAT_FirstVisitDate = Column(String(10))
     PAT_LastVisitDate = Column(String(10))
+    PAT_ImageSource = Column(BINARY)
     PAT_IsSolar = Column(String(1))
     PAT_IsAgreePersonalInfo = Column(String(1))
     PAT_IsForeign = Column(String(1))

@@ -33,7 +33,7 @@ class PatientDTO(BaseDTO):
     PAT_IsForeign: Optional[str] = None
     PAT_IsSMS: Optional[str] = None
     PAT_IsEmail: Optional[str] = None
-    PAT_ImageSource: Optional[bytes] = None  # varbinary(MAX) 대응
+    PAT_ImageSource: Optional[str] = None  # varbinary(MAX) 대응
     PAT_Date: Optional[str] = None
     PAT_YYMMDD: Optional[str] = None
     PAT_IsValid: Optional[bool] = None        # bit 대응

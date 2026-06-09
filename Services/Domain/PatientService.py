@@ -1,3 +1,4 @@
+import base64
 from fastapi import Depends
 from Exceptions.ApiException import ApiException
 from Entities.Patient import Patient
@@ -86,7 +87,14 @@ class PatientService(BaseService):
         item.PAT_IsForeign = request.PAT_IsForeign
         item.PAT_IsSMS = request.PAT_IsSMS
         item.PAT_IsEmail = request.PAT_IsEmail
-        item.PAT_IsValid = request.PAT_IsValid        
+        item.PAT_IsValid = request.PAT_IsValid 
+
+        if request.PAT_ImageSource:
+            try:
+                image_bytes = base64.b64decode(request.PAT_ImageSource)
+                item.PAT_ImageSource = image_bytes
+            except:
+                raise ApiException("이미지 데이터가 손상되었습니다.", status_code=400)           
 
         ret = await self.DbContext.GetItems(eSP.proc_Patient_GetPatient, item)
 
