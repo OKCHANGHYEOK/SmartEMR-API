@@ -6,6 +6,7 @@ from datetime import datetime
 class PatientDTO(BaseDTO):
     PAT_Idx: Optional[int] = None
     MEM_Idx: Optional[int] = None
+    MUR_Idx: Optional[int] = None
     MUR_Idx_DOC: Optional[int] = None
     MUR_Idx_STF: Optional[int] = None
     PAT_BloodType: Optional[str] = None

@@ -9,30 +9,31 @@ from Exceptions import ApiException
 
 router = APIRouter()
 
-@router.post("/refresh_access_token")
-async def RefreshToken(request : Token_Req, 
+class AuthRouter():
+    @router.post("/refresh_access_token")
+    async def RefreshToken(request : Token_Req, 
                        _jwtservice : JWTService = Depends(JWTService),
                        _tokenService : TokenService = Depends(TokenService),
                        _memberUserService : MemberUserService = Depends(MemberUserService)):
-    try:
-        payload = JWTService.DecodeToken(request.TOKEN_VALUE)
-    except ApiException:
-        raise ApiException("invalid refreshToken.")  
-    
-    retRefreshToken = await _tokenService.GetRefreshToken(request)
+        try:
+            payload = JWTService.DecodeToken(request.TOKEN_VALUE)
+        except ApiException:
+            raise ApiException("invalid refreshToken.")  
+        
+        retRefreshToken = await _tokenService.GetRefreshToken(request)
 
-    if not retRefreshToken:
-        raise ApiException("cannot found a refreshToken.")
-    
-    MURItem = MemberUser_Req(MUR_Idx=request.MUR_Idx)
+        if not retRefreshToken:
+            raise ApiException("cannot found a refreshToken.")
+        
+        MURItem = MemberUser_Req(MUR_Idx=request.MUR_Idx)
 
-    loginUser = await _memberUserService.GetMemberUser(MURItem).Item
+        loginUser = await _memberUserService.GetMemberUser(MURItem).Item
 
-    new_access_token = JWTService.CreateAccessToken(loginUser)
+        new_access_token = JWTService.CreateAccessToken(loginUser)
 
-    return TokenResponse(
-        AccessToken=new_access_token,
-        RefreshToken=request.TOKEN_VALUE,
-        TokenType="Bearer",
-        ExpireMinutes=120
-    )
+        return TokenResponse(
+            AccessToken=new_access_token,
+            RefreshToken=request.TOKEN_VALUE,
+            TokenType="Bearer",
+            ExpireMinutes=120
+        )

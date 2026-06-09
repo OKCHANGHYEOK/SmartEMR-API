@@ -54,7 +54,7 @@ class PatientService(BaseService):
             raise ApiException("생년월일이 올바르지 않습니다.", res_code=400)
 
         # 차트번혼 설정
-        PAT_ChartNo = Common.GenerateChartNo(PAT_Birth)
+        PAT_ChartNo = await Common.GenerateChartNo(PAT_Birth)
 
         if len(PAT_ChartNo) != 20:
             raise ApiException("차트번호 생성에 실패했습니다. 잠시후 다시 시도하세요.", res_code=500)
@@ -96,7 +96,7 @@ class PatientService(BaseService):
             except:
                 raise ApiException("이미지 데이터가 손상되었습니다.", status_code=400)           
 
-        ret = await self.DbContext.GetItems(eSP.proc_Patient_GetPatient, item)
+        ret = await self.DbContext.GetItems(eSP.proc_Patient_SetPatient, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)

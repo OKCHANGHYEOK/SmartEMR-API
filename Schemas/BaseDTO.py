@@ -11,4 +11,4 @@ class BaseDTO(BaseModel):
     SortField: Optional[str] = None
     SortDir: Optional[str] = None
 
-    model_config = ConfigDict(from_attributes=True, extra="allow")
+    model_config = ConfigDict(from_attributes=True, extra="ignore")
