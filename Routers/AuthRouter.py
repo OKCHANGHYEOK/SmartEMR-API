@@ -27,7 +27,12 @@ class AuthRouter():
         
         MURItem = MemberUser_Req(MUR_Idx=request.MUR_Idx)
 
-        loginUser = await _memberUserService.GetMemberUser(MURItem).Item
+        response = await _memberUserService.GetMemberUser(MURItem)
+        
+        if not response:
+            raise ApiException("존재하지 않거나 삭제된 사용자입니다.", res_code=404)
+        
+        loginUser = response.Item
 
         new_access_token = JWTService.CreateAccessToken(loginUser)
 

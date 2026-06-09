@@ -14,34 +14,43 @@ class DataResponse(BaseDTO, Generic[T]):
 
     @classmethod
     def CreateJsonResult(cls, 
-                         items: Optional[List] = None, 
-                         item: Optional[T] = None, 
-                         message: str = "", 
-                         responseCode : eResponseCode = eResponseCode.SUCCESS,
-                         isSuccess: bool = True):
+                        items: Optional[List] = None, 
+                        message: str = "", 
+                        responseCode: eResponseCode = eResponseCode.SUCCESS,
+                        isSuccess: bool = True):
         
         orig_bases = getattr(cls, "__orig_bases__", None)
         res_type = None
         
         if orig_bases:
-            # DataResponse[Member_Res]에서 Member_Res 타입을 추출
             args = get_args(orig_bases[0])
             if args:
                 res_type = args[0]
 
-        # 만약 타입을 찾았다면 model_validate를 수행합니다.
-        # TypeVar 객체인지 실제 클래스인지 확인하는 방어 로직
-        if res_type and not isinstance(res_type, TypeVar):
-            retItems = [res_type.model_validate(row) for row in items] if items else []
-        else:
-            # 타입을 찾지 못한 경우 (그냥 DataResponse.CreateJsonResult() 호출 시)
-            retItems = items if items else [] 
+        retItems = []
 
+        if items:
+            for row in items:
+                # 이미 pydantic 모델 인스턴스라면 그대로 쓰고, 아니라면 validate 수행
+                if res_type and not isinstance(res_type, TypeVar):
+                    if isinstance(row, res_type):
+                        retItems.append(row)
+                    else:
+                        try:
+                            retItems.append(res_type.model_validate(row))
+                        except Exception:
+                            # 검증 실패 시 방어 코드 (딕셔너리나 원래 값을 넣거나 로그 처리)
+                            retItems.append(row) 
+                else:
+                    retItems.append(row)
+
+        # 만약 Pydantic 모델 내에서 검증 에러가 발생하는 것을 방지하기 위해 
+        # model_validate 대신 model_construct를 쓰거나 필드 매핑을 확인해야 합니다.
         return cls(
-            Item=(item if item else retItems[0] if retItems else None),
+            Item=retItems[0] if len(retItems) == 1 else None,
             Items=retItems,
             Message=message,
-            responseCode = responseCode,
+            responseCode=responseCode,
             IsSuccess=isSuccess,
             TotalCount=len(retItems)
         )
