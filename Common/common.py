@@ -24,11 +24,10 @@ def getLocalIP():
 def isNullOrWhiteSpace(s : str) -> bool:
     return not s or not s.strip()
 
-async def GenerateChartNo(PAT_Birth : str) -> str:
+async def GenerateChartNo() -> str:
     """
-        현재날짜(8자리) + 생년월일(6자리) + 순번(4자리) 조합의 차트번호 생성
-        :param PAT_Birth: 환자 생년월일 
-        :return: 생성된 차트번호 (총 20자리)
+        현재날짜(8자리) + 순번(4자리) 조합의 차트번호 생성
+        :return: 생성된 차트번호 (총 12자리)
     """
 
     # 현재 날짜 구하기
@@ -49,6 +48,6 @@ async def GenerateChartNo(PAT_Birth : str) -> str:
     strSeq = f"{seqNo:04d}"
 
     # 최종 차트번호 셍상
-    chartNo = f"{strDT}{PAT_Birth}{strSeq}"
+    chartNo = f"{strDT}{strSeq}"
 
     return chartNo

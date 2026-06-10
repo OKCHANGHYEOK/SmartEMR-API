@@ -48,27 +48,27 @@ class PatientService(BaseService):
         if user == None:
             return
         
-        PAT_Birth = request.PAT_BirthYear + request.PAT_BirthMonth + request.PAT_BirthDay
+        if not request.PAT_Idx:
+             # 차트번혼 설정
+            PAT_ChartNo = await Common.GenerateChartNo()
 
-        if len(PAT_Birth) != 8:
-            raise ApiException("생년월일이 올바르지 않습니다.", res_code=400)
-
-        # 차트번혼 설정
-        PAT_ChartNo = await Common.GenerateChartNo(PAT_Birth)
-
-        if len(PAT_ChartNo) != 20:
-            raise ApiException("차트번호 생성에 실패했습니다. 잠시후 다시 시도하세요.", res_code=500)
-
+            if len(PAT_ChartNo) != 12:
+                raise ApiException("차트번호 생성에 실패했습니다. 잠시후 다시 시도하세요.", res_code=500) 
+        else:
+            PAT_ChartNo = request.PAT_ChartNo    
+        
         item.MEM_Idx = user.MEM_Idx
         item.MUR_Idx = user.MUR_Idx
 
         item.PAT_Idx = request.PAT_Idx
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.MUR_Idx_STF = request.MUR_Idx_STF
+        item.PAT_Name = request.PAT_Name
         item.PAT_ChartNo = PAT_ChartNo
         item.PAT_Sex = request.PAT_Sex
         item.PAT_Age = request.PAT_Age
-        item.PAT_BirthDay = request.PAT_BirthYear
+        item.PAT_SourceType = request.PAT_SourceType
+        item.PAT_BirthYear = request.PAT_BirthYear
         item.PAT_BirthMonth = request.PAT_BirthMonth
         item.PAT_BirthDay = request.PAT_BirthDay
         item.PAT_RegisterNum1 = request.PAT_RegisterNum1
@@ -82,6 +82,7 @@ class PatientService(BaseService):
         item.PAT_Email = request.PAT_Email
         item.PAT_FirstVisitDate = request.PAT_FirstVisitDate
         item.PAT_LastVisitDate = request.PAT_LastVisitDate
+        item.PAT_Bigo = request.PAT_Bigo
         item.PAT_IsSolar = request.PAT_IsSolar
         item.PAT_IsAgreePersonalInfo = request.PAT_IsAgreePersonalInfo
         item.PAT_IsForeign = request.PAT_IsForeign
