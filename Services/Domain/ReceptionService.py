@@ -60,8 +60,9 @@ class ReceptionService(BaseService):
         item.PAT_Age = request.PAT_Age
         item.RCP_Status = request.RCP_Status
         item.RCP_Route = request.RCP_Route
+        item.RCP_VisitType = request.RCP_VisitType
         item.RCP_Subject = request.RCP_Subject
-        item.RCP_InsuranceType = request.RCP_InsuranceType
+        item.RCP_SubjectName = request.RCP_SubjectName
         item.RCP_ReceiptDate = request.RCP_ReceiptDate
         item.RCP_ReceiptTime = request.RCP_ReceiptTime
         item.RCP_StartTreatTime = request.RCP_StartTreatTime

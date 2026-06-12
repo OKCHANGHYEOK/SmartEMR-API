@@ -17,8 +17,9 @@ class ReceptionDTO(BaseDTO):
     PAT_Age: Optional[int] = None
     RCP_Status : Optional[str] = None
     RCP_Route : Optional[str] = None
+    RCP_VisitType : Optional[str] = None
     RCP_Subject : Optional[str] = None
-    RCP_InsuranceType : Optional[str] = None
+    RCP_SubjectName : Optional[str] = None
     RCP_ReceiptDate : Optional[str] = None
     RCP_ReceiptTime : Optional[str] = None
     RCP_StartTreatTime : Optional[str] = None
