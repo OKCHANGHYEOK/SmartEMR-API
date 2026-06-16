@@ -1,7 +1,5 @@
 from .BaseDTO import BaseDTO
 from typing import Optional
-from datetime import datetime
-
 
 class ReceptionDTO(BaseDTO):
     RCP_Idx : Optional[int] = None
