@@ -1,5 +1,6 @@
 from .BaseDTO import BaseDTO
 from typing import Optional
+from Schemas.InsuranceDTO import Insurance_Req
 
 class ReceptionDTO(BaseDTO):
     RCP_Idx : Optional[int] = None
@@ -26,6 +27,7 @@ class ReceptionDTO(BaseDTO):
     RCP_IsValid : Optional[bool ] = None
 
 class Reception_Req(ReceptionDTO):
+    IRCItem : Optional[Insurance_Req] = None
     pass
 
 class Reception_Res(ReceptionDTO):

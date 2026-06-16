@@ -8,6 +8,7 @@ class MemberUser(BaseEntity):
     MEM_Idx = Column(Integer)
     MUR_Role = Column(String(3))
     vMUR_Role = Column(String(3))
+    MUR_JobCode = Column(String(3))
     MUR_Id = Column(String(50))
     MUR_PassWord = Column(String(200))
     MUR_Name = Column(String(50))
