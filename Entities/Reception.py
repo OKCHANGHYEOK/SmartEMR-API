@@ -25,5 +25,6 @@ class Reception(BaseEntity):
     RCP_StartTreatTime = Column(String(8))
     RCP_EndTreatTime = Column(String(8))
     RCP_Memo = Column(String(500))
+    RCP_YYMMDD = Column(String(10))
     RCP_IsValid = Column(Boolean)
     

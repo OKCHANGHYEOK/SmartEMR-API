@@ -24,6 +24,7 @@ class ReceptionDTO(BaseDTO):
     RCP_StartTreatTime : Optional[str] = None
     RCP_EndTreatTime : Optional[str] = None
     RCP_Memo : Optional[str] = None
+    RCP_YYMMDD : Optional[str] = None
     RCP_IsValid : Optional[bool ] = None
 
 class Reception_Req(ReceptionDTO):
@@ -33,3 +34,12 @@ class Reception_Req(ReceptionDTO):
 class Reception_Res(ReceptionDTO):
     MUR_Name_DOC : Optional[str] = None
     PAT_IsSMS: Optional[str] = None
+
+    IRC_Idx : Optional[int] = None
+    IRC_Type : Optional[str] = None
+    IRC_CertNum : Optional[str] = None
+    IRC_ContractorName : Optional[str] = None
+    IRC_InsuredName : Optional[str] = None
+    IRC_CoName : Optional[str] = None
+    IRC_EffectiveYYMMDD : Optional[str] = None
+    IRC_ExpiredYYMMDDD : Optional[str] = None
