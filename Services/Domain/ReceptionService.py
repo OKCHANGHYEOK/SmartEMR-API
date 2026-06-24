@@ -71,7 +71,7 @@ class ReceptionService(BaseService):
         item.RCP_Status = request.RCP_Status
         item.RCP_Route = request.RCP_Route
         item.RCP_VisitType = request.RCP_VisitType
-        item.RCP_Subject = request.RCP_Subject3EndTreatTime
+        item.RCP_Subject = request.RCP_Subject
         item.RCP_Memo = request.RCP_Memo
         item.RCP_IsValid = request.RCP_IsValid
 
@@ -85,18 +85,20 @@ class ReceptionService(BaseService):
         if request.IRCItem:
             IRCItem = request.IRCItem
 
+            IRC_Idx = IRCItem.IRC_Idx
+
             setIRC : Insurance = Insurance()
 
             # 비보험일 때 이미 해당 접수의 보험이 있으면 삭제 처리
-            if IRCItem.IRC_Idx > 0 and IRCItem.IRC_Type == "NOR":
-                setIRC.IRC_Idx = IRCItem.IRC_Idx
+            if IRC_Idx and IRC_Idx > 0 and IRCItem.IRC_Type == "NOR":
+                setIRC.IRC_Idx = IRC_Idx
                 setIRC.IRC_IsValid = False
 
                 await self.DbContext.GetItem(eSP.proc_Insurance_SetInsurance, setIRC)
 
             else:
                 setIRC.MEM_Idx = user.MEM_Idx
-                setIRC.IRC_Idx = IRCItem.IRC_Idx
+                setIRC.IRC_Idx = IRC_Idx
                 setIRC.RCP_Idx = RCPItem.RCP_Idx
                 setIRC.PAT_Idx = RCPItem.PAT_Idx
                 setIRC.IRC_Type = IRCItem.IRC_Type

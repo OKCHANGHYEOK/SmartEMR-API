@@ -33,6 +33,11 @@ class Reception_Req(ReceptionDTO):
 
 class Reception_Res(ReceptionDTO):
     MUR_Name_DOC : Optional[str] = None
+
+    PAT_Name: Optional[str] = None
+    PAT_ChartNo: Optional[str] = None
+    PAT_Sex: Optional[str] = None
+    PAT_Age: Optional[int] = None
     PAT_IsSMS: Optional[str] = None
 
     IRC_Idx : Optional[int] = None
