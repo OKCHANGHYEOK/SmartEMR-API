@@ -12,7 +12,7 @@ class eSP(Enum):
     proc_Patient_SetPatient = 8
     proc_Chart_GetChart = 9
     proc_Chart_SetChart = 10
-    proc_ChartCommonCode_GetChartCommonCode = 11
+    proc_CommonCode_GetCommonCode = 11
     proc_Reception_GetReception = 12
     proc_Reception_SetReception = 13
     proc_Insurance_GetInsurance = 14
