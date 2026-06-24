@@ -6,6 +6,7 @@ from Entities.Insurance import Insurance
 from Services.Domain import BaseService
 from Schemas.DataResponse import DataResponse
 from Schemas.ReceptionDTO import Reception_Req, Reception_Res
+from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
 from Common import eSP
 
@@ -42,6 +43,41 @@ class ReceptionService(BaseService):
         
         return DataResponse[Reception_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
     
+    async def GetReceptionBoard(self, request: ReceptionBoard_Req):
+            item : ReceptionBoard_Req = ReceptionBoard_Req()
+
+            user = self.authenticatedUserService.GetUser()
+
+            if user == None:
+                return
+            
+            item.MEM_Idx = user.MEM_Idx
+            item.MUR_Idx_DOC = request.MUR_Idx_DOC
+            item.PAT_Idx = request.PAT_Idx
+
+            item.RCP_Status = request.RCP_Status
+            item.RCP_InsuranceType = request.RCP_InsuranceType
+
+            item.RES_Status = request.RES_Status
+
+            item.RCB_Type = request.RCB_Type
+            item.RCB_Route = request.RCB_Route
+            item.RCB_VisitType = request.RCB_VisitType
+            item.RCB_YYMMDD = request.RCB_YYMMDD
+
+            item.Keyword = request.Keyword
+            item.PageSize = request.PageSize
+            item.PageIndex = request.PageIndex
+            item.SortField = request.SortField
+            item.SortDir = request.SortDir
+
+            ret = await self.DbContext.GetItems(eSP.proc_Reception_GetReceptionBoard, item)
+
+            if ret is None or self.DbContext.retIsSuccess == False:
+                raise ApiException(self.DbContext.retMessage)
+            
+            return DataResponse[ReceptionBoard_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+
     async def SetReception(self, request: Reception_Req):
         item : Reception = Reception()
 
