@@ -14,6 +14,7 @@ class eSP(Enum):
     proc_Chart_SetChart = 10
     proc_CommonCode_GetCommonCode = 11
     proc_Reception_GetReception = 12
-    proc_Reception_SetReception = 13
-    proc_Insurance_GetInsurance = 14
-    proc_Insurance_SetInsurance = 15
+    proc_Reception_GetReceptionBoard = 13
+    proc_Reception_SetReception = 14
+    proc_Insurance_GetInsurance = 15
+    proc_Insurance_SetInsurance = 16
