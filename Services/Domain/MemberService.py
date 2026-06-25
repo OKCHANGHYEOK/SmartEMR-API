@@ -26,7 +26,7 @@ class MemberService(BaseService):
         item.SortField = request.SortField
         item.SortDir = request.SortDir
 
-        ret = await self.DbContext.GetItems(eSP.proc_Member_GetMember, item)
+        ret = await self.DbContext.GetItems[Member_Res](eSP.proc_Member_GetMember, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)

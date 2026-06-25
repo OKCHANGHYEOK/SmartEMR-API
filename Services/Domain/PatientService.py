@@ -33,7 +33,7 @@ class PatientService(BaseService):
         item.SortField = request.SortField
         item.SortDir = request.SortDir
 
-        ret = await self.DbContext.GetItems(eSP.proc_Patient_GetPatient, item)
+        ret = await self.DbContext.GetItems[Patient_Res](eSP.proc_Patient_GetPatient, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
@@ -97,7 +97,7 @@ class PatientService(BaseService):
             except:
                 raise ApiException("이미지 데이터가 손상되었습니다.", status_code=400)           
 
-        ret = await self.DbContext.GetItems(eSP.proc_Patient_SetPatient, item)
+        ret = await self.DbContext.GetItem[Patient_Res](eSP.proc_Patient_SetPatient, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)

@@ -1,5 +1,5 @@
 from Entities.BaseEntity import BaseEntity
-from sqlalchemy import Column, Integer, String, Boolean, BINARY
+from sqlalchemy import Column, Integer, String, Boolean
 
 class Reception(BaseEntity):
     __tablename__ = 'Reception'

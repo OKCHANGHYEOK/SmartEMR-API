@@ -14,7 +14,7 @@ class TokenService(BaseService):
         item.MUR_Idx = request.MUR_Idx
         item.TOKEN_VALUE = request.TOKEN_VALUE
 
-        ret = await self.DbContext.GetItems(eSP.proc_RefreshToken_GetRefreshToken, item)
+        ret = await self.DbContext.GetItems[Token_Res](eSP.proc_RefreshToken_GetRefreshToken, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             return None
@@ -30,7 +30,7 @@ class TokenService(BaseService):
         item.EXPIRE_DATE = datetime.now(timezone.utc) + timedelta(days=settings.jwt.refresh_token_expire_days)
         item.ISREVOKED = request.ISREVOKED
 
-        ret = await self.DbContext.GetItems(eSP.proc_RefreshToken_SetRefreshToken, item)
+        ret = await self.DbContext.GetItems[Token_Res](eSP.proc_RefreshToken_SetRefreshToken, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             return None

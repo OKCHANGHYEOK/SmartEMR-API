@@ -8,7 +8,7 @@ class ReceptionBoardDTO(BaseDTO):
     MEM_Idx : Optional[int] = None
     MUR_Idx_DOC : Optional[int] = None
     MUR_Idx_STF : Optional[int] = None
-    PAT_Idx : Optional[str] = None
+    PAT_Idx : Optional[int] = None
 
     RCP_Status : Optional[str] = None
     RCP_InsuranceType : Optional[str] = None

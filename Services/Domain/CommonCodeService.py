@@ -23,7 +23,7 @@ class CommonCodeService(BaseService):
         item.CCG_Cd = request.CCG_Cd
         item.CCI_Cd = request.CCI_Cd
 
-        ret : list[CommonCode_Res] = await self.DbContext.GetItems(eSP.proc_CommonCode_GetCommonCode, item)
+        ret : list[CommonCode_Res] = await self.DbContext.GetItems[CommonCode_Res](eSP.proc_CommonCode_GetCommonCode, item)
 
         if not ret or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)

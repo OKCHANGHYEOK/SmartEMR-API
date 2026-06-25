@@ -1,172 +1,192 @@
+from typing import TypeVar, Type, Generic
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
+
 from Common import Common
 from Common.loggerService import LoggerService
 from Config import settings
 
+TReq = TypeVar("TReq")
+TRes = TypeVar("TRes")
+
+
 class AppDBContext:
-    retMessage = "" 
+    retMessage = ""
     retCount = 0
     retIsSuccess = False
 
-    def __init__(self, logger = None):
+    def __init__(self, logger=None):
         self.logger = logger or LoggerService.getLogger()
 
         connection_str = self.__getDBConnectionString()
-        echo_mode = settings.db.echo == True
+        echo_mode = settings.db.echo is True
 
-        # 비동기 엔진 생성
         self.engine = create_async_engine(
             f"mssql+aioodbc:///?odbc_connect={connection_str}",
-            echo=echo_mode, # SQL 실행 로그를 터미널에 출력 (디버깅용)
+            echo=echo_mode,
             future=True
         )
 
-        # 비동기 전용 세션 생성기 설정
         self.AsyncSessionLocal = sessionmaker(
-            bind=self.engine, 
-            class_=AsyncSession, 
+            bind=self.engine,
+            class_=AsyncSession,
             expire_on_commit=False
         )
 
-    def __getDBConnectionString(self):
-        if settings.db.ishome == True:
-            currentIP = settings.db.ip
-        else:    
-            currentIP = Common.getLocalIP()
+    # ==========================================================
+    # Public API
+    # ==========================================================
 
-        dbUser = settings.db.user
-        dbPW = settings.db.pw
-        dbName = settings.db.name
-        dbPort = settings.db.port
+    @property
+    def GetItem(self) -> TRes:
+        return self.QueryFactory(self, True)
 
-        connectionStr = (
-            f"Driver={{ODBC Driver 17 for SQL Server}};"
-            f"Server={currentIP},{dbPort};"
-            f"Database={dbName};"
-            f"UID={dbUser};"
-            f"PWD={dbPW};"
-        ) 
+    @property
+    def GetItems(self) -> list[TRes]:
+        return self.QueryFactory(self, False)
 
-        return connectionStr
+    # ==========================================================
+    # Internal Query Methods
+    # ==========================================================
 
-    async def GetItem[T](self, proc_name, entity_obj : T) -> T:
-        """
-        저장 프로시저를 비동기로 호출하는 공용 메서드 - 단일 항목 반환
-        """
-        ret : T = await self._ExecuteQuery(proc_name, entity_obj)
+    async def _GetItem(self, proc_name: str, request_obj: TReq, response_type: Type[TRes]) -> TRes | None:
+        rows = await self._ExecuteQuery(proc_name, request_obj, response_type)
 
-        if isinstance(ret, list):
-            return ret[0] if len(ret) > 0 else None
-        
-        return ret
+        return rows[0] if rows else None
 
-    async def GetItems[T](self, proc_name, entity_obj : T) -> list[T]:
-        """
-        저장 프로시저를 비동기로 호출하는 공용 메서드 - 리스트 반환
-        """
-        ret : list[T] = await self._ExecuteQuery(proc_name, entity_obj)
-        
-        return ret if ret else []
-            
-    async def _ExecuteQuery[T](self, proc_name, entity_obj : T) -> T | list[T] | None:
+    async def _GetItems(self, proc_name: str, request_obj: TReq, response_type: Type[TRes]) -> list[TRes]:
+        return await self._ExecuteQuery(proc_name, request_obj, response_type)
+
+    async def _ExecuteQuery(self, proc_name: str, request_obj: TReq, response_type: Type[TRes]) -> list[TRes]:
         async with self.AsyncSessionLocal() as session:
+            params = {}
+
             try:
                 self.retIsSuccess = False
+                self.retCount = 0
+                self.retMessage = ""
 
-                # 실행 정보 로그 (DEBUG)
-                self.logger.debug(f"Executing Procedure: {proc_name}")
+                self.logger.debug(
+                    f"Executing Procedure: {proc_name}"
+                )
 
-                # 프로시저 호출명 전처리
                 proc_name = str(proc_name).split("eSP.")[1]
 
-                # 엔티티 객체에서 내부 필드 제외하고 파라미터 추출
-                annotations = getattr(entity_obj, '__annotations__', {})
+                annotations = getattr(
+                    request_obj,
+                    "__annotations__",
+                    {}
+                )
 
-                params = {}
-
-                for k, v in entity_obj.__dict__.items():
-                    if k.startswith('_'):
+                for k, v in request_obj.__dict__.items():
+                    if k.startswith("_"):
                         continue
-                        
+
                     if v is None:
-                        # 타입 힌트를 기반으로 기본값 결정 (기본값은 string이면 '', 그 외는 숫자형태 고려하여 0)
-                        field_type = annotations.get(k, str) # 타입 힌트가 없으면 안전하게 str 취급
-                        
-                        # Optional[str] 이나 str | None 형태일 수 있으므로 string 타입인지 검사
-                        if field_type is str or (hasattr(field_type, '__args__') and str in field_type.__args__):
-                            v = ''
+                        field_type = annotations.get(k, str)
+
+                        if (field_type is str or (hasattr(field_type, "__args__") and str in field_type.__args__)):
+                            v = ""
                         else:
                             v = 0
-                            
+
                     params[k] = v
 
-                # 파라미터 동적 생성 (@param = :param)
-                param_placeholders = ", ".join([f"@{k} = :{k}" for k in params.keys()])
-                
-                # SQL 문 조립
+                param_placeholders = ", ".join(f"@{k} = :{k}" for k in params.keys())
+
                 sql_str = f"""
-                    DECLARE @t int, @s nvarchar(250);
-                    EXEC [dbo].[{proc_name}] 
+                    DECLARE @t int,
+                            @s nvarchar(250);
+
+                    EXEC [dbo].[{proc_name}]
                         {param_placeholders},
                         @TotalQuery = @t OUTPUT,
                         @sVal = @s OUTPUT;
-                    SELECT @t as TotalQuery, @s as sVal;
+
+                    SELECT
+                        @t AS TotalQuery,
+                        @s AS sVal;
                 """
 
-                sql = text(sql_str)
+                result = await session.execute(text(sql_str), params)
 
-                # 실행 (비동기 방식)
-                result = await session.execute(sql, params)
-                
-                # 프로시저 내부에서 변경이 일어난다면 커밋
-                await session.commit()
-                
-                # 실행 결과 로깅
-                self.logger.info(f"Successfully executed {proc_name}")
-
-                # 결과 데이터 추출
-                rows = result.fetchall()                
+                rows = result.fetchall()
                 column_names = result.keys()
 
-                # 결과행이 업으면 None 반환
                 if not rows:
                     self.retIsSuccess = True
-                    return None
-                
-                # 엔티티 매핑 및 결과 생성
-                entityType = type(entity_obj)
-                arrMap = []
-                totalQueryVal = 0
-                sVal = ""
+                    return []
+
+                arr_map: list[TRes] = []
 
                 for row in rows:
-                    # 각 로우를 딕셔너리 변환 -> 엔티티 객체 생성
                     row_dict = dict(zip(column_names, row))
 
-                    if "TotalQuery" in row_dict and "sVal" in row_dict:
-                        totalQueryVal = row_dict["TotalQuery"]
-                        sVal = row_dict["sVal"]
+                    if ("TotalQuery" in row_dict and "sVal" in row_dict):
+                        self.retCount = (row_dict["TotalQuery"] or 0)
+                        self.retMessage = (row_dict["sVal"] or "")
 
-                        if len(row_dict) == 2: continue
+                        if len(row_dict) == 2:
+                            continue
 
-                    item = entityType(**row_dict)
-                    arrMap.append(item)
+                    item = response_type(**row_dict)
+                    arr_map.append(item)
 
-                # 전역필드값 설정
-                self.retMessage = sVal if sVal else ""
-                self.retCount = totalQueryVal
-                self.retIsSuccess = True            
+                self.retIsSuccess = True
 
-                return arrMap
-                
+                self.logger.info(f"Successfully executed {proc_name}")
+
+                return arr_map
+
             except Exception as e:
                 await session.rollback()
-                
-                # 파일 로그
-                self.logger.error(f"DB Error: {e}", exc_info=True)
-            
-                await LoggerService.logToDB(session, proc_name, params, e)
 
-                raise e
+                self.logger.error(f"DB Error: {e}", exc_info=True)
+
+                await LoggerService.logToDB(session, proc_name, params, e)
+                
+                raise
+
+    # ==========================================================
+    # Internal Classes
+    # ==========================================================
+
+    class QueryBuilder(Generic[TRes]):
+        def __init__(self, db, response_type: Type[TRes], is_single: bool):
+            self.db = db
+            self.response_type = response_type
+            self.is_single = is_single
+
+        async def __call__(self, proc_name: str, request_obj) -> TRes | list[TRes] | None:
+            if self.is_single:
+                return await self.db._GetItem(proc_name, request_obj, self.response_type)
+
+            return await self.db._GetItems(proc_name, request_obj, self.response_type)
+
+    class QueryFactory:
+        def __init__(self, db, is_single: bool):
+            self.db = db
+            self.is_single = is_single
+
+        def __getitem__(self, response_type: Type[TRes]) -> "AppDBContext.QueryBuilder[TRes]":
+            return AppDBContext.QueryBuilder(self.db, response_type, self.is_single)
+
+    # ==========================================================
+    # DB Connection
+    # ==========================================================
+
+    def __getDBConnectionString(self):
+        currentIP = (
+            settings.db.ip
+            if settings.db.ishome
+            else Common.getLocalIP()
+        )
+
+        return (
+            f"Driver={{ODBC Driver 17 for SQL Server}};"
+            f"Server={currentIP},{settings.db.port};"
+            f"Database={settings.db.name};"
+            f"UID={settings.db.user};"
+            f"PWD={settings.db.pw};"
+        )

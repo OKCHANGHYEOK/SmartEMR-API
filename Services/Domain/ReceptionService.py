@@ -5,8 +5,10 @@ from Entities.Reception import Reception
 from Entities.Insurance import Insurance
 from Services.Domain import BaseService
 from Schemas.DataResponse import DataResponse
+from Schemas.PatientDTO import Patient_Res
 from Schemas.ReceptionDTO import Reception_Req, Reception_Res
 from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res
+from Schemas.InsuranceDTO import Insurance_Res
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
 from Common import eSP
 
@@ -36,7 +38,7 @@ class ReceptionService(BaseService):
         item.SortField = request.SortField
         item.SortDir = request.SortDir
 
-        ret = await self.DbContext.GetItems(eSP.proc_Reception_GetReception, item)
+        ret = await self.DbContext.GetItems[Reception_Res](eSP.proc_Reception_GetReception, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
@@ -62,6 +64,7 @@ class ReceptionService(BaseService):
 
             item.RCB_Type = request.RCB_Type
             item.RCB_Route = request.RCB_Route
+            item.RCB_Subject = request.RCB_Subject
             item.RCB_VisitType = request.RCB_VisitType
             item.RCB_YYMMDD = request.RCB_YYMMDD
 
@@ -71,7 +74,7 @@ class ReceptionService(BaseService):
             item.SortField = request.SortField
             item.SortDir = request.SortDir
 
-            ret = await self.DbContext.GetItems(eSP.proc_Reception_GetReceptionBoard, item)
+            ret : list[ReceptionBoard_Res] = await self.DbContext.GetItems[ReceptionBoard_Res](eSP.proc_Reception_GetReceptionBoard, item)
 
             if ret is None or self.DbContext.retIsSuccess == False:
                 raise ApiException(self.DbContext.retMessage)
@@ -93,7 +96,7 @@ class ReceptionService(BaseService):
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.MUR_Idx_STF = request.MUR_Idx_STF
 
-        retPAT = await self.DbContext.GetItem(eSP.proc_Patient_GetPatient, Patient( PAT_Idx = request.PAT_Idx ))
+        retPAT : Patient_Res = await self.DbContext.GetItem[Patient_Res](eSP.proc_Patient_GetPatient, Patient( PAT_Idx = request.PAT_Idx ))
 
         if retPAT is None or self.DbContext.retIsSuccess == False:
             raise ApiException("환자 조회에 실패햇습니다.")
@@ -130,7 +133,7 @@ class ReceptionService(BaseService):
                 setIRC.IRC_Idx = IRC_Idx
                 setIRC.IRC_IsValid = False
 
-                await self.DbContext.GetItem(eSP.proc_Insurance_SetInsurance, setIRC)
+                await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC)
 
             else:
                 setIRC.MEM_Idx = user.MEM_Idx
@@ -145,7 +148,7 @@ class ReceptionService(BaseService):
                 setIRC.IRC_EffectiveYYMMDD = IRCItem.IRC_EffectiveYYMMDD
                 setIRC.IRC_ExpiredYYMMDD = IRCItem.IRC_ExpiredYYMMDDD
 
-                retIRC = await self.DbContext.GetItem(eSP.proc_Insurance_SetInsurance, setIRC)
+                retIRC = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC)
 
                 if retIRC is None or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)

@@ -13,7 +13,7 @@ class MemberUserService(BaseService):
       item.MUR_Idx = request.MUR_Idx
       item.MUR_Id = request.MUR_Id
 
-      ret : MemberUser_Res = await self.DbContext.GetItem(eSP.proc_MemberUser_GetMemberUserForLogin, item)
+      ret : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUserForLogin, item)
 
       if ret is None or self.DbContext.retIsSuccess == False:
          raise ApiException(self.DbContext.retMessage)
@@ -27,7 +27,7 @@ class MemberUserService(BaseService):
       item.MUR_Idx = request.MUR_Idx
       item.MUR_Name = request.MUR_Name
 
-      ret = await self.DbContext.GetItems(eSP.proc_MemberUser_GetMemberUser, item)
+      ret = await self.DbContext.GetItems[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, item)
 
       if ret is None or self.DbContext.retIsSuccess == False:
          raise ApiException(self.DbContext.retMessage)
@@ -61,7 +61,7 @@ class MemberUserService(BaseService):
       else:
          pass   
 
-      ret = await self.DbContext.GetItem(eSP.proc_MemberUser_SetMemberUser, item)
+      ret = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, item)
 
       if ret is None or self.DbContext.retIsSuccess == False:
          raise ApiException(self.DbContext.retMessage)
