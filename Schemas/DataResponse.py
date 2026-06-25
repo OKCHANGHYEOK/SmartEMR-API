@@ -49,3 +49,7 @@ class DataResponse(BaseDTO, Generic[T]):
             IsSuccess=isSuccess,
             TotalCount=len(retItems)
         )
+    
+    @classmethod
+    def CreateDefaultResult(cls, message : str = "", responseCode : eResponseCode = eResponseCode.SUCCESS, IsSuccess : bool = True):
+        return cls(Message=message, responseCode = responseCode, IsSuccess = IsSuccess)

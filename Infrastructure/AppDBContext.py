@@ -114,6 +114,8 @@ class AppDBContext:
                 rows = result.fetchall()
                 column_names = result.keys()
 
+                await session.commit()
+
                 if not rows:
                     self.retIsSuccess = True
                     return []
