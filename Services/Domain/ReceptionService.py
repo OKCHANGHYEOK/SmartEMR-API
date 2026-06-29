@@ -125,6 +125,7 @@ class ReceptionService(BaseService):
         item.RCP_Status = request.RCP_Status
         item.RCP_Route = request.RCP_Route
         item.RCP_VisitType = request.RCP_VisitType
+        item.RCP_InsuranceType = request.RCP_InsuranceType
         item.RCP_Subject = request.RCP_Subject
         item.RCP_SubjectName = request.RCP_SubjectName
         item.RCP_ReceiptDate = request.RCP_ReceiptDate

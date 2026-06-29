@@ -18,6 +18,7 @@ class Reception(BaseEntity):
     RCP_Status = Column(String(3))
     RCP_Route = Column(String(3))
     RCP_VisitType = Column(String(3))
+    RCP_InsuranceType = Column(String(3))
     RCP_Subject = Column(String(10))
     RCP_SubjectName = Column(String(50))
     RCP_ReceiptDate = Column(String(10))
