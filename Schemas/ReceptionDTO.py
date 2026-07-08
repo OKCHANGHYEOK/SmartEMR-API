@@ -7,6 +7,7 @@ class ReceptionDTO(BaseDTO):
     PAT_Idx: Optional[int] = None
     MEM_Idx: Optional[int] = None
     MUR_Idx: Optional[int] = None
+    PAT_Idx : Optional[int] = None
     MUR_Idx_DOC: Optional[int] = None
     MUR_Idx_STF: Optional[int] = None
     RES_Idx : Optional[int] = None

@@ -102,4 +102,4 @@ class PatientService(BaseService):
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
         
-        return DataResponse[Patient_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[Patient_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
