@@ -133,13 +133,11 @@ class ReceptionService(BaseService):
         item.RCP_Memo = request.RCP_Memo
         item.RCP_IsValid = request.RCP_IsValid
 
-        ret = await self.DbContext.GetItems[Reception_Res](eSP.proc_Reception_SetReception, item)
+        ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReception, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
-        
-        RCPItem = ret[0]
-
+    
         if request.IRCItem:
             IRCItem = request.IRCItem
 
@@ -157,8 +155,8 @@ class ReceptionService(BaseService):
             else:
                 setIRC.MEM_Idx = user.MEM_Idx
                 setIRC.IRC_Idx = IRC_Idx
-                setIRC.RCP_Idx = RCPItem.RCP_Idx
-                setIRC.PAT_Idx = RCPItem.PAT_Idx
+                setIRC.RCP_Idx = ret.RCP_Idx
+                setIRC.PAT_Idx = ret.PAT_Idx
                 setIRC.IRC_Type = IRCItem.IRC_Type
                 setIRC.IRC_CertNum = IRCItem.IRC_CertNum
                 setIRC.IRC_ContractorName = IRCItem.IRC_ContractorName
@@ -167,9 +165,12 @@ class ReceptionService(BaseService):
                 setIRC.IRC_EffectiveYYMMDD = IRCItem.IRC_EffectiveYYMMDD
                 setIRC.IRC_ExpiredYYMMDD = IRCItem.IRC_ExpiredYYMMDDD
 
-                retIRC = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC)
+                retIRC : Insurance_Res = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC)
 
                 if retIRC is None or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
 
-        return DataResponse[Reception_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        if retIRC:
+            ret.IRC_Idx = retIRC.IRC_Idx
+
+        return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
