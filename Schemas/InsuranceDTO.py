@@ -11,6 +11,7 @@ class InsuranceDTO(BaseDTO):
     IRC_ContractorName : Optional[str] = None
     IRC_InsuredName : Optional[str] = None
     IRC_CoName : Optional[str] = None
+    IRC_Specific : Optional[str] = None
     IRC_EffectiveYYMMDD : Optional[str] = None
     IRC_ExpiredYYMMDDD : Optional[str] = None
     IRC_IsValid : Optional[bool] = None

@@ -13,6 +13,7 @@ class Insurance(BaseEntity):
     IRC_ContractorName = Column(String(20))
     IRC_InsuredName = Column(String(20))
     IRC_CoName = Column(String(20))
+    IRC_Specific = Column(String(500))
     IRC_EffectiveYYMMDD = Column(String(10))
     IRC_ExpiredYYMMDD = Column(String(10))
     IRC_IsValid = Column(Boolean)

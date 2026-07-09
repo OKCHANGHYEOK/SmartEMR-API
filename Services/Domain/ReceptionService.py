@@ -162,6 +162,7 @@ class ReceptionService(BaseService):
                 setIRC.IRC_ContractorName = IRCItem.IRC_ContractorName
                 setIRC.IRC_InsuredName = IRCItem.IRC_InsuredName
                 setIRC.IRC_CoName = IRCItem.IRC_CoName
+                setIRC.IRC_Specific = IRCItem.IRC_Specific
                 setIRC.IRC_EffectiveYYMMDD = IRCItem.IRC_EffectiveYYMMDD
                 setIRC.IRC_ExpiredYYMMDD = IRCItem.IRC_ExpiredYYMMDDD
 
@@ -170,7 +171,6 @@ class ReceptionService(BaseService):
                 if retIRC is None or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
 
-        if retIRC:
-            ret.IRC_Idx = retIRC.IRC_Idx
+                ret.IRCItem = retIRC
 
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)

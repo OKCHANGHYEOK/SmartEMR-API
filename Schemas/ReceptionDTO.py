@@ -1,6 +1,6 @@
 from .BaseDTO import BaseDTO
 from typing import Optional
-from Schemas.InsuranceDTO import Insurance_Req
+from Schemas.InsuranceDTO import Insurance_Req, Insurance_Res
 
 class ReceptionDTO(BaseDTO):
     RCP_Idx : Optional[int] = None
@@ -31,7 +31,6 @@ class ReceptionDTO(BaseDTO):
 
 class Reception_Req(ReceptionDTO):
     IRCItem : Optional[Insurance_Req] = None
-    pass
 
 class Reception_Res(ReceptionDTO):
     MUR_Name_DOC : Optional[str] = None
@@ -48,5 +47,8 @@ class Reception_Res(ReceptionDTO):
     IRC_ContractorName : Optional[str] = None
     IRC_InsuredName : Optional[str] = None
     IRC_CoName : Optional[str] = None
+    IRC_Specific : Optional[str] = None
     IRC_EffectiveYYMMDD : Optional[str] = None
     IRC_ExpiredYYMMDDD : Optional[str] = None
+
+    IRCItem : Insurance_Res = None

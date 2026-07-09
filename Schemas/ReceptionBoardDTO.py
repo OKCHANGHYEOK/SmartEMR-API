@@ -33,3 +33,13 @@ class ReceptionBoard_Res(ReceptionBoardDTO):
     PAT_Name : Optional[str] = None
     PAT_Sex : Optional[str] = None
     PAT_Age : Optional[int] = None
+
+    IRC_Idx : Optional[int] = None
+    IRC_Type : Optional[str] = None
+    IRC_CertNum : Optional[str] = None
+    IRC_ContractorName : Optional[str] = None
+    IRC_InsuredName : Optional[str] = None
+    IRC_CoName : Optional[str] = None
+    IRC_Specific : Optional[str] = None
+    IRC_EffectiveYYMMDD : Optional[str] = None
+    IRC_ExpiredYYMMDDD : Optional[str] = None
