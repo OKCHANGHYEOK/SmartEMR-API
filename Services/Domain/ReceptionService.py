@@ -146,7 +146,7 @@ class ReceptionService(BaseService):
             setIRC : Insurance = Insurance()
 
             # 비보험일 때 이미 해당 접수의 보험이 있으면 삭제 처리
-            if IRC_Idx and IRC_Idx > 0 and IRCItem.IRC_Type == "NOR":
+            if IRC_Idx and IRC_Idx > 0 and IRCItem.IRC_Type == "NON":
                 setIRC.IRC_Idx = IRC_Idx
                 setIRC.IRC_IsValid = False
 
