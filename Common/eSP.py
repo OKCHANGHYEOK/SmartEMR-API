@@ -18,3 +18,5 @@ class eSP(Enum):
     proc_Reception_SetReception = 14
     proc_Insurance_GetInsurance = 15
     proc_Insurance_SetInsurance = 16
+    proc_Pay_GetPay = 17
+    proc_Pay_SetPay = 18
