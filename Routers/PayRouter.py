@@ -11,5 +11,5 @@ class PayRouter():
         return await service.GetPay(request)
     
     @router.post("/SetPay", response_model=DataResponse[Pay_Res])
-    async def SetPay(request : Pay_Req, service : PayService = Depends(PayService))
+    async def SetPay(request : Pay_Req, service : PayService = Depends(PayService)):
         return await service.SetPay(request)
