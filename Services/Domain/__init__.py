@@ -5,5 +5,13 @@ from .PatientService import PatientService
 from .CommonCodeService import CommonCodeService
 from .ReceptionService import ReceptionService
 from .InsuranceService import InsuranceService
+from .PayService import PayService
 
-__all__ = ['BaseService', 'MemberService', 'MemberUserService', 'PatientService', 'CommonCodeService', 'ReceptionService', 'InsuranceService']
+__all__ = ['BaseService', 
+           'MemberService', 
+           'MemberUserService', 
+           'PatientService', 
+           'CommonCodeService', 
+           'ReceptionService', 
+           'InsuranceService',
+           'PayService']
