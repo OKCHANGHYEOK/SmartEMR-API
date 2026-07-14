@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import Depends
+from .BaseRouter import router
 from Schemas.MemberDTO import Member_Req, Member_Res
 from Schemas.DataResponse import DataResponse
 from Services.Domain import MemberService
-
-router = APIRouter()
 
 class MemberRouter():
     @router.post("/GetMember", response_model=DataResponse[Member_Res])

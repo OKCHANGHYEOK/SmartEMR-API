@@ -1,9 +1,8 @@
 from fastapi import APIRouter, Depends
+from .BaseRouter import router
 from Schemas.CommonCodeDTO import CommonCode_Req, CommonCode_Res
 from Schemas.DataResponse import DataResponse
 from Services.Domain import CommonCodeService
-
-router = APIRouter()
 
 class CommonCodeRouter():
     @router.post("/GetCommonCode", response_model=DataResponse[CommonCode_Res])

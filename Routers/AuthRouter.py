@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Request, Depends
+from fastapi import Depends
+from Routers.BaseRouter import router
 from Services.Authentication import JWTService
 from Services.Authentication.TokenService import TokenService
 from Services.Domain import MemberUserService
@@ -6,8 +7,6 @@ from Schemas.TokenDTO import Token_Req, Token_Res
 from Schemas.TokenResponse import TokenResponse
 from Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
 from Exceptions import ApiException
-
-router = APIRouter()
 
 class AuthRouter():
     @router.post("/refresh_access_token")

@@ -1,8 +1,7 @@
-from fastapi import APIRouter, Depends
+from fastapi import Depends
+from .BaseRouter import router
 from Services.Authentication import LoginService
 from Schemas.MemberUserDTO import MemberUser_Req
-
-router = APIRouter()
 
 class LoginRouter():
     @router.post("/login")

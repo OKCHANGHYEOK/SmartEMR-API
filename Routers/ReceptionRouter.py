@@ -1,10 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import Depends
+from .BaseRouter import router
 from Schemas.DataResponse import DataResponse
 from Schemas.ReceptionDTO import Reception_Req, Reception_Res
 from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res 
 from Services.Domain import ReceptionService
-
-router = APIRouter()
 
 class ReceptionRouter():
     @router.post("/GetReception", response_model=DataResponse[Reception_Res])
