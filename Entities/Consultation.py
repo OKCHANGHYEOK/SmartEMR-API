@@ -14,6 +14,8 @@ class Consultation(BaseEntity):
     CST_TreatResult = Column(String(3))
     CST_Subject = Column(String(3))
     CST_SubjectName = Column(String(20))
+    CST_StartTime = Column(String(8))
+    CST_EndTime = Column(String(8))
     CST_TotalPrice = Column(DECIMAL(10, 0))
     CST_InsuredPrice = Column(DECIMAL(10, 0))
     CST_NonInsurecPrice = Column(DECIMAL(10, 0))

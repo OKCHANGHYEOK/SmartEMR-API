@@ -13,6 +13,8 @@ class ConsultationDTO(BaseDTO):
     CST_TreatResult : Optional[str] = None
     CST_Subject : Optional[str] = None
     CST_SubjectName : Optional[str] = None
+    CST_StartTime : Optional[str] = None
+    CST_EndTime : Optional[str] = None
     CST_TotalPrice : Optional[Decimal] = None
     CST_InsuredPrice : Optional[Decimal] = None
     CST_NonInsurecPrice : Optional[Decimal] = None
