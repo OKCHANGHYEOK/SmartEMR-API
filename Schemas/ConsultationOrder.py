@@ -21,7 +21,7 @@ class ConsultationOrderDTO(BaseDTO):
     CSTO_Memo : Optional[str] = None
     CSTO_Date : Optional[str] = None
     CSTO_YYMMDD : Optional[str] = None
-    CST_IsValid : Optional[bool] = None
+    CSTO_IsValid : Optional[bool] = None
 
 class ConsultationOrder_Req(ConsultationOrderDTO):
     pass

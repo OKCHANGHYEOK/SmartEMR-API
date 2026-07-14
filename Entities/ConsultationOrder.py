@@ -22,4 +22,4 @@ class ConsultationOrder(BaseEntity):
     CSTO_Memo = Column(String(500))
     CSTO_Date = Column(String(20))
     CSTO_YYMMDD = Column(String(10))
-    CST_IsValid = Column(Boolean)
+    CSTO_IsValid = Column(Boolean)
