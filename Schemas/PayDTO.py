@@ -15,6 +15,7 @@ class PayDTO(BaseDTO):
     PAY_OwnPatientPrice : Optional[Decimal] = None
     PAY_PaidPrice : Optional[Decimal] = None
     PAY_RemainPrice : Optional[Decimal] = None
+    PAY_Memo : Optional[str] = None
     PAY_Date : Optional[str] = None
     PAY_YYMMDD : Optional[str] = None
     PAY_IsValid : Optional[bool] = None
