@@ -3,6 +3,7 @@ from .MemberService import MemberService
 from .MemberUserSerivce import MemberUserService
 from .PatientService import PatientService
 from .CommonCodeService import CommonCodeService
+from .ReservationService import ReservationService
 from .ReceptionService import ReceptionService
 from .InsuranceService import InsuranceService
 from .PayService import PayService
@@ -12,6 +13,7 @@ __all__ = ['BaseService',
            'MemberUserService', 
            'PatientService', 
            'CommonCodeService', 
+           'ReservationService',
            'ReceptionService', 
            'InsuranceService',
            'PayService']
