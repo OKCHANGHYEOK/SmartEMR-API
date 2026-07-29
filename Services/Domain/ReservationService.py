@@ -29,6 +29,7 @@ class ReservationService(BaseService):
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.PAT_Idx = request.PAT_Idx
 
+        item.RES_Idx = request.RES_Idx
         item.RES_Status = request.RES_Status
         item.RES_Route = request.RES_Route
         item.RES_Subject = request.RES_Subject
