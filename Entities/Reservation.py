@@ -1,5 +1,6 @@
 from Entities.BaseEntity import BaseEntity
 from sqlalchemy import Column, Integer, String, Boolean
+from Entities.Patient import Patient
 
 class Reservation(BaseEntity):
     __tablename__ = 'Reservation'
@@ -19,7 +20,7 @@ class Reservation(BaseEntity):
     RES_Subject = Column(String(10))
     RES_SubjectName = Column(String(50))
     RES_ReservationDate = Column(String(10))
-    RES_ReserationTime = Column(String(8))
+    RES_ReservationTime = Column(String(8))
     RES_Memo = Column(String(500))
     RES_YYMMDD = Column(String(10))
     RES_IsValid = Column(Boolean)

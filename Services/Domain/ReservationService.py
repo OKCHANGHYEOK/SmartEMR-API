@@ -7,11 +7,15 @@ from Schemas.DataResponse import DataResponse
 from Schemas.PatientDTO import Patient_Res
 from Schemas.ReservationDTO import Reservation_Req, Reservation_Res
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
+from Services.Domain.PatientService import PatientService
 from Common import eSP
 
 class ReservationService(BaseService):
-    def __init__(self, _authenicatedUserSerivce : AuthenticatedUserService = Depends(AuthenticatedUserService)):
+    def __init__(self, 
+                 _authenicatedUserSerivce : AuthenticatedUserService = Depends(AuthenticatedUserService),
+                 _patientService : PatientService = Depends(PatientService)):
         self.authenticatedUserService = _authenicatedUserSerivce
+        self.patientService = _patientService
 
     async def GetReservation(self, request : Reservation_Req) -> DataResponse[Reservation_Res]:
         item : Reservation = Reservation()
@@ -48,21 +52,31 @@ class ReservationService(BaseService):
 
         if not user:
             raise ApiException("유저가 올바르지 않습니다.")
+
+        # 신환예약인 경우 환자생성, 기존 환자예약인 경우 환자조회
+        patient : Patient = request.PATItem
+        retPAT : Patient_Res = None
+
+        if patient.PAT_Idx == 0:
+            setPAT = await self.patientService.SetPatient(patient)
+
+            if setPAT:
+                retPAT = setPAT.Item
+        else:
+            retPAT = await self.DbContext.GetItem[Patient_Res](eSP.proc_Patient_GetPatient, Patient( PAT_Idx = patient.PAT_Idx ))
+
+        if retPAT is None or self.DbContext.retIsSuccess == False:
+            raise ApiException(f"환자 {'저장' if patient else '조회'}에 실패햇습니다.")   
         
         item : Reservation = Reservation()
 
         item.MEM_Idx = user.MEM_Idx
         item.MUR_Idx = user.MUR_Idx
 
-        item.PAT_Idx = request.PAT_Idx
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.MUR_Idx_STF = request.MUR_Idx_STF
 
-        retPAT : Patient_Res = await self.DbContext.GetItem[Patient_Res](eSP.proc_Patient_GetPatient, Patient( PAT_Idx = request.PAT_Idx ))
-
-        if retPAT is None or self.DbContext.retIsSuccess == False:
-            raise ApiException("환자 조회에 실패햇습니다.")
-        
+        item.PAT_Idx = retPAT.PAT_Idx
         item.PAT_Name = retPAT.PAT_Name
         item.PAT_ChartNo = retPAT.PAT_ChartNo
         item.PAT_Sex = retPAT.PAT_Sex
@@ -74,7 +88,7 @@ class ReservationService(BaseService):
         item.RES_Subject = request.RES_Subject
         item.RES_SubjectName = request.RES_SubjectName
         item.RES_ReservationDate = request.RES_ReservationDate
-        item.RES_ReserationTime = request.RES_ReserationTime
+        item.RES_ReservationTime = request.RES_ReservationTime
         item.RES_Memo = request.RES_Memo
         item.RES_IsValid = request.RES_IsValid
 

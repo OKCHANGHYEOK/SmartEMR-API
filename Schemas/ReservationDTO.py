@@ -1,5 +1,6 @@
 from .BaseDTO import BaseDTO
 from typing import Optional
+from Schemas.PatientDTO import Patient_Req
 
 class ReservationDTO(BaseDTO):
     RES_Idx : Optional[int] = None
@@ -17,13 +18,13 @@ class ReservationDTO(BaseDTO):
     RES_Subject : Optional[str] = None
     RES_SubjectName : Optional[str] = None
     RES_ReservationDate : Optional[str] = None
-    RES_ReserationTime : Optional[str] = None
+    RES_ReservationTime : Optional[str] = None
     RES_Memo : Optional[str] = None
     RES_YYMMDD : Optional[str] = None
     RES_IsValid : Optional[bool] = None
 
 class Reservation_Req(ReservationDTO):
-    pass
+    PATItem : Patient_Req = None
 
 class Reservation_Res(ReservationDTO):
     MUR_Name_DOC : Optional[str] = None
