@@ -7,7 +7,7 @@ from Services.Domain import BaseService
 from Schemas.DataResponse import DataResponse
 from Schemas.PatientDTO import Patient_Res
 from Schemas.ReceptionDTO import Reception_Req, Reception_Res
-from Schemas.ReservationDTO import Reservation_Req
+from Schemas.ReservationDTO import Reservation_Req, Reservation_Res
 from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res
 from Schemas.InsuranceDTO import Insurance_Res
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
@@ -19,13 +19,12 @@ class ReceptionService(BaseService):
         self.authenticatedUserService = _authenicatedUserSerivce
 
     async def GetReception(self, request: Reception_Req) -> DataResponse[Reception_Res]:
-        item : Reception = Reception()
-
         user = self.authenticatedUserService.GetUser()
 
-        if user == None:
+        if not user:
             raise ApiException("유저가 올바르지 않습니다.")
-        
+
+        item : Reception = Reception()
         item.MEM_Idx = user.MEM_Idx
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.PAT_Idx = request.PAT_Idx
@@ -48,13 +47,12 @@ class ReceptionService(BaseService):
         return DataResponse[Reception_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
     
     async def GetReceptionBoard(self, request: ReceptionBoard_Req) -> DataResponse[ReceptionBoard_Res]:
-            item : ReceptionBoard_Req = ReceptionBoard_Req()
-
             user = self.authenticatedUserService.GetUser()
 
-            if user == None:
+            if not user:
                 raise ApiException("유저가 올바르지 않습니다.")
-            
+
+            item : ReceptionBoard_Req = ReceptionBoard_Req()
             item.MEM_Idx = user.MEM_Idx
             item.MUR_Idx_DOC = request.MUR_Idx_DOC
             item.PAT_Idx = request.PAT_Idx
@@ -84,13 +82,11 @@ class ReceptionService(BaseService):
             return DataResponse[ReceptionBoard_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
 
     async def SetReception(self, request: Reception_Req) -> DataResponse[Reception_Res]:
-        item : Reception = Reception()
-
         user = self.authenticatedUserService.GetUser()
 
-        if user == None:
+        if not user:
             raise ApiException("유저가 올바르지 않습니다.")
-        
+
         # 삭제일 때는 미리 처리하고 종료
         if request.RCP_IsValid == False:
             delRCP = Reception()
@@ -99,13 +95,14 @@ class ReceptionService(BaseService):
             delRCP.RCP_Idx = request.RCP_Idx
             delRCP.RCP_IsValid = request.RCP_IsValid
 
-            await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReception, delRCP)
+            await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_CancelReception, delRCP)
 
             if self.DbContext.retIsSuccess == False:
                 raise ApiException("접수 삭제하지 못했습니다.")
             
             return DataResponse[Reception_Res].CreateDefaultResult()
 
+        item : Reception = Reception()
         item.MEM_Idx = user.MEM_Idx
         item.MUR_Idx = user.MUR_Idx
 
@@ -178,13 +175,12 @@ class ReceptionService(BaseService):
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
 
     async def SetReceptionByRES(self, request : Reservation_Req) -> DataResponse[Reception_Res]:
-        item : Reception = Reception()
-
         user = self.authenticatedUserService.GetUser()
 
-        if user == None:
+        if not user:
             raise ApiException("유저가 올바르지 않습니다.")
 
+        item : Reception = Reception()
         item.MEM_Idx = user.MEM_Idx
         item.MUR_Idx = user.MUR_Idx
 
@@ -222,7 +218,7 @@ class ReceptionService(BaseService):
         item.RCP_ReceiptTime = datetime.now().strftime("%H:%M")
         item.RCP_IsValid = True
 
-        ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReception, item)
+        ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByRES, item)
 
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
@@ -248,3 +244,23 @@ class ReceptionService(BaseService):
                 raise ApiException(self.DbContext.retMessage)
 
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+
+    async def CancelReception(self, request : Reception_Req) -> DataResponse[Reception_Res]:
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("환자 조회에 실패햇습니다.")
+
+        item : Reception = Reception()
+        item.MEM_Idx = user.MEM_Idx
+        item.MUR_Idx = user.MUR_Idx
+
+        item.RCP_Idx = request.RCP_Idx    
+        item.RES_Idx = request.RES_Idx
+
+        await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_CancelReception, item)
+
+        if self.DbContext.retIsSuccess == False:
+            raise ApiException("접수취소하지 못했습니다.")
+
+        return DataResponse[Reception_Res].CreateDefaultResult()

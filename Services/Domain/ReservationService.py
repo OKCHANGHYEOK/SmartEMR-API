@@ -43,7 +43,7 @@ class ReservationService(BaseService):
 
         ret = await self.DbContext.GetItems[Reservation_Res](eSP.proc_Reservation_GetReservation, item)
 
-        if not ret or self.DbContext.retIsSuccess == False:
+        if self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
         
         return DataResponse[Reservation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)

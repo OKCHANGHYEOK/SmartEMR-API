@@ -22,3 +22,7 @@ class ReceptionRouter():
     @router.post("/SetReceptionByRES", response_model=DataResponse[Reception_Res])
     async def SetReceptionByRES(request : Reservation_Req, service : ReceptionService = Depends(ReceptionService)):
         return await service.SetReceptionByRES(request)
+
+    @router.post("/CancelReception", response_model=DataResponse[Reception_Res])
+    async def CancelReception(request : Reception_Req, service : ReceptionService = Depends(ReceptionService)):
+        return await service.CancelReception(request)
