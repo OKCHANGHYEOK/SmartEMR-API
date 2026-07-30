@@ -54,6 +54,14 @@ class ReservationService(BaseService):
         if not user:
             raise ApiException("유저가 올바르지 않습니다.")
 
+        if request.RES_IsValid == False:
+            await self.DbContext.GetItem[Reservation_Res](eSP.proc_Reservation_SetReservation, Reservation ( RES_Idx = request.RES_Idx, RES_IsValid = False))
+
+            if not self.DbContext.retIsSuccess:
+                raise ApiException("예약삭제에 실패했습니다.")
+
+            return DataResponse[Reservation_Res].CreateDefaultResult() 
+
         # 신환예약인 경우 환자생성, 기존 환자예약인 경우 환자조회
         patient : Patient = request.PATItem
         retPAT : Patient_Res = None

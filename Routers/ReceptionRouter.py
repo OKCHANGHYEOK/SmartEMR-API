@@ -2,7 +2,8 @@ from fastapi import Depends
 from .BaseRouter import router
 from Schemas.DataResponse import DataResponse
 from Schemas.ReceptionDTO import Reception_Req, Reception_Res
-from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res 
+from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res
+from Schemas.ReservationDTO import Reservation_Req 
 from Services.Domain import ReceptionService
 
 class ReceptionRouter():
@@ -17,3 +18,7 @@ class ReceptionRouter():
     @router.post("/SetReception", response_model=DataResponse[Reception_Res])
     async def SetReception(request : Reception_Req, service : ReceptionService = Depends(ReceptionService)):
         return await service.SetReception(request)
+
+    @router.post("/SetReceptionByRES", response_model=DataResponse[Reception_Res])
+    async def SetReceptionByRES(request : Reservation_Req, service : ReceptionService = Depends(ReceptionService)):
+        return await service.SetReceptionByRES(request)
