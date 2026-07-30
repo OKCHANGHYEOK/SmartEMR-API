@@ -49,7 +49,7 @@ class PatientService(BaseService):
             return
         
         if not request.PAT_Idx:
-             # 차트번혼 설정
+             # 차트번호 설정
             PAT_ChartNo = await Common.GenerateChartNo()
 
             if len(PAT_ChartNo) != 12:

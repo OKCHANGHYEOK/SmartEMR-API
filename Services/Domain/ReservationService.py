@@ -58,7 +58,7 @@ class ReservationService(BaseService):
         patient : Patient = request.PATItem
         retPAT : Patient_Res = None
 
-        if patient.PAT_Idx == 0:
+        if not patient.PAT_Idx:
             setPAT = await self.patientService.SetPatient(patient)
 
             if setPAT:
