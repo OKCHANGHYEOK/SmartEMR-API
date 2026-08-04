@@ -24,6 +24,9 @@ class ReservationDTO(BaseDTO):
     RES_IsValid : Optional[bool] = None
 
 class Reservation_Req(ReservationDTO):
+    sDay : Optional[str] = None
+    eDay : Optional[str] = None
+
     PATItem : Patient_Req = None
 
 class Reservation_Res(ReservationDTO):

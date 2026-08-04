@@ -35,6 +35,9 @@ class ReservationService(BaseService):
         item.RES_Subject = request.RES_Subject
         item.RES_YYMMDD = request.RES_YYMMDD
 
+        item.sDay = request.sDay
+        item.eDay = request.eDay
+
         item.Keyword = request.Keyword
         item.PageSize = request.PageSize
         item.PageIndex = request.PageIndex

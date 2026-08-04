@@ -24,3 +24,6 @@ class Reservation(BaseEntity):
     RES_Memo = Column(String(500))
     RES_YYMMDD = Column(String(10))
     RES_IsValid = Column(Boolean)
+
+    sDay = Column(String(10))
+    eDay = Column(String(10))
