@@ -16,3 +16,7 @@ class ReservationRouter():
     @router.post("/SetReservationByStatus", response_model=DataResponse[Reservation_Res])
     async def SetReservationByStatus(request : Reservation_Req, service : ReservationService = Depends(ReservationService)):
         return await service.SetReservationByStatus(request)
+
+    @router.post("/MoveReservationDate", response_model=DataResponse[Reservation_Res])
+    async def MoveReservationDate(request : Reservation_Req, service : ReservationService = Depends(ReservationService)):
+        return await service.MoveReservationDate(request)

@@ -130,3 +130,24 @@ class ReservationService(BaseService):
             raise ApiException(self.DbContext.retMessage)
         
         return DataResponse[Reservation_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+
+    async def MoveReservationDate(self, request : Reservation_Req) -> DataResponse[Reservation_Res]:
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("환자 조회에 실패햇습니다.")
+
+        item : Reservation = Reservation()
+        item.MEM_Idx = user.MEM_Idx
+        item.MUR_Idx = user.MUR_Idx
+
+        item.RES_Idx = request.RES_Idx
+        item.RES_ReservationDate = request.RES_ReservationDate
+        item.RES_ReservationTime = request.RES_ReservationTime
+
+        ret : Reservation_Res = await self.DbContext.GetItem[Reservation_Res](eSP.proc_Reservation_MoveReservationDate, item)
+
+        if not ret or self.DbContext.retIsSuccess == False:
+            raise ApiException(self.DbContext.retMessage)
+
+        return DataResponse[Reservation_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
