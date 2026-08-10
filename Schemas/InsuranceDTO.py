@@ -6,6 +6,7 @@ class InsuranceDTO(BaseDTO):
     MEM_Idx : Optional[int] = None
     PAT_Idx : Optional[int] = None
     RCP_Idx : Optional[int] = None
+    CST_Idx : Optional[int] = None
     IRC_Type : Optional[str] = None
     IRC_CertNum : Optional[str] = None
     IRC_ContractorName : Optional[str] = None

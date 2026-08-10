@@ -22,7 +22,8 @@ class eSP(Enum):
     proc_Reception_SetReception = 18
     proc_Reception_CancelReception = 19
     proc_Reception_SetReceptionByRES = 20
-    proc_Insurance_GetInsurance = 21
-    proc_Insurance_SetInsurance = 22
-    proc_Pay_GetPay = 23
-    proc_Pay_SetPay = 24
+    proc_Reception_SetReceptionByIRC = 21
+    proc_Insurance_GetInsurance = 22
+    proc_Insurance_SetInsurance = 23
+    proc_Pay_GetPay = 24
+    proc_Pay_SetPay = 25
