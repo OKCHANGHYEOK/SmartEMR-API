@@ -11,12 +11,16 @@ from Schemas.ReservationDTO import Reservation_Req, Reservation_Res
 from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res
 from Schemas.InsuranceDTO import Insurance_Res
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
+from Services.Domain.InsuranceService import InsuranceService
 from Common import eSP
 from datetime import datetime
 
 class ReceptionService(BaseService):
-    def __init__(self, _authenicatedUserSerivce : AuthenticatedUserService = Depends(AuthenticatedUserService)):
+    def __init__(self, 
+                 _authenicatedUserSerivce : AuthenticatedUserService = Depends(AuthenticatedUserService),
+                 _insuranceService : InsuranceService = Depends(InsuranceService)):
         self.authenticatedUserService = _authenicatedUserSerivce
+        self.insuranceService = _insuranceService
 
     async def GetReception(self, request: Reception_Req) -> DataResponse[Reception_Res]:
         user = self.authenticatedUserService.GetUser()
@@ -132,45 +136,63 @@ class ReceptionService(BaseService):
         item.RCP_Memo = request.RCP_Memo
         item.RCP_IsValid = request.RCP_IsValid
 
-        ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReception, item)
+        async with self.DbContext.AsyncSessionLocal() as session:
+            try:
+                ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReception, item, session)
 
-        if ret is None or self.DbContext.retIsSuccess == False:
-            raise ApiException(self.DbContext.retMessage)
-    
-        if request.IRCItem:
-            IRCItem = request.IRCItem
-
-            IRC_Idx = IRCItem.IRC_Idx
-
-            setIRC : Insurance = Insurance()
-
-            # 비보험일 때 이미 해당 접수의 보험이 있으면 삭제 처리
-            if IRC_Idx and IRC_Idx > 0 and IRCItem.IRC_Type == "NON":
-                setIRC.IRC_Idx = IRC_Idx
-                setIRC.IRC_IsValid = False
-
-                await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC)
-
-            else:
-                setIRC.MEM_Idx = user.MEM_Idx
-                setIRC.IRC_Idx = IRC_Idx
-                setIRC.RCP_Idx = ret.RCP_Idx
-                setIRC.PAT_Idx = ret.PAT_Idx
-                setIRC.IRC_Type = IRCItem.IRC_Type
-                setIRC.IRC_CertNum = IRCItem.IRC_CertNum
-                setIRC.IRC_ContractorName = IRCItem.IRC_ContractorName
-                setIRC.IRC_InsuredName = IRCItem.IRC_InsuredName
-                setIRC.IRC_CoName = IRCItem.IRC_CoName
-                setIRC.IRC_Specific = IRCItem.IRC_Specific
-                setIRC.IRC_EffectiveYYMMDD = IRCItem.IRC_EffectiveYYMMDD
-                setIRC.IRC_ExpiredYYMMDD = IRCItem.IRC_ExpiredYYMMDDD
-
-                retIRC : Insurance_Res = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC)
-
-                if retIRC is None or self.DbContext.retIsSuccess == False:
+                if ret is None or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
 
-                ret.IRCItem = retIRC
+                IRCItem = request.IRCItem
+
+                if IRCItem:
+                    IRC_Idx = IRCItem.IRC_Idx
+                    isNewIRC = IRC_Idx and IRC_Idx > 0
+
+                    setIRC : Insurance = Insurance()
+
+                    # 비보험일 때 이미 해당 접수의 보험이 있으면 삭제 처리
+                    if isNewIRC and IRCItem.IRC_Type == "NON":
+                        setIRC.IRC_Idx = IRC_Idx
+                        setIRC.IRC_IsValid = False
+
+                        await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC, session)
+
+                    else:
+                        setIRC.MEM_Idx = user.MEM_Idx
+                        setIRC.IRC_Idx = IRC_Idx
+                        setIRC.PAT_Idx = ret.PAT_Idx
+                        setIRC.IRC_Type = IRCItem.IRC_Type
+                        setIRC.IRC_CertNum = IRCItem.IRC_CertNum
+                        setIRC.IRC_ContractorName = IRCItem.IRC_ContractorName
+                        setIRC.IRC_InsuredName = IRCItem.IRC_InsuredName
+                        setIRC.IRC_CoName = IRCItem.IRC_CoName
+                        setIRC.IRC_Specific = IRCItem.IRC_Specific
+                        setIRC.IRC_EffectiveYYMMDD = IRCItem.IRC_EffectiveYYMMDD
+
+                        retIRC : Insurance_Res = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC, session)
+
+                        if retIRC is None or self.DbContext.retIsSuccess == False:
+                            raise ApiException("보험 저장에 실패했습니다.")
+
+                        if isNewIRC:
+                            # 보험 저장 이후 접수 보험키값 갱신
+                            setRCPByIRC = Reception()
+                            setRCPByIRC.RCP_Idx = ret.RCP_Idx
+                            setRCPByIRC.IRC_Idx = retIRC.IRC_Idx
+
+                            ret = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByIRC, setRCPByIRC, session)
+
+                            if ret is None or self.DbContext.retIsSuccess == False:
+                                raise ApiException("접수 보험 키값을 업데이트 하지 못했습니다.")
+
+                        ret.IRCItem = retIRC
+
+                await session.commit()
+
+            except:
+                session.rollback()
+                raise
 
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
 
@@ -218,30 +240,47 @@ class ReceptionService(BaseService):
         item.RCP_ReceiptTime = datetime.now().strftime("%H:%M")
         item.RCP_IsValid = True
 
-        ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByRES, item)
+        async with self.DbContext.AsyncSessionLocal() as session:
+            try:
+                ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByRES, item)
 
-        if ret is None or self.DbContext.retIsSuccess == False:
-            raise ApiException(self.DbContext.retMessage)
+                if ret is None or self.DbContext.retIsSuccess == False:
+                    raise ApiException(self.DbContext.retMessage)
 
-        if retIRC:
-            setIRC : Insurance = Insurance()
-            setIRC.MEM_Idx = user.MEM_Idx
-            setIRC.IRC_Idx = retIRC.IRC_Idx
-            setIRC.RCP_Idx = ret.RCP_Idx
-            setIRC.PAT_Idx = ret.PAT_Idx
-            setIRC.IRC_Type = retIRC.IRC_Type
-            setIRC.IRC_CertNum = retIRC.IRC_CertNum
-            setIRC.IRC_ContractorName = retIRC.IRC_ContractorName
-            setIRC.IRC_InsuredName = retIRC.IRC_InsuredName
-            setIRC.IRC_CoName = retIRC.IRC_CoName
-            setIRC.IRC_Specific = retIRC.IRC_Specific
-            setIRC.IRC_EffectiveYYMMDD = retIRC.IRC_EffectiveYYMMDD
-            setIRC.IRC_ExpiredYYMMDD = retIRC.IRC_ExpiredYYMMDDD
+                if retIRC:
+                    setIRC : Insurance = Insurance()
 
-            retIRC : Insurance_Res = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC)
+                    setIRC.MEM_Idx = user.MEM_Idx
+                    setIRC.IRC_Idx = 0
+                    setIRC.PAT_Idx = ret.PAT_Idx
+                    setIRC.IRC_Type = retIRC.IRC_Type
+                    setIRC.IRC_CertNum = retIRC.IRC_CertNum
+                    setIRC.IRC_ContractorName = retIRC.IRC_ContractorName
+                    setIRC.IRC_InsuredName = retIRC.IRC_InsuredName
+                    setIRC.IRC_CoName = retIRC.IRC_CoName
+                    setIRC.IRC_Specific = retIRC.IRC_Specific
+                    setIRC.IRC_EffectiveYYMMDD = retIRC.IRC_EffectiveYYMMDD
 
-            if retIRC is None or self.DbContext.retIsSuccess == False:
-                raise ApiException(self.DbContext.retMessage)
+                    retIRC : Insurance_Res = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC, session)
+
+                    if retIRC is None or self.DbContext.retIsSuccess == False:
+                        raise ApiException("보험 저장에 실패했습니다.")
+
+                    # 보험 저장 이후 접수 보험키값 갱신
+                    setRCPByIRC = Reception()
+                    setRCPByIRC.RCP_Idx = ret.RCP_Idx
+                    setRCPByIRC.IRC_Idx = retIRC.IRC_Idx
+
+                    ret = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByIRC, setRCPByIRC, session)
+
+                    if ret is None or self.DbContext.retIsSuccess == False:
+                        raise ApiException("접수 보험 키값을 업데이트 하지 못했습니다.")
+
+                session.commit()
+
+            except:
+                session.rollback()
+                raise    
 
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
 
