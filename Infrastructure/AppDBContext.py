@@ -1,5 +1,5 @@
 from typing import TypeVar, Type, Generic
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 
@@ -28,7 +28,7 @@ class AppDBContext:
             future=True
         )
 
-        self.AsyncSessionLocal = sessionmaker(
+        self.AsyncSessionLocal : async_sessionmaker[AsyncSession] = sessionmaker(
             bind=self.engine,
             class_=AsyncSession,
             expire_on_commit=False

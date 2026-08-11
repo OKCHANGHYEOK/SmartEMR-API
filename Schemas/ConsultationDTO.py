@@ -1,13 +1,17 @@
 from .BaseDTO import BaseDTO
 from typing import Optional
 from decimal import Decimal
+from Schemas.InsuranceDTO import Insurance_Req, Insurance_Res
 
 class ConsultationDTO(BaseDTO):
     CST_Idx : Optional[int] = None
     MEM_Idx : Optional[int] = None
     MUR_Idx : Optional[int] = None
+    MUR_Idx_DOC : Optional[int] = None
     PAT_Idx : Optional[int] = None
     RCP_Idx : Optional[int] = None
+    IRC_Idx : Optional[int] = None
+    CST_InsuranceType : Optional[str] = None
     CST_Status : Optional[str] = None
     CST_PayStatus : Optional[str] = None
     CST_TreatResult : Optional[str] = None
@@ -27,8 +31,13 @@ class ConsultationDTO(BaseDTO):
     CST_YYMMDD : Optional[str] = None
     CST_IsValid : Optional[bool] = None
 
+    IRCItem : Insurance_Res = None
+
+    sDay : Optional[str] = None
+    eDay : Optional[str] = None
+
 class Consultation_Req(ConsultationDTO):
     pass
 
-class Consultation_Req(ConsultationDTO):
+class Consultation_Res(ConsultationDTO):
     pass
