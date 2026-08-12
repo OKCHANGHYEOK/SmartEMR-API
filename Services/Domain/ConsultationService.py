@@ -48,7 +48,7 @@ class ConsultationService(BaseService):
 
         ret : list[Consultation_Res] = await self.DbContext.GetItems[Consultation_Res](eSP.proc_Consultation_GetConsultation, item)
 
-        if not ret or self.DbContext.retIsSuccess == False:
+        if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException("진료 조회에 실패했습니다.")
 
         return DataResponse[Consultation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)

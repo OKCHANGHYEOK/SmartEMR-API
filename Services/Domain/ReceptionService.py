@@ -122,6 +122,7 @@ class ReceptionService(BaseService):
         item.PAT_Age = retPAT.PAT_Age
 
         item.RCP_Idx = request.RCP_Idx
+        item.RES_Idx = request.RES_Idx
         item.RCP_Status = request.RCP_Status
         item.RCP_Route = request.RCP_Route
         item.RCP_VisitType = request.RCP_VisitType
@@ -135,7 +136,15 @@ class ReceptionService(BaseService):
 
         async with self.DbContext.AsyncSessionLocal() as session:
             try:
-                ret : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReception, item, session)
+                ret : Reception_Res = None
+                isNewRCP = True if not request.RCP_Idx or request.RCP_Idx == 0 else False
+
+                # 접수 등록이고 예약키값이 존재하는 경우
+                if isNewRCP and request.RES_Idx > 0:
+                    ret = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByRES, item, session)
+                # 예약없이 접수 등록 or 접수 등록 이후인 경우
+                else:
+                    ret = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReception, item, session)    
 
                 if ret is None or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
@@ -144,7 +153,7 @@ class ReceptionService(BaseService):
 
                 if IRCItem:
                     IRC_Idx = IRCItem.IRC_Idx
-                    isNewIRC = False if IRC_Idx and IRC_Idx > 0 else True
+                    isNewIRC = True if not IRC_Idx or IRC_Idx == 0 else False
 
                     setIRC : Insurance = None
 
@@ -183,7 +192,7 @@ class ReceptionService(BaseService):
                 await session.commit()
 
             except:
-                session.rollback()
+                await session.rollback()
                 raise
 
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
@@ -260,10 +269,10 @@ class ReceptionService(BaseService):
                     if ret is None or self.DbContext.retIsSuccess == False:
                         raise ApiException("접수 보험 키값을 업데이트 하지 못했습니다.")
 
-                session.commit()
+                await session.commit()
 
             except:
-                session.rollback()
+                await session.rollback()
                 raise    
 
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)

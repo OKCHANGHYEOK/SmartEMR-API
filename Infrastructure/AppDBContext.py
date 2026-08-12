@@ -187,8 +187,9 @@ class AppDBContext:
                 exc_info=True
             )
 
+            # 로깅용 세션은 다른 프로시저 호출시의 세션과 별개로 처리
             await LoggerService.logToDB(
-                session,
+                self.AsyncSessionLocal(),
                 proc_name,
                 params,
                 e
