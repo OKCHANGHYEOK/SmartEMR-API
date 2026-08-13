@@ -9,6 +9,10 @@ class ConsultationRouter():
     async def GetConsultation(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
         return await service.GetConsultation(request)
 
+    @router.post("/GetConsultationByRCP", response_model=DataResponse[Consultation_Res])
+    async def GetConsultationByRCP(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
+        return await service.GetConsultationByRCP(request)
+
     @router.post("/SetConsultation", response_model=DataResponse[Consultation_Res])
     async def SetConsultation(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
         return await service.SetConsultation(request)

@@ -53,6 +53,40 @@ class ConsultationService(BaseService):
 
         return DataResponse[Consultation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
 
+    async def GetConsultationByRCP(self, request : Consultation_Req) -> DataResponse[Consultation_Res]:
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("유저가 올바르지 않습니다.")
+
+        item : Consultation = Consultation()
+        item.MEM_Idx = user.MEM_Idx
+
+        item.MUR_Idx_DOC = request.MUR_Idx_DOC
+        item.PAT_Idx = request.PAT_Idx
+
+        item.CST_Status = request.CST_Status
+        item.CST_PayStatus = request.CST_PayStatus
+        item.CST_TreatResult = request.CST_TreatResult
+        item.CST_Subject = request.CST_Subject
+        item.CST_YYMMDD = request.CST_YYMMDD
+
+        item.sDay = request.sDay
+        item.eDay = request.eDay
+        item.Keyword = request.Keyword
+        item.SortField = request.SortField
+        item.SortDir = request.SortDir
+        item.PageIndex = request.PageIndex
+        item.PageSize = request.PageSize
+
+        ret : list[Consultation_Res] = await self.DbContext.GetItems[Consultation_Res](eSP.proc_Consultation_GetConsultationByRCP, item)
+
+        if ret is None or self.DbContext.retIsSuccess == False:
+            raise ApiException("진료 조회에 실패했습니다.")
+
+        return DataResponse[Consultation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+
+
     # 외부에서(예 : ReceptionService) 호출 시 세션이 공유될 수 있도록 매개변수로 선언
     async def SetConsultation(self, request : Consultation_Req, session : AsyncSession | None = None) -> DataResponse[Consultation_Res]:
         user = self.authenticatedUserService.GetUser()
