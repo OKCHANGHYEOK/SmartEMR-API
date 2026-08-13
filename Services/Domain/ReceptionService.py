@@ -5,6 +5,7 @@ from datetime import datetime
 from Entities.Patient import Patient
 from Entities.Reception import Reception
 from Entities.Insurance import Insurance
+from Entities.Consultation import Consultation
 from Services.Domain import BaseService
 from Schemas.DataResponse import DataResponse
 from Schemas.PatientDTO import Patient_Res
@@ -12,6 +13,7 @@ from Schemas.ReceptionDTO import Reception_Req, Reception_Res
 from Schemas.ReservationDTO import Reservation_Req, Reservation_Res
 from Schemas.ReceptionBoardDTO import ReceptionBoard_Req, ReceptionBoard_Res
 from Schemas.InsuranceDTO import Insurance_Req, Insurance_Res
+from Schemas.ConsultationDTO import Consultation_Req, Consultation_Res
 from Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
 from Factory.InsuranceFactory import InsuranceFactory
 
@@ -100,7 +102,7 @@ class ReceptionService(BaseService):
 
             if self.DbContext.retIsSuccess == False:
                 raise ApiException("접수 삭제하지 못했습니다.")
-            
+
             return DataResponse[Reception_Res].CreateDefaultResult()
 
         item : Reception = Reception()
@@ -140,7 +142,8 @@ class ReceptionService(BaseService):
                 isNewRCP = True if not request.RCP_Idx or request.RCP_Idx == 0 else False
 
                 # 접수 등록이고 예약키값이 존재하는 경우
-                if isNewRCP and request.RES_Idx > 0:
+
+                if isNewRCP and request.RES_Idx and request.RES_Idx > 0:
                     ret = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByRES, item, session)
                 # 예약없이 접수 등록 or 접수 등록 이후인 경우
                 else:
