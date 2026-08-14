@@ -12,13 +12,12 @@ class InsuranceService(BaseService):
         self.authenticatedUserService = _authenicatedUserSerivce
 
     async def GetInsurance(self, request: Insurance_Req) -> DataResponse[Insurance_Res]:
-        item : Insurance = Insurance()
-
         user = self.authenticatedUserService.GetUser()
 
         if not user:
             raise ApiException("유저가 올바르지 않습니다.")
-        
+
+        item : Insurance = Insurance()
         item.MEM_Idx = user.MEM_Idx
 
         item.IRC_Idx = request.IRC_Idx
@@ -36,6 +35,25 @@ class InsuranceService(BaseService):
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
         
+        return DataResponse[Insurance_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+
+    async def GetRecentInsurance(self, request : Insurance_Req) -> DataResponse[Insurance_Res]:
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("유저가 올바르지 않습니다.")
+
+        item : Insurance = Insurance()
+        item.MEM_Idx = user.MEM_Idx
+        item.MUR_Idx = user.MUR_Idx
+
+        item.PAT_Idx = request.PAT_Idx
+
+        ret = await self.DbContext.GetItems[Insurance_Res](eSP.proc_Insurance_GetRecentInsurance, item)
+
+        if ret is None or self.DbContext.retIsSuccess == False:
+            raise ApiException(self.DbContext.retMessage)
+
         return DataResponse[Insurance_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
 
     async def SetInsurance(self, request : Insurance_Req) -> DataResponse[Insurance_Res]:
