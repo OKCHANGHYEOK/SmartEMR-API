@@ -65,6 +65,7 @@ class ConsultationService(BaseService):
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.PAT_Idx = request.PAT_Idx
 
+        item.CST_InsuranceType = request.CST_InsuranceType
         item.CST_Status = request.CST_Status
         item.CST_PayStatus = request.CST_PayStatus
         item.CST_TreatResult = request.CST_TreatResult

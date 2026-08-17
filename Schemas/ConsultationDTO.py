@@ -40,4 +40,10 @@ class Consultation_Req(ConsultationDTO):
     pass
 
 class Consultation_Res(ConsultationDTO):
-    pass
+    MUR_Name_DOC : Optional[str] = None
+
+    PAT_Name: Optional[str] = None
+    PAT_ChartNo: Optional[str] = None
+    PAT_Sex: Optional[str] = None
+    PAT_Age: Optional[int] = None
+
