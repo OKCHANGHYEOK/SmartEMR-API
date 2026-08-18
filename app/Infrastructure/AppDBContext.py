@@ -5,7 +5,7 @@ from sqlalchemy import text
 
 from app.Common import Common
 from app.Common.loggerService import LoggerService
-from Config import settings
+from app.Config import settings
 
 TReq = TypeVar("TReq")
 TRes = TypeVar("TRes")

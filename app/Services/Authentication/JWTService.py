@@ -1,6 +1,6 @@
 import jwt
 from datetime import datetime, timedelta, timezone
-from Config import settings
+from app.Config import settings
 from app.Exceptions import ApiException
 from app.Common.Enums import eResponseCode
 from app.Entities.MemberUser import MemberUser

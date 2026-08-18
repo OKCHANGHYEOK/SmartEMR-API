@@ -1,6 +1,6 @@
 from fastapi import Depends
 from datetime import datetime, timedelta, timezone
-from Config import settings
+from app.Config import settings
 from app.Exceptions.ApiException import ApiException
 from app.Services.Domain.BaseService import BaseService
 from app.Schemas.DataResponse import DataResponse

@@ -1,4 +1,8 @@
+from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+base_dir = Path(__file__).resolve().parent
+env_url = f"{base_dir}/.env"
 
 class JWTSettings(BaseSettings):
     secret_key : str
@@ -7,7 +11,7 @@ class JWTSettings(BaseSettings):
     refresh_token_expire_days : int = 14
 
     model_config = SettingsConfigDict(
-            env_file=".env",
+            env_file=env_url,
             env_file_encoding="utf-8",
             env_prefix='JWT_',
             extra="ignore"
@@ -23,7 +27,7 @@ class DBSesttings(BaseSettings):
     ishome : bool = False
 
     model_config = SettingsConfigDict(
-                    env_file=".env",
+                    env_file=env_url,
                     env_file_encoding="utf-8",
                     env_prefix='DB_',
                     extra="ignore"
@@ -34,7 +38,7 @@ class CryptoSettings(BaseSettings):
     iv : str    
 
     model_config = SettingsConfigDict(
-            env_file=".env",
+            env_file=env_url,
             env_file_encoding="utf-8",
             env_prefix='CRYPTO_',
             extra="ignore"
