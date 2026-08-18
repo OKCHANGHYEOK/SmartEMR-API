@@ -15,6 +15,14 @@
                 "--reload"
             ],
             "jinja": true
+        },
+        {
+            "name": "Python 디버거: ETL",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "etl.main",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
         }
     ]
 }
