@@ -1,0 +1,1714 @@
+[2026-08-10 14:06:43] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 14:06:43] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 14:06:43] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-08-10 14:06:43] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-08-10 14:06:43] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-08-10 14:06:43] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-08-10 14:06:44] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 14:06:44] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 14:06:44] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-08-10 14:06:44] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-08-10 14:07:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 14:07:09] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 14:07:09] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 14:07:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 14:07:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 14:07:10] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 15:48:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 15:48:57] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 15:48:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-08-10 15:48:57] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-08-10 15:48:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-08-10 15:48:57] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-08-10 15:48:58] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 15:48:58] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 15:48:58] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-08-10 15:48:58] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-08-10 15:49:17] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 15:49:17] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReceptionBoard]
+                    @Keyword = ?, @PageIndex = ?, @PageSize = ?, @SortField = ?, @SortDir = ?, @RCP_Idx = ?, @RES_Idx = ?, @RCB_Type = ?, @MEM_Idx = ?, @MUR_Idx_DOC = ?, @MUR_Idx_STF = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_InsuranceType = ?, @RES_Status = ?, @RCB_VisitType = ?, @RCB_Route = ?, @RCB_Subject = ?, @RCB_YYMMDD = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: ('', 0, 10, '', '', '', '', '', 100000, 0, '', '', '', '', '', '', '', '', '2026-08-10')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReceptionBoard]
+                    @Keyword = ?, @PageIndex = ?, @PageSize = ?, @SortField = ?, @SortDir = ?, @RCP_Idx = ?, @RES_Idx = ?, @RCB_Type = ?, @MEM_Idx = ?, @MUR_Idx_DOC = ?, @MUR_Idx_STF = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_InsuranceType = ?, @RES_Status = ?, @RCB_VisitType = ?, @RCB_Route = ?, @RCB_Subject = ?, @RCB_YYMMDD = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: ('', 0, 10, '', '', '', '', '', 100000, 0, '', '', '', '', '', '', '', '', '2026-08-10')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:00:08] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 16:00:08] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 16:00:08] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-08-10 16:00:08] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-08-10 16:00:08] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-08-10 16:00:08] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-08-10 16:00:09] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 16:00:09] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 16:00:09] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-08-10 16:00:09] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-08-10 16:00:27] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:00:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:00:36] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:00:37] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:00:37] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:00:37] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:00:37] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:01:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:01:05] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:01:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:01:06] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:01:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:01:06] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:01:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:01:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:01:06] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]@RCP_Idx은(는) 프로시저 proc_Insurance_GetInsurance의 매개 변수가 아닙니다. (8145) (SQLExecDirectW)')
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Insurance_GetInsurance]
+                    @MEM_Idx = ?, @IRC_Idx = ?, @PAT_Idx = ?, @RCP_Idx = ?, @IRC_Type = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, 100004, '', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]@RCP_Idx은(는) 프로시저 proc_Insurance_GetInsurance의 매개 변수가 아닙니다. (8145) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]@RCP_Idx은(는) 프로시저 proc_Insurance_GetInsurance의 매개 변수가 아닙니다. (8145) (SQLExecDirectW)')
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Insurance_GetInsurance]
+                    @MEM_Idx = ?, @IRC_Idx = ?, @PAT_Idx = ?, @RCP_Idx = ?, @IRC_Type = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, 100004, '', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:01:06] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:02:50] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:02:50] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:02:50] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:02:50] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:02:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:02:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:02:53] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:02:53] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:04:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:04:02] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:04:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:04:02] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:04:03] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:04:03] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:04:03] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:04:03] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]열 이름 'RCP_Idx'이(가) 유효하지 않습니다. (207) (SQLExecDirectW)")
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_GetReception]
+                    @MEM_Idx = ?, @MUR_Idx_DOC = ?, @PAT_Idx = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_YYMMDD = ?, @Keyword = ?, @PageSize = ?, @PageIndex = ?, @SortField = ?, @SortDir = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: (100000, '', 100009, '', '', '2026-08-10', '', 10, 0, '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:04:41] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:04:41] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:04:41] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:04:41] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:04:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:04:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:04:42] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:04:42] [INFO] [Logger] - Successfully executed proc_Reception_GetReception
+[2026-08-10 16:04:44] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:05:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:11:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:11:42] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:11:43] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:11:43] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:11:44] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:11:44] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:11:44] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:12:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:12:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:12:01] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:12:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:12:01] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:12:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:12:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:12:01] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:13:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:14:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:14:05] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:14:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:14:06] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:14:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:14:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:14:07] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:14:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:14:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:14:15] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:14:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:14:15] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:14:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_SetInsurance
+[2026-08-10 16:14:15] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]프로시저 또는 함수 proc_Insurance_SetInsurance에 너무 많은 인수가 지정되었습니다. (8144) (SQLExecDirectW)')
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Insurance_SetInsurance]
+                    @Keyword = ?, @PageIndex = ?, @PageSize = ?, @SortField = ?, @SortDir = ?, @IRC_Idx = ?, @MEM_Idx = ?, @PAT_Idx = ?, @RCP_Idx = ?, @CST_Idx = ?, @IRC_Type = ?, @IRC_CertNum = ?, @IRC_ContractorName = ?, @IRC_InsuredName = ?, @IRC_CoName = ?, @IRC_Specific = ?, @IRC_EffectiveYYMMDD = ?, @IRC_ExpiredYYMMDDD = ?, @IRC_IsValid = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: ('', 0, 10, '', '', '', '', '', '', '', 'GUN', '12345', '', '', '삼성화재', '', '2025-08-10', '2027-08-10', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]프로시저 또는 함수 proc_Insurance_SetInsurance에 너무 많은 인수가 지정되었습니다. (8144) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]프로시저 또는 함수 proc_Insurance_SetInsurance에 너무 많은 인수가 지정되었습니다. (8144) (SQLExecDirectW)')
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Insurance_SetInsurance]
+                    @Keyword = ?, @PageIndex = ?, @PageSize = ?, @SortField = ?, @SortDir = ?, @IRC_Idx = ?, @MEM_Idx = ?, @PAT_Idx = ?, @RCP_Idx = ?, @CST_Idx = ?, @IRC_Type = ?, @IRC_CertNum = ?, @IRC_ContractorName = ?, @IRC_InsuredName = ?, @IRC_CoName = ?, @IRC_Specific = ?, @IRC_EffectiveYYMMDD = ?, @IRC_ExpiredYYMMDDD = ?, @IRC_IsValid = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: ('', 0, 10, '', '', '', '', '', '', '', 'GUN', '12345', '', '', '삼성화재', '', '2025-08-10', '2027-08-10', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:15:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:15:14] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:15:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:15:14] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:15:38] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:15:38] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:15:40] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:15:41] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:15:41] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:15:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:15:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:15:42] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:15:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:15:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:15:57] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:15:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:15:57] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:15:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_SetInsurance
+[2026-08-10 16:15:57] [INFO] [Logger] - Successfully executed proc_Insurance_SetInsurance
+[2026-08-10 16:15:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByIRC
+[2026-08-10 16:15:57] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]프로시저 또는 함수 proc_Reception_SetReceptionByIRC에 너무 많은 인수가 지정되었습니다. (8144) (SQLExecDirectW)')
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_SetReceptionByIRC]
+                    @Keyword = ?, @PageIndex = ?, @PageSize = ?, @SortField = ?, @SortDir = ?, @RCP_Idx = ?, @PAT_Idx = ?, @MEM_Idx = ?, @MUR_Idx = ?, @MUR_Idx_DOC = ?, @MUR_Idx_STF = ?, @RES_Idx = ?, @PAT_Name = ?, @PAT_ChartNo = ?, @PAT_Sex = ?, @PAT_Age = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_VisitType = ?, @RCP_InsuranceType = ?, @RCP_Subject = ?, @RCP_SubjectName = ?, @RCP_ReceiptDate = ?, @RCP_ReceiptTime = ?, @RCP_StartTreatTime = ?, @RCP_EndTreatTime = ?, @RCP_Memo = ?, @RCP_YYMMDD = ?, @RCP_IsValid = ?, @IRCItem = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: ('', 0, 10, '', '', 100000, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]프로시저 또는 함수 proc_Reception_SetReceptionByIRC에 너무 많은 인수가 지정되었습니다. (8144) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 139, in _ExecuteQuery
+    result = await session.execute(
+             ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]프로시저 또는 함수 proc_Reception_SetReceptionByIRC에 너무 많은 인수가 지정되었습니다. (8144) (SQLExecDirectW)')
+[SQL: 
+                DECLARE @t int,
+                        @s nvarchar(250);
+
+                EXEC [dbo].[proc_Reception_SetReceptionByIRC]
+                    @Keyword = ?, @PageIndex = ?, @PageSize = ?, @SortField = ?, @SortDir = ?, @RCP_Idx = ?, @PAT_Idx = ?, @MEM_Idx = ?, @MUR_Idx = ?, @MUR_Idx_DOC = ?, @MUR_Idx_STF = ?, @RES_Idx = ?, @PAT_Name = ?, @PAT_ChartNo = ?, @PAT_Sex = ?, @PAT_Age = ?, @RCP_Status = ?, @RCP_Route = ?, @RCP_VisitType = ?, @RCP_InsuranceType = ?, @RCP_Subject = ?, @RCP_SubjectName = ?, @RCP_ReceiptDate = ?, @RCP_ReceiptTime = ?, @RCP_StartTreatTime = ?, @RCP_EndTreatTime = ?, @RCP_Memo = ?, @RCP_YYMMDD = ?, @RCP_IsValid = ?, @IRCItem = ?,
+                    @TotalQuery = @t OUTPUT,
+                    @sVal = @s OUTPUT;
+
+                SELECT
+                    @t AS TotalQuery,
+                    @s AS sVal;
+            ]
+[parameters: ('', 0, 10, '', '', 100000, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '')]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-08-10 16:16:13] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:16:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:16:15] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:16:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:16:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:16:15] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:17:03] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:17:03] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:17:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:17:12] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:17:12] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:17:12] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:17:12] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:17:12] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:17:12] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_SetInsurance
+[2026-08-10 16:17:12] [INFO] [Logger] - Successfully executed proc_Insurance_SetInsurance
+[2026-08-10 16:17:12] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByIRC
+[2026-08-10 16:19:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 16:19:52] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 16:19:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-08-10 16:19:52] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-08-10 16:19:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-08-10 16:19:52] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-08-10 16:19:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 16:19:53] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 16:19:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-08-10 16:19:53] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-08-10 16:20:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:20:12] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:20:12] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:20:13] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:20:13] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:20:13] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:20:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:20:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:20:20] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:20:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:20:20] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:20:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_SetInsurance
+[2026-08-10 16:20:20] [INFO] [Logger] - Successfully executed proc_Insurance_SetInsurance
+[2026-08-10 16:20:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByIRC
+[2026-08-10 16:20:20] [INFO] [Logger] - Successfully executed proc_Reception_SetReceptionByIRC
+[2026-08-10 16:20:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:20:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:20:20] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:20:20] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:22:27] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:22:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:22:29] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:22:29] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:22:29] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:22:29] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:22:29] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:22:29] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:22:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:22:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:22:42] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:22:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:22:42] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:22:45] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_SetInsurance
+[2026-08-10 16:22:45] [INFO] [Logger] - Successfully executed proc_Insurance_SetInsurance
+[2026-08-10 16:22:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByIRC
+[2026-08-10 16:22:53] [INFO] [Logger] - Successfully executed proc_Reception_SetReceptionByIRC
+[2026-08-10 16:23:00] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:23:00] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:23:00] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:23:00] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:25:21] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:25:21] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:25:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:25:22] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:25:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:25:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:25:22] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:25:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:25:22] [INFO] [Logger] - Successfully executed proc_Reception_GetReception
+[2026-08-10 16:25:22] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:25:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:25:22] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:26:03] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:26:03] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:26:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:26:04] [INFO] [Logger] - Successfully executed proc_Reception_GetReception
+[2026-08-10 16:26:12] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:26:12] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:29:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:29:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:29:02] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:29:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:29:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:29:03] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:29:08] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:29:08] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:29:08] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:29:08] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:29:08] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:29:11] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_SetInsurance
+[2026-08-10 16:29:12] [INFO] [Logger] - Successfully executed proc_Insurance_SetInsurance
+[2026-08-10 16:29:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByIRC
+[2026-08-10 16:29:15] [INFO] [Logger] - Successfully executed proc_Reception_SetReceptionByIRC
+[2026-08-10 16:29:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:29:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:29:23] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:29:23] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:30:25] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:30:25] [INFO] [Logger] - Successfully executed proc_Reception_GetReception
+[2026-08-10 16:31:21] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:31:21] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:31:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:31:22] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:31:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:31:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:31:22] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:31:22] [INFO] [Logger] - Successfully executed proc_Reception_GetReception
+[2026-08-10 16:31:22] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:31:22] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:31:26] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:31:27] [INFO] [Logger] - Successfully executed proc_Reception_GetReception
+[2026-08-10 16:32:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 16:32:05] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 16:32:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-08-10 16:32:05] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-08-10 16:32:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-08-10 16:32:05] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-08-10 16:32:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-08-10 16:32:06] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-08-10 16:32:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-08-10 16:32:06] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-08-10 16:32:24] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:32:24] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:32:30] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:32:30] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:32:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:32:31] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:32:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:32:31] [INFO] [Logger] - Successfully executed proc_Reception_GetReception
+[2026-08-10 16:32:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:32:31] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:32:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:32:35] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:32:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReception
+[2026-08-10 16:32:35] [INFO] [Logger] - Successfully executed proc_Reception_SetReception
+[2026-08-10 16:32:45] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_SetInsurance
+[2026-08-10 16:32:45] [INFO] [Logger] - Successfully executed proc_Insurance_SetInsurance
+[2026-08-10 16:32:49] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByIRC
+[2026-08-10 16:32:49] [INFO] [Logger] - Successfully executed proc_Reception_SetReceptionByIRC
+[2026-08-10 16:32:49] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:32:49] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:32:49] [INFO] [Logger] - Successfully executed proc_Insurance_GetInsurance
+[2026-08-10 16:32:49] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:40:48] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:40:59] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:41:09] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:41:13] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:41:13] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:41:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:41:23] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:41:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_SetReservation
+[2026-08-10 16:41:23] [INFO] [Logger] - Successfully executed proc_Reservation_SetReservation
+[2026-08-10 16:41:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:41:23] [INFO] [Logger] - Successfully executed proc_Reservation_GetReservation
+[2026-08-10 16:41:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:41:28] [INFO] [Logger] - Successfully executed proc_Reservation_GetReservation
+[2026-08-10 16:41:29] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:41:29] [INFO] [Logger] - Successfully executed proc_Reservation_GetReservation
+[2026-08-10 16:41:32] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:41:32] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:41:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:41:36] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:41:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:41:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByRES
+[2026-08-10 16:41:36] [INFO] [Logger] - Successfully executed proc_Reception_SetReceptionByRES
+[2026-08-10 16:43:24] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:43:24] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:43:40] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:43:40] [INFO] [Logger] - Successfully executed proc_Reservation_GetReservation
+[2026-08-10 16:43:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:43:54] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:43:58] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:44:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:44:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:44:04] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:44:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:44:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReception
+[2026-08-10 16:44:04] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:44:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:44:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:44:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:44:15] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:44:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:44:20] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:44:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_SetReservation
+[2026-08-10 16:44:21] [INFO] [Logger] - Successfully executed proc_Reservation_SetReservation
+[2026-08-10 16:44:21] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:44:21] [INFO] [Logger] - Successfully executed proc_Reservation_GetReservation
+[2026-08-10 16:44:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-08-10 16:44:23] [INFO] [Logger] - Successfully executed proc_Reservation_GetReservation
+[2026-08-10 16:44:25] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:44:25] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
+[2026-08-10 16:44:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_GetPatient
+[2026-08-10 16:44:28] [INFO] [Logger] - Successfully executed proc_Patient_GetPatient
+[2026-08-10 16:44:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Insurance_GetInsurance
+[2026-08-10 16:44:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_SetReceptionByRES
+[2026-08-10 16:44:28] [INFO] [Logger] - Successfully executed proc_Reception_SetReceptionByRES
+[2026-08-10 16:44:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-08-10 16:44:28] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard

@@ -1,11 +1,11 @@
 import uvicorn
 from fastapi import FastAPI, Depends
-from MiddleWares import ExceptionMiddleWare, LogRequestBodyMiddleware
-from Routers import v1_router
-from Routers.LoginRouter import router as LoginRouter
-from Routers.AuthRouter import router as AuthRouter
-from Services.Authentication import AuthenticateService 
-from Exceptions.Handlers import RegisterExceptionHandlers
+from app.MiddleWares import ExceptionMiddleWare, LogRequestBodyMiddleware
+from app.Routers import v1_router
+from app.Routers.LoginRouter import router as LoginRouter
+from app.Routers.AuthRouter import router as AuthRouter
+from app.Services.Authentication.AuthenticateService import AuthenticateService 
+from app.Exceptions.Handlers import RegisterExceptionHandlers
 
 app = FastAPI()
 

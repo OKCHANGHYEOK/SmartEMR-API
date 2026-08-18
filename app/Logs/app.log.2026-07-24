@@ -1,0 +1,514 @@
+[2026-07-24 14:29:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 14:29:02] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 14:29:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 14:29:02] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 14:29:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 14:29:02] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 14:29:03] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 14:29:03] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 14:29:03] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 14:29:03] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 14:29:19] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 14:34:45] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 14:34:45] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 14:34:45] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 14:34:45] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 14:34:45] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 14:34:45] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 14:34:46] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 14:34:46] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 14:34:46] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 14:34:46] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 14:34:58] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 14:35:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 14:47:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 14:47:52] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 14:47:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 14:47:52] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 14:47:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 14:47:52] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 14:47:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 14:47:52] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 14:47:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 14:47:53] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 14:48:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 14:48:09] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:05:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:05:06] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:05:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:05:06] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:05:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:05:06] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:05:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:05:07] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:05:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:05:07] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:05:21] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:05:26] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:07:48] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:07:48] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:07:48] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:07:48] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:07:48] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:07:48] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:07:49] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:07:49] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:07:49] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:07:49] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:08:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:08:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:08:49] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:08:50] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:08:50] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:08:50] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:08:50] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:08:50] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:08:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:08:51] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:08:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:08:51] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:09:08] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:09:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:16:25] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:16:25] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:16:25] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:16:25] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:16:25] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:16:25] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:16:26] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:16:26] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:16:26] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:16:26] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:16:37] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:16:40] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:22:29] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:22:29] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:22:29] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:22:29] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:22:29] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:22:29] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:22:30] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:22:30] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:22:30] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:22:30] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:24:34] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:24:34] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:24:34] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:24:34] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:24:34] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:24:34] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:24:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:24:35] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:24:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:24:35] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:24:47] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:26:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:26:01] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:26:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:26:01] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:26:01] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:26:01] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:26:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:26:02] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:26:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:26:02] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:26:17] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:26:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:29:56] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:29:56] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:29:56] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:29:56] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:29:56] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:29:56] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:29:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:29:57] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:29:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:29:57] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:30:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:30:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:31:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:31:10] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:31:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:31:10] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:31:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:31:11] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:31:11] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:31:11] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:31:11] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:31:12] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:31:24] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:31:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:34:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:34:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:36:46] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:38:54] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:38:54] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:38:54] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:38:54] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:38:54] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:38:55] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:38:55] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:38:55] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:38:55] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:38:55] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:39:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:39:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:39:58] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:40:13] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:40:33] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:40:33] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:40:33] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:40:33] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:40:33] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:40:33] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:40:34] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:40:34] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:40:34] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:40:34] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:40:45] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:41:11] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:42:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:42:14] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:42:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:42:14] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:42:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:42:14] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:42:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:42:15] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:42:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:42:16] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:42:28] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:42:33] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:46:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:46:42] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:46:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:46:42] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:46:43] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:46:43] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:46:43] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:46:43] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:46:43] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:46:43] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:46:55] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:46:57] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 15:48:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:48:23] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:48:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 15:48:23] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 15:48:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:48:23] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 15:48:24] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 15:48:24] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 15:48:24] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 15:48:27] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 15:48:37] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 15:48:40] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:05:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:05:06] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:05:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:05:06] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:05:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:05:06] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:05:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:05:07] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:05:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:05:07] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:06:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:06:14] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:06:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:06:14] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:06:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:06:14] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:06:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:06:15] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:06:15] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:06:15] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:06:27] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 16:06:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:06:56] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:07:21] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:07:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:07:35] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:07:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:07:35] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:07:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:07:35] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:07:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:07:37] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:07:37] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:07:37] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:07:47] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 16:07:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:16:30] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:16:30] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:16:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:16:31] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:16:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:16:31] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:16:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:16:31] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:16:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:16:32] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:23:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:23:36] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:23:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:23:36] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:23:36] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:23:36] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:23:37] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:23:37] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:23:37] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:23:37] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:23:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 16:23:55] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:25:56] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:33:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:33:04] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:33:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:33:05] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:33:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:33:05] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:33:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:33:06] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:33:06] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:33:06] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:33:17] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 16:33:19] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:46:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:46:52] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:46:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:46:52] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:46:52] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:46:52] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:46:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:46:53] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:46:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:46:54] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:47:13] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 16:47:17] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:47:31] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:48:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:48:35] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:48:47] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:50:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:53:55] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:56:09] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:56:09] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:56:09] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:56:10] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:56:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:56:10] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:56:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:56:11] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:56:11] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:56:11] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:56:23] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 16:56:26] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 16:57:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:57:04] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:57:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 16:57:04] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 16:57:04] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:57:04] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 16:57:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 16:57:05] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 16:57:05] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 16:57:05] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 16:57:20] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 16:58:17] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 17:06:45] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 17:06:46] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 17:06:46] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Member_GetMember
+[2026-07-24 17:06:46] [INFO] [Logger] - Successfully executed proc_Member_GetMember
+[2026-07-24 17:06:46] [DEBUG] [Logger] - Executing Procedure: eSP.proc_RefreshToken_SetRefreshToken
+[2026-07-24 17:06:46] [INFO] [Logger] - Successfully executed proc_RefreshToken_SetRefreshToken
+[2026-07-24 17:06:47] [DEBUG] [Logger] - Executing Procedure: eSP.proc_MemberUser_GetMemberUser
+[2026-07-24 17:06:48] [INFO] [Logger] - Successfully executed proc_MemberUser_GetMemberUser
+[2026-07-24 17:06:48] [DEBUG] [Logger] - Executing Procedure: eSP.proc_CommonCode_GetCommonCode
+[2026-07-24 17:06:48] [INFO] [Logger] - Successfully executed proc_CommonCode_GetCommonCode
+[2026-07-24 17:07:07] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 17:07:10] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 17:07:14] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_GetReservation
+[2026-07-24 17:08:11] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_SetPatient
+[2026-07-24 17:08:11] [INFO] [Logger] - Successfully executed proc_Patient_SetPatient
+[2026-07-24 17:08:42] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_SetReservation
+[2026-07-24 17:08:42] [ERROR] [Logger] - DB Error: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]@RES_ReserationTime은(는) 프로시저 proc_Reservation_SetReservation의 매개 변수가 아닙니다. (8145) (SQLExecDirectW)')
+[SQL: 
+                    DECLARE @t int,
+                            @s nvarchar(250);
+
+                    EXEC [dbo].[proc_Reservation_SetReservation]
+                        @MEM_Idx = ?, @MUR_Idx = ?, @PAT_Idx = ?, @MUR_Idx_DOC = ?, @MUR_Idx_STF = ?, @PAT_Name = ?, @PAT_ChartNo = ?, @PAT_Sex = ?, @PAT_Age = ?, @RES_Idx = ?, @RES_Status = ?, @RES_Route = ?, @RES_Subject = ?, @RES_SubjectName = ?, @RES_ReservationDate = ?, @RES_ReserationTime = ?, @RES_Memo = ?, @RES_IsValid = ?,
+                        @TotalQuery = @t OUTPUT,
+                        @sVal = @s OUTPUT;
+
+                    SELECT
+                        @t AS TotalQuery,
+                        @s AS sVal;
+                ]
+[parameters: (100000, 100000, '', 0, 0, '신환테', '202607240001', 'M', 0, '', '', 'DSK', 'GNR', '', '2026-07-24', '', '신환예약테스트~~', True)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]@RES_ReserationTime은(는) 프로시저 proc_Reservation_SetReservation의 매개 변수가 아닙니다. (8145) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dkdld\Desktop\SmartEMR-API\Infrastructure\AppDBContext.py", line 112, in _ExecuteQuery
+    result = await session.execute(text(sql_str), params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 449, in execute
+    result = await greenlet_spawn(
+             ^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\orm\session.py", line 2258, in _execute_internal
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\engine\default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 230, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 368, in _handle_exception
+    raise error.with_traceback(exc_info[2])
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 228, in execute
+    return self.await_(self._execute_async(operation, parameters))
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 251, in _execute_async
+    result = await self._cursor.execute(operation, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 132, in execute
+    await self._run_operation(self._impl.execute, sql, *params)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\aioodbc\cursor.py", line 30, in _run_operation
+    result = await self._conn._execute(func, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "C:\Users\dkdld\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py", line 73, in run
+    return fn(*args, **kwargs)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]@RES_ReserationTime은(는) 프로시저 proc_Reservation_SetReservation의 매개 변수가 아닙니다. (8145) (SQLExecDirectW)')
+[SQL: 
+                    DECLARE @t int,
+                            @s nvarchar(250);
+
+                    EXEC [dbo].[proc_Reservation_SetReservation]
+                        @MEM_Idx = ?, @MUR_Idx = ?, @PAT_Idx = ?, @MUR_Idx_DOC = ?, @MUR_Idx_STF = ?, @PAT_Name = ?, @PAT_ChartNo = ?, @PAT_Sex = ?, @PAT_Age = ?, @RES_Idx = ?, @RES_Status = ?, @RES_Route = ?, @RES_Subject = ?, @RES_SubjectName = ?, @RES_ReservationDate = ?, @RES_ReserationTime = ?, @RES_Memo = ?, @RES_IsValid = ?,
+                        @TotalQuery = @t OUTPUT,
+                        @sVal = @s OUTPUT;
+
+                    SELECT
+                        @t AS TotalQuery,
+                        @s AS sVal;
+                ]
+[parameters: (100000, 100000, '', 0, 0, '신환테', '202607240001', 'M', 0, '', '', 'DSK', 'GNR', '', '2026-07-24', '', '신환예약테스트~~', True)]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+[2026-07-24 17:10:53] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_SetPatient
+[2026-07-24 17:10:53] [INFO] [Logger] - Successfully executed proc_Patient_SetPatient
+[2026-07-24 17:11:02] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_SetReservation
+[2026-07-24 17:11:02] [INFO] [Logger] - Successfully executed proc_Reservation_SetReservation
+[2026-07-24 17:14:50] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Patient_SetPatient
+[2026-07-24 17:14:50] [INFO] [Logger] - Successfully executed proc_Patient_SetPatient
+[2026-07-24 17:14:50] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reservation_SetReservation
+[2026-07-24 17:14:50] [INFO] [Logger] - Successfully executed proc_Reservation_SetReservation
+[2026-07-24 17:14:51] [DEBUG] [Logger] - Executing Procedure: eSP.proc_Reception_GetReceptionBoard
+[2026-07-24 17:14:51] [INFO] [Logger] - Successfully executed proc_Reception_GetReceptionBoard
