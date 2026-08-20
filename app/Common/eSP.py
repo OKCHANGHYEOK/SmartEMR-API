@@ -38,3 +38,7 @@ class eSP(Enum):
     proc_Reservation_MoveReservationDate = 25
     proc_Reservation_SetReservation = 26
     proc_Reservation_SetReservationByStatus = 27
+
+    proc_Suga_GetSuga = 28
+    proc_Suga_SetSuga = 29
+    proc_Suga_SetSugaProperty = 30

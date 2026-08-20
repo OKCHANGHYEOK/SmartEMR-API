@@ -23,6 +23,7 @@ class Suga(BaseEntity):
     SUGA_EffectiveFromDay = Column(DateTime)
     SUGA_EffectiveToDay = Column(DateTime)
     SUGA_IsUse = Column(Boolean)
+    SUGA_Property = Column(String)
 
     def __repr__(self):
-        return f"{self.SUGA_Code}/{self.SUGA_ClassCode}/{self.SUGA_InsuranceType}/{self.SUGA_SugeryType}/{self.SUGA_Name}/{self.SUGA_ClinicPrice}/{self.SUGA_HospitalPrice}/{self.SUGA_DentistPrice}/{self.SUGA_BirthCenterPrice}/{self.SUGA_KorMedicinePrice}/{self.SUGA_EffectiveFromDay}"
+        return f"{self.SUGA_Code}/{self.SUGA_ClassCode}/{self.SUGA_InsuranceType}/{self.SUGA_SugeryType}/{self.SUGAC_Cd}/{self.SUGA_Name}/{self.SUGA_ClinicPrice}/{self.SUGA_HospitalPrice}/{self.SUGA_DentistPrice}/{self.SUGA_BirthCenterPrice}/{self.SUGA_KorMedicinePrice}/{self.SUGA_EffectiveFromDay}"

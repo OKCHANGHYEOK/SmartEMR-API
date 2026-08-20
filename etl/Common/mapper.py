@@ -28,6 +28,7 @@ def convert_to_suga(suga_source : dict) -> Suga:
     item.SUGA_ClassCode = suga_source.get("mdfeeDivNo")
     item.SUGA_InsuranceType = common.get_insurance_type(suga_source.get("payTpNm"))
     item.SUGA_SugeryType = common.get_sugery_type(suga_source.get("soprTpNm"))
+    item.SUGAC_Cd = common.get_sugac_cd(item.SUGA_Name)
     item.SUGA_Price = suga_source.get("unprc")
     item.SUGA_ClinicPrice = suga_source.get("unprc1")
     item.SUGA_HospitalPrice = suga_source.get("unprc2")
@@ -37,5 +38,6 @@ def convert_to_suga(suga_source : dict) -> Suga:
     item.SUGA_KorMedicinePrice = suga_source.get("unprc6")
     item.SUGA_EffectiveFromDay = suga_source.get("adtStaDd")
     item.SUGA_EffectiveToDay = datetime(year=2999, month=12, day=31)
+    item.SUGA_IsUse = common.get_suga_isUse(item.SUGA_Name)
 
     return item
