@@ -48,6 +48,8 @@ async def main():
         print()
 
 async def update_suga_all():
+    import json
+
     print("전체 수가 업데이트를 진행합니다.")
 
     client = HiraClient(settings.service_key)
@@ -70,38 +72,13 @@ async def update_suga_all():
             print("데이터 변환 실패하였습니다.")
             continue
 
-        mapped : list[Suga] = mapper.mapping_suga(parsed)
-
-        suga_property = ""
-
-        for suga in mapped:
-            suga_property += "$" if len(suga_property) > 0 else ""
-            suga_property += suga.SUGA_Code + "|"
-            suga_property += suga.SUGA_ClassCode + "|"
-            suga_property += suga.SUGA_InsuranceType + "|"
-            suga_property += suga.SUGA_SugeryType + "|"
-            suga_property += suga.SUGAC_Cd + "|"
-            suga_property += suga.SUGAG_Cd if suga.SUGAG_Cd else "" + "|"
-            suga_property += suga.SUGAI_Cd if  suga.SUGAI_Cd else "" + "|"
-            suga_property += suga.SUGA_Name + "|"
-            suga_property += suga.SUGA_ClinicPrice + "|"
-            suga_property += suga.SUGA_HospitalPrice + "|"
-            suga_property += suga.SUGA_DentistPrice + "|"
-            suga_property += suga.SUGA_HealthPrice + "|"
-            suga_property += suga.SUGA_BirthCenterPrice + "|"
-            suga_property += suga.SUGA_KorMedicinePrice + "|"
-            suga_property += suga.SUGA_EffectiveFromDay + "|"
-            suga_property += suga.SUGA_EffectiveToDay.strftime('%Y-%m-%d') + "|"
-            suga_property += "True" if suga.SUGA_IsUse else "False" + "|"
+        mapped : list[dict] = mapper.mapping_suga(parsed)
+        suga_property = json.dumps(mapped, ensure_ascii=False)
 
         setSuga = Suga()
         setSuga.SUGA_Property = suga_property
 
-        ret : list[Suga] = dbcontext.GetItems[Suga](eSP.proc_Suga_SetSugaProperty, setSuga)
-
-        if not ret or dbcontext.retIsSuccess == False:
-            print("수가 데이터를 저장하지 못했습니다.")
-            continue
+        ret : list[Suga] = await dbcontext.GetItems[Suga](eSP.proc_Suga_SetSugaProperty, setSuga)
 
         total_count += len(ret)
 

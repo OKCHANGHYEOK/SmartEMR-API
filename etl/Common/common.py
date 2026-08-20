@@ -1,5 +1,5 @@
 import asyncio
-import sys
+from etl.Config import settings
 
 async def show_progress(message : str):
     dots = ["", ".", "..", "..."]
@@ -40,19 +40,8 @@ def get_sugac_cd(SUGA_Name : str):
     return "ETC"
 
 def get_suga_isUse(SUGA_Name : str) -> bool:
-    if "한방" in SUGA_Name:
-        return False
+    for keyword in settings.exclude_keyword:
+        if keyword in SUGA_Name:
+            return False
 
-    if "한의" in SUGA_Name:
-        return False
-
-    if "치과" in SUGA_Name:
-        return False
-
-    if "병원" in SUGA_Name:
-        return True
-
-    if "의원" in SUGA_Name:
-        return True
-
-    return False
+    return True
