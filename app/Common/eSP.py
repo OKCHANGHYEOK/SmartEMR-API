@@ -42,3 +42,5 @@ class eSP(Enum):
     proc_Suga_GetSuga = 28
     proc_Suga_SetSuga = 29
     proc_Suga_SetSugaProperty = 30
+
+    proc_Order_GetOrder = 31

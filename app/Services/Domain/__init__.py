@@ -7,6 +7,7 @@ from .ReservationService import ReservationService
 from .ReceptionService import ReceptionService
 from .InsuranceService import InsuranceService
 from .ConsultationService import ConsultationService
+from .OrderService import OrderService
 from .PayService import PayService
 
 __all__ = ['BaseService', 
@@ -18,4 +19,5 @@ __all__ = ['BaseService',
            'ReceptionService', 
            'InsuranceService',
            'ConsultationService',
+           'OrderService',
            'PayService']
