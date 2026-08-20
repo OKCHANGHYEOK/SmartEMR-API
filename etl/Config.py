@@ -6,6 +6,8 @@ base_dir = Path(__file__).resolve().parent
 class ETLSettings(BaseSettings):
     api_url : str
     service_key : str
+    category_etc_keyword : list
+    enclude_keyword : list
     exclude_keyword : list
 
     model_config = SettingsConfigDict(

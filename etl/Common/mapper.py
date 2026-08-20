@@ -29,11 +29,11 @@ def convert_to_suga(suga_source : dict) -> dict:
         'SUGA_Code' : suga_source.get("mdfeeCd"),
         'SUGA_ClassCode' : suga_source.get("mdfeeDivNo"),
         'SUGA_InsuranceType' : common.get_insurance_type(suga_source.get("payTpNm")),
-        'SUGA_SugeryType' : common.get_sugery_type(suga_source.get("soprTpNm")),
+        'SUGA_SurgeryType' : common.get_surgery_type(suga_source.get("soprTpNm")),
         'SUGAC_Cd' : common.get_sugac_cd(SUGA_Name),
         'SUGAG_Cd' : '',
         'SUGAI_Cd' : '', 
-        'SUGA_Price' : suga_source.get("unprc"),
+        'SUGA_Price' : suga_source.get("unprc2"),           # 병원급 수가를 기준으로함에 따른 설정
         'SUGA_ClinicPrice' : suga_source.get("unprc1"),
         'SUGA_HospitalPrice' : suga_source.get("unprc2"),
         'SUGA_DentistPrice' : suga_source.get("unprc3"),

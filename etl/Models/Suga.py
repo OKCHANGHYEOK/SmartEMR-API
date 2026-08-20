@@ -8,7 +8,7 @@ class Suga(BaseEntity):
     SUGA_Code = Column(String(8))
     SUGA_ClassCode = Column(String(30))
     SUGA_InsuranceType = Column(String(3))
-    SUGA_SugeryType = Column(String(3))
+    SUGA_SurgeryType = Column(String(3))
     SUGAC_Cd = Column(String(3))
     SUGAG_Cd = Column(String(3))
     SUGAI_Cd = Column(String(3))
@@ -26,4 +26,4 @@ class Suga(BaseEntity):
     SUGA_Property = Column(String)
 
     def __repr__(self):
-        return f"{self.SUGA_Code}/{self.SUGA_ClassCode}/{self.SUGA_InsuranceType}/{self.SUGA_SugeryType}/{self.SUGAC_Cd}/{self.SUGA_Name}/{self.SUGA_ClinicPrice}/{self.SUGA_HospitalPrice}/{self.SUGA_DentistPrice}/{self.SUGA_BirthCenterPrice}/{self.SUGA_KorMedicinePrice}/{self.SUGA_EffectiveFromDay}"
+        return f"{self.SUGA_Code}/{self.SUGA_ClassCode}/{self.SUGA_InsuranceType}/{self.SUGA_SurgeryType}/{self.SUGAC_Cd}/{self.SUGA_Name}/{self.SUGA_ClinicPrice}/{self.SUGA_HospitalPrice}/{self.SUGA_DentistPrice}/{self.SUGA_BirthCenterPrice}/{self.SUGA_KorMedicinePrice}/{self.SUGA_EffectiveFromDay}"
