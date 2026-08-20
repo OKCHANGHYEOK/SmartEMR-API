@@ -24,10 +24,10 @@ def get_sugac_cd(SUGA_Name : str):
         return "ASM"
 
     if "시술" in SUGA_Name:
-        return "PSC"
+        return "PRC"
     
     if "수술" in SUGA_Name:
-        return "PSC"
+        return "PRC"
 
     if "처치" in SUGA_Name:
         return "TRT"
