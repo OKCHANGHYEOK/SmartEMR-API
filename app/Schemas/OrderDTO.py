@@ -18,6 +18,7 @@ class OrderDTO(BaseDTO):
     ORD_EffectiveFromDay : Optional[datetime] = None
     ORD_EffectiveToDay : Optional[datetime] = None
     ORD_IsUse : Optional[bool] = None
+    ORD_IsQuickOrder : Optional[bool] = None
 
 class Order_Req(OrderDTO):
     pass

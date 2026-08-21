@@ -24,6 +24,8 @@ class OrderService(BaseService):
         item.ORD_InsuranceType = request.ORD_InsuranceType
         item.ORD_SurgeryType = request.ORD_SurgeryType
         item.ORDC_Cd = request.ORDC_Cd
+        item.ORD_IsUse = request.ORD_IsUse
+        item.ORD_IsQuickOrder = request.ORD_IsQuickOrder
 
         item.Keyword = request.Keyword
         item.SortField = request.SortField
