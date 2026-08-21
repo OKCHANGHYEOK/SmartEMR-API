@@ -28,7 +28,7 @@ def convert_to_suga(suga_source : dict) -> dict:
         'SUGA_Name' : suga_source.get("korNm"),
         'SUGA_Code' : suga_source.get("mdfeeCd"),
         'SUGA_ClassCode' : suga_source.get("mdfeeDivNo"),
-        'SUGA_InsuranceType' : common.get_insurance_type(suga_source.get("payTpNm")),
+        'SUGA_InsuranceType' : common.get_insurance_type(suga_source.get("payTpCd")),
         'SUGA_SurgeryType' : common.get_surgery_type(suga_source.get("soprTpNm")),
         'SUGAC_Cd' : common.get_sugac_cd(SUGA_Name),
         'SUGAG_Cd' : '',

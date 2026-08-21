@@ -9,8 +9,8 @@ async def show_progress(message : str):
             print(f"\r{message}{dot}   ", end="", flush=True)
             await asyncio.sleep(0.5)
 
-def get_insurance_type(payTpNm : str):
-    return "INS" if payTpNm == "급여" else "NON"            
+def get_insurance_type(payTpCd : str):
+    return "INS" if payTpCd == "급여" else "NON"            
 
 def get_surgery_type(soprTpNm : str):
     return "SUG" if soprTpNm == "수술" else "NON"
