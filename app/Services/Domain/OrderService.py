@@ -35,7 +35,7 @@ class OrderService(BaseService):
 
         ret : list[Order_Res] = await self.DbContext.GetItems[Order_Res](eSP.proc_Order_GetOrder, item)
 
-        if not ret or self.DbContext.retIsSuccess == False:
+        if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException("오더 조회에 실패했습니다.")
 
         return DataResponse[Order_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)

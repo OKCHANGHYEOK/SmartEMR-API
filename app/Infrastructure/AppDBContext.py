@@ -2,6 +2,7 @@ from typing import TypeVar, Type, Generic
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
+from aioodbc.cursor import Cursor
 
 from app.Common import Common
 from app.Common.loggerService import LoggerService
@@ -142,17 +143,21 @@ class AppDBContext:
 
             db_conn = raw_conn.driver_connection 
 
-            cursor = await db_conn.cursor() 
-
-            if not cursor:
-                raise
+            cursor : Cursor = await db_conn.cursor() 
 
             await cursor.execute(sql_str, tuple(params.values()))
 
-            rows = await cursor.fetchall()
-            column_names = [column[0] for column in cursor.description]
+            rows = []
+            column_names = []
 
-            if await cursor.nextset():
+            if cursor.description:
+                rows = await cursor.fetchall()
+                column_names = [column[0] for column in cursor.description]
+
+            while await cursor.nextset():
+                if not cursor.description:
+                    continue
+
                 output_rows = await cursor.fetchall()
 
                 if output_rows:
