@@ -118,7 +118,7 @@ class AppDBContext:
                 params[k] = v
 
             param_placeholders = ", ".join(
-                f"@{k} = :{k}"
+                f"@{k} = ?"
                 for k in params.keys()
             )
 
@@ -136,13 +136,31 @@ class AppDBContext:
                     @s AS sVal;
             """
 
-            result = await session.execute(
-                text(sql_str),
-                params
-            )
+            # 커넥션 생성 및 sql 실행
+            conn = await session.connection()
+            raw_conn = await conn.get_raw_connection()
 
-            rows = result.fetchall()
-            column_names = result.keys()
+            db_conn = raw_conn.driver_connection 
+
+            cursor = await db_conn.cursor() 
+
+            if not cursor:
+                raise
+
+            await cursor.execute(sql_str, tuple(params.values()))
+
+            rows = await cursor.fetchall()
+            column_names = [column[0] for column in cursor.description]
+
+            if await cursor.nextset():
+                output_rows = await cursor.fetchall()
+
+                if output_rows:
+                    output_columns = [col[0] for col in cursor.description]
+                    output_dict = dict(zip(output_columns, output_rows[0]))
+
+                    self.retCount = output_dict.get("TotalQuery") or 0
+                    self.retMessage = output_dict.get("sVal") or ""
 
             # 외부에서 Session을 전달받은 경우에는
             # 여기서 commit하지 않는다.
@@ -157,13 +175,6 @@ class AppDBContext:
 
             for row in rows:
                 row_dict = dict(zip(column_names, row))
-
-                if "TotalQuery" in row_dict and "sVal" in row_dict:
-                    self.retCount = row_dict["TotalQuery"] or 0
-                    self.retMessage = row_dict["sVal"] or ""
-
-                    if len(row_dict) == 2:
-                        continue
 
                 item = response_type(**row_dict)
                 arr_map.append(item)

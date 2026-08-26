@@ -18,6 +18,7 @@ class DataResponse(BaseDTO, Generic[T]):
                         item: Optional[T] = None, 
                         message: str = "", 
                         responseCode: eResponseCode = eResponseCode.SUCCESS,
+                        totalCount : int = 0,
                         isSuccess: bool = True):
         
         orig_bases = getattr(cls, "__orig_bases__", None)
@@ -47,7 +48,7 @@ class DataResponse(BaseDTO, Generic[T]):
             Message=message,
             responseCode=responseCode,
             IsSuccess=isSuccess,
-            TotalCount=len(retItems)
+            TotalCount=totalCount
         )
     
     @classmethod

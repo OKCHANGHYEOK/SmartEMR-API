@@ -38,4 +38,4 @@ class OrderService(BaseService):
         if not ret or self.DbContext.retIsSuccess == False:
             raise ApiException("오더 조회에 실패했습니다.")
 
-        return DataResponse[Order_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[Order_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
