@@ -42,4 +42,4 @@ class ReceptionBoard_Res(ReceptionBoardDTO):
     IRC_CoName : Optional[str] = None
     IRC_Specific : Optional[str] = None
     IRC_EffectiveYYMMDD : Optional[str] = None
-    IRC_ExpiredYYMMDDD : Optional[str] = None
+    IRC_ExpiredYYMMDD : Optional[str] = None

@@ -79,7 +79,7 @@ class InsuranceService(BaseService):
         item.IRC_CoName = request.IRC_CoName
         item.IRC_Specific = request.IRC_Specific
         item.IRC_EffectiveYYMMDD = request.IRC_EffectiveYYMMDD
-        item.IRC_ExpiredYYMMDD = request.IRC_ExpiredYYMMDDD    
+        item.IRC_ExpiredYYMMDD = request.IRC_ExpiredYYMMDD    
 
         ret : Insurance_Res = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, item)
 
