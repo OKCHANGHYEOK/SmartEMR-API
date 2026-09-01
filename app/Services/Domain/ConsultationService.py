@@ -8,11 +8,13 @@ from app.Entities.Patient import Patient
 from app.Entities.Reception import Reception
 from app.Entities.Insurance import Insurance
 from app.Entities.Consultation import Consultation
+from app.Entities.ConsultationOrder import ConsultationOrder
 from app.Schemas.DataResponse import DataResponse
 from app.Schemas.PatientDTO import Patient_Res
 from app.Schemas.ReceptionDTO import Reception_Req, Reception_Res
 from app.Schemas.InsuranceDTO import Insurance_Req, Insurance_Res
 from app.Schemas.ConsultationDTO import Consultation_Req, Consultation_Res
+from app.Schemas.ConsultationOrderDTO import ConsultationOrder_Req, ConsultationOrder_Res
 from app.Factory.InsuranceFactory import InsuranceFactory
 
 class ConsultationService(BaseService):
@@ -168,5 +170,20 @@ class ConsultationService(BaseService):
                 raise ApiException("진료보험 저장에 실패했습니다.")
 
             retCST.IRCItem = retIRC
+
+        # 오더 저장
+        if request.CSTO_Property:
+            setCSTO = ConsultationOrder()
+            setCSTO.MEM_Idx = user.MEM_Idx
+            setCSTO.MUR_Idx = user.MUR_Idx
+            setCSTO.CST_Idx = retCST.CST_Idx
+            setCSTO.PAT_Idx = retPAT.PAT_Idx
+            setCSTO.CSTO_Property = request.CSTO_Property
+
+            retCSTO = await self.DbContext.GetItems[ConsultationOrder_Req](eSP.proc_ConsultationOrder_SetConsultationOrderProperty, setCSTO)
+
+            if not retCSTO or self.DbContext.retIsSuccess == False:
+                raise ApiException("처방 저장에 실패했습니다.")
+            
 
         return DataResponse[Consultation_Res].CreateJsonResult(item=retCST, message=self.DbContext.retMessage)    

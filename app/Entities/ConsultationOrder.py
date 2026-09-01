@@ -27,3 +27,4 @@ class ConsultationOrder(BaseEntity):
     CSTO_Date = Column(String(20))
     CSTO_YYMMDD = Column(String(10))
     CSTO_IsValid = Column(Boolean)
+    CSTO_Property = Column(String)

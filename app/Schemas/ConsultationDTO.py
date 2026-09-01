@@ -30,6 +30,7 @@ class ConsultationDTO(BaseDTO):
     CST_Date : Optional[str] = None
     CST_YYMMDD : Optional[str] = None
     CST_IsValid : Optional[bool] = None
+    CSTO_Property : Optional[str] = None
 
     IRCItem : Insurance_Res = None
 

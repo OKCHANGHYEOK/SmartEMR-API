@@ -31,6 +31,7 @@ class Consultation(BaseEntity):
     CST_Date = Column(String(20))
     CST_YYMMDD = Column(String(10))
     CST_IsValid = Column(Boolean)
+    CSTO_Property = Column(String)
 
     PAT_Name = Column(String(50))
     PAT_ChartNo = Column(String(20))
