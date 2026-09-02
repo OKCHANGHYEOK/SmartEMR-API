@@ -1,9 +1,9 @@
 from app.Factory.BaseFactory import BaseFactory
-from app.Schemas.InsuranceDTO import Insurance_Req
+from app.Schemas.InsuranceDTO import Insurance_Req, Insurance_Res
 from app.Entities.Insurance import Insurance
 
 class InsuranceFactory(BaseFactory):
-    def create(parameter : Insurance_Req) -> Insurance:
+    def create(parameter : Insurance_Req | Insurance_Res) -> Insurance:
         item : Insurance = Insurance()
         item.MEM_Idx = parameter.MEM_Idx
         item.IRC_Idx = parameter.IRC_Idx
@@ -16,4 +16,4 @@ class InsuranceFactory(BaseFactory):
         item.IRC_Specific = parameter.IRC_Specific
         item.IRC_EffectiveYYMMDD = parameter.IRC_EffectiveYYMMDD    
 
-        return item  
+        return item 

@@ -7,6 +7,7 @@ from aioodbc.cursor import Cursor
 from app.Common import Common
 from app.Common.loggerService import LoggerService
 from app.Config import settings
+from app.Exceptions.ApiException import ApiException
 
 TReq = TypeVar("TReq")
 TRes = TypeVar("TRes")
@@ -211,7 +212,7 @@ class AppDBContext:
                 e
             )
 
-            raise
+            raise ApiException(self.retMessage)
 
         finally:
             # Session을 직접 생성한 경우에만 종료한다.

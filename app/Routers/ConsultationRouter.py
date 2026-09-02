@@ -16,3 +16,7 @@ class ConsultationRouter():
     @router.post("/SetConsultation", response_model=DataResponse[Consultation_Res])
     async def SetConsultation(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
         return await service.SetConsultation(request)
+
+    @router.post("/SetConsultationByCST", response_model=DataResponse[Consultation_Res])
+    async def SetConsultationByCST(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
+        return await service.SetConsultationByCST(request)
