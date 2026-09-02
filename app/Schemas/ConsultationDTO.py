@@ -12,6 +12,7 @@ class ConsultationDTO(BaseDTO):
     RCP_Idx : Optional[int] = None
     IRC_Idx : Optional[int] = None
     CST_InsuranceType : Optional[str] = None
+    CST_VisitType : Optional[str] = None
     CST_Status : Optional[str] = None
     CST_PayStatus : Optional[str] = None
     CST_TreatResult : Optional[str] = None

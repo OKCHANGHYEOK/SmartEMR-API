@@ -112,6 +112,7 @@ class ConsultationService(BaseService):
         item.PAT_Sex = retPAT.PAT_Sex
         item.PAT_Age = retPAT.PAT_Age
 
+        item.CST_VisitType = request.CST_VisitType
         item.CST_Status = request.CST_Status
         item.CST_PayStatus = request.CST_PayStatus
         item.CST_TreatResult = request.CST_TreatResult
@@ -123,7 +124,7 @@ class ConsultationService(BaseService):
         item.CST_Memo = request.CST_Memo
         item.CST_IsValid = request.CST_IsValid
                 
-        retCST : Consultation_Res = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_SetConsultation, item, session)
+        retCST : Consultation_Res = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_SetConsultation, item)
 
         if not retCST or self.DbContext.retIsSuccess == False:
             raise ApiException("진료 저장하는데 실패했습니다.")
@@ -178,6 +179,7 @@ class ConsultationService(BaseService):
         item.PAT_Sex = retPAT.PAT_Sex
         item.PAT_Age = retPAT.PAT_Age
 
+        item.CST_VisitType = request.CST_VisitType
         item.CST_Status = request.CST_Status
         item.CST_PayStatus = request.CST_PayStatus
         item.CST_TreatResult = request.CST_TreatResult
@@ -250,5 +252,4 @@ class ConsultationService(BaseService):
             if self.DbContext.retIsSuccess == False:
                 raise ApiException("처방 저장에 실패했습니다.")
             
-
         return DataResponse[Consultation_Res].CreateJsonResult(item=retCST, message=self.DbContext.retMessage)    
