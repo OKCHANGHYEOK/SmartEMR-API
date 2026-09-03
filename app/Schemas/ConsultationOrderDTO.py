@@ -6,6 +6,7 @@ class ConsultationOrderDTO(BaseDTO):
     CSTO_Idx : Optional[int] = None
     MEM_Idx : Optional[int] = None
     MUR_Idx : Optional[int] = None
+    MUR_Idx_DOC : Optional[int] = None
     PAT_Idx : Optional[int] = None
     CST_Idx : Optional[int] = None
     ORD_Idx : Optional[int] = None
@@ -26,6 +27,9 @@ class ConsultationOrderDTO(BaseDTO):
     CSTO_Date : Optional[str] = None
     CSTO_YYMMDD : Optional[str] = None
     CSTO_IsValid : Optional[bool] = None
+
+    sDay : Optional[str] = None
+    eDay : Optional[str] = None
 
 class ConsultationOrder_Req(ConsultationOrderDTO):
     pass

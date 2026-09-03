@@ -7,6 +7,7 @@ class ConsultationOrder(BaseEntity):
     CSTO_Idx = Column(Integer, primary_key=True, autoincrement=True)
     MEM_Idx = Column(Integer)
     MUR_Idx = Column(Integer)
+    MUR_Idx_DOC = Column(Integer)
     PAT_Idx = Column(Integer)
     CST_Idx = Column(Integer)
     ORD_Idx = Column(Integer)
