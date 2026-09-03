@@ -21,7 +21,7 @@ class ConsultationOrderDTO(BaseDTO):
     CSTO_Day : Optional[int] = None
     CSTO_Count : Optional[int] = None
     CSTO_Amount : Optional[int] = None
-    CSTO_UnitPrice : Optional[Decimal] = None
+    CSTO_Price : Optional[Decimal] = None
     CSTO_TotalPrice : Optional[Decimal] = None
     CSTO_Memo : Optional[str] = None
     CSTO_Date : Optional[str] = None

@@ -1,5 +1,6 @@
 from .BaseEntity import BaseEntity
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, DECIMAL
+from sqlalchemy import Column, Integer, String, Boolean, DECIMAL
+from sqlalchemy.dialects.mssql import NVARCHAR
 
 class Consultation(BaseEntity):
     __tablename__ = 'Consultation'
@@ -26,7 +27,7 @@ class Consultation(BaseEntity):
     CST_OwnPatientPrice = Column(DECIMAL(10, 0))
     CST_PaidPrice = Column(DECIMAL(10, 0))
     CST_RemainPrice = Column(DECIMAL(10, 0))
-    CST_Opinion = Column(String)
+    CST_Opinion = Column(NVARCHAR(None))
     CST_Memo = Column(String(500))
     CST_Date = Column(String(20))
     CST_YYMMDD = Column(String(10))

@@ -22,7 +22,7 @@ class ConsultationOrder(BaseEntity):
     CSTO_Day = Column(Integer)
     CSTO_Count = Column(Integer)
     CSTO_Amount = Column(Integer)
-    CSTO_UnitPrice = Column(DECIMAL(10, 0))
+    CSTO_Price = Column(DECIMAL(10, 0))
     CSTO_TotalPrice = Column(DECIMAL(10, 0))
     CSTO_Memo = Column(String(500))
     CSTO_Date = Column(String(20))
