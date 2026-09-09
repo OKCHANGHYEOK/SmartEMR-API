@@ -46,7 +46,7 @@ class AuthenticateService:
 
 
     # 🌟 2. 핵심 해결책: 라우터가 안전하게 사용할 수 있도록 '함수형 의존성 객체'를 하단에 선언합니다.
-    async def verify_jwt_token(request: Request, auth_service: AuthenticateService = Depends()):
+    async def verify_jwt_token(request: Request, auth_service: "AuthenticateService" = Depends()):
         """
         FastAPI가 auth_service(클래스)를 Depends로 먼저 온전히 주입(인스턴스화)한 뒤,
         인증 메서드를 호출하므로 self 관련 422 에러가 완벽히 차단됩니다.

@@ -187,10 +187,6 @@ class AppDBContext:
 
             self.retIsSuccess = True
 
-            self.logger.info(
-                f"Successfully executed {proc_name}"
-            )
-
             return arr_map
 
         except Exception as e:
@@ -215,6 +211,12 @@ class AppDBContext:
             raise ApiException(self.retMessage)
 
         finally:
+            if self.retIsSuccess:
+                self.logger.info(f"Successfully executed {proc_name}")
+
+            if cursor:
+                await cursor.close()
+
             # Session을 직접 생성한 경우에만 종료한다.
             if own_session:
                 await session.close()
@@ -224,7 +226,7 @@ class AppDBContext:
     # ==========================================================
 
     class QueryBuilder(Generic[TRes]):
-        def __init__(self, db : AppDBContext, response_type: Type[TRes], is_single: bool):
+        def __init__(self, db: "AppDBContext", response_type: Type[TRes], is_single: bool):
             self.db = db
             self.response_type = response_type
             self.is_single = is_single
@@ -236,7 +238,7 @@ class AppDBContext:
             return await self.db._GetItems(proc_name, request_obj, self.response_type, session)
 
     class QueryFactory:
-        def __init__(self, db : AppDBContext, is_single: bool):
+        def __init__(self, db: "AppDBContext", is_single: bool):    
             self.db = db
             self.is_single = is_single
 

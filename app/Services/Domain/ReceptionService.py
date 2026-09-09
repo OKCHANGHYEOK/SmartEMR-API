@@ -79,7 +79,7 @@ class ReceptionService(BaseService):
 
             ret : list[ReceptionBoard_Res] = await self.DbContext.GetItems[ReceptionBoard_Res](eSP.proc_Reception_GetReceptionBoard, item)
 
-            if ret is None or self.DbContext.retIsSuccess == False:
+            if self.DbContext.retIsSuccess == False:
                 raise ApiException(self.DbContext.retMessage)
             
             return DataResponse[ReceptionBoard_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
