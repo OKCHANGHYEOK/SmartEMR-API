@@ -91,6 +91,25 @@ class ConsultationService(BaseService):
 
         return DataResponse[Consultation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
 
+    async def CancelConsultation(self, request : Consultation_Req) -> DataResponse[Consultation_Res]:
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("유저가 올바르지 않습니다.")
+
+        item : Consultation = Consultation()
+        item.MEM_Idx = user.MEM_Idx
+        item.MUR_Idx = user.MUR_Idx
+
+        item.CST_Idx = request.CST_Idx
+
+        ret : Consultation_Res = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_CancelConsultation, item)
+
+        if not ret or self.DbContext.retIsSuccess == False:
+            raise ApiException("진료 취소에 실패했습니다.")
+
+        return DataResponse[Consultation_Res](item=ret, Message=self.DbContext.retMessage)
+
     async def SetConsultation(self, request : Consultation_Req) -> DataResponse[Consultation_Res]:
         user = self.authenticatedUserService.GetUser()
 

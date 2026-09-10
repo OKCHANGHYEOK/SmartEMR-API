@@ -13,6 +13,10 @@ class ConsultationRouter():
     async def GetConsultationByRCP(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
         return await service.GetConsultationByRCP(request)
 
+    @router.post("/CancelConsultation", response_model=DataResponse[Consultation_Res])
+    async def CancelConsultation(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
+        return await service.CancelConsultation(request)
+
     @router.post("/SetConsultation", response_model=DataResponse[Consultation_Res])
     async def SetConsultation(request : Consultation_Req, service : ConsultationService = Depends(ConsultationService)):
         return await service.SetConsultation(request)
