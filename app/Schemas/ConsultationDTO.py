@@ -11,6 +11,7 @@ class ConsultationDTO(BaseDTO):
     PAT_Idx : Optional[int] = None
     RCP_Idx : Optional[int] = None
     IRC_Idx : Optional[int] = None
+    PAY_Idx : Optional[int] = None
     CST_InsuranceType : Optional[str] = None
     CST_VisitType : Optional[str] = None
     CST_Status : Optional[str] = None
@@ -22,7 +23,7 @@ class ConsultationDTO(BaseDTO):
     CST_EndTime : Optional[str] = None
     CST_TotalPrice : Optional[Decimal] = None
     CST_InsuredPrice : Optional[Decimal] = None
-    CST_NonInsurecPrice : Optional[Decimal] = None
+    CST_NonInsuredPrice : Optional[Decimal] = None
     CST_OwnPatientPrice : Optional[Decimal] = None
     CST_PaidPrice : Optional[Decimal] = None
     CST_RemainPrice : Optional[Decimal] = None
