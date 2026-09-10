@@ -134,141 +134,219 @@ class ConsultationService(BaseService):
         return DataResponse[Consultation_Res](item=retCST, Message=self.DbContext.retMessage)
 
     # 외부에서(예 : ReceptionService) 호출 시 세션이 공유될 수 있도록 매개변수로 선언
-    async def SetConsultationByCST(self, request : Consultation_Req, session : AsyncSession | None = None) -> DataResponse[Consultation_Res]:
+    async def SetConsultationByCST(self, request : Consultation_Req) -> DataResponse[Consultation_Res]:
         user = self.authenticatedUserService.GetUser()
 
         if not user:
             raise ApiException("유저가 올바르지 않습니다.")
 
-        # 환자가 유효한지 체크
-        retPAT : Patient_Res = await self.DbContext.GetItem[Patient_Res](eSP.proc_Patient_GetPatient, Patient(PAT_Idx=request.PAT_Idx), session)
+        async with self.DbContext.AsyncSessionLocal() as session:
+            try:
+                # 환자가 유효한지 체크
+                retPAT: Patient_Res = await self.DbContext.GetItem[Patient_Res](
+                    eSP.proc_Patient_GetPatient,
+                    Patient(PAT_Idx=request.PAT_Idx),
+                    session
+                )
 
-        if not retPAT or self.DbContext.retIsSuccess == False:
-            raise ApiException("환자 정보가 유효하지 않습니다.")
+                if not retPAT or self.DbContext.retIsSuccess == False:
+                    raise ApiException("환자 정보가 유효하지 않습니다.")
 
-        # 접수가 유효한지 체크
-        retRCP : Reception_Res = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_GetReception, Reception(PAT_Idx=request.PAT_Idx, RCP_Idx=request.RCP_Idx), session)
+                # 접수가 유효한지 체크
+                retRCP: Reception_Res = await self.DbContext.GetItem[Reception_Res](
+                    eSP.proc_Reception_GetReception,
+                    Reception(
+                        PAT_Idx=request.PAT_Idx,
+                        RCP_Idx=request.RCP_Idx
+                    ),
+                    session
+                )
 
-        if not retRCP or self.DbContext.retIsSuccess == False:
-            raise ApiException("접수 정보가 유효하지 않습니다.")
+                if not retRCP or self.DbContext.retIsSuccess == False:
+                    raise ApiException("접수 정보가 유효하지 않습니다.")
 
-        retCST : Consultation_Res = None
-        retIRC : Insurance_Res = None
+                retCST: Consultation_Res = None
+                retIRC: Insurance_Res = None
 
-        # 기존 진료 및 보험 조회
-        if request.CST_Idx and request.CST_Idx > 0:
-            retCST = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_GetConsultation, Consultation(CST_Idx = request.CST_Idx))
+                # 기존 진료 및 보험 조회
+                if request.CST_Idx and request.CST_Idx > 0:
+                    retCST = await self.DbContext.GetItem[Consultation_Res](
+                        eSP.proc_Consultation_GetConsultation,
+                        Consultation(CST_Idx=request.CST_Idx),
+                        session
+                    )
 
-            if not retCST or self.DbContext.retIsSuccess == False:
-                raise ApiException("삭제되었거나 존재하지 않는 진료입니다.")
+                    if not retCST or self.DbContext.retIsSuccess == False:
+                        raise ApiException("삭제되었거나 존재하지 않는 진료입니다.")
 
-            retIRC = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_GetInsurance, Insurance(IRC_Idx = retCST.IRC_Idx))    
+                    retIRC = await self.DbContext.GetItem[Insurance_Res](
+                        eSP.proc_Insurance_GetInsurance,
+                        Insurance(IRC_Idx=retCST.IRC_Idx),
+                        session
+                    )
 
-        else:
-            retIRC = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_GetInsurance, Insurance(IRC_Idx = retRCP.IRC_Idx))
+                else:
+                    retIRC = await self.DbContext.GetItem[Insurance_Res](
+                        eSP.proc_Insurance_GetInsurance,
+                        Insurance(IRC_Idx=retRCP.IRC_Idx),
+                        session
+                    )
 
-        item : Consultation = Consultation()
-        item.MEM_Idx = user.MEM_Idx
-        item.MUR_Idx = user.MUR_Idx
+                # 진료 정보 구성
+                item: Consultation = Consultation()
+                item.MEM_Idx = user.MEM_Idx
+                item.MUR_Idx = user.MUR_Idx
 
-        item.CST_Idx = request.CST_Idx
-        item.PAT_Idx = request.PAT_Idx
-        item.RCP_Idx = request.RCP_Idx
-        item.MUR_Idx_DOC = request.MUR_Idx_DOC
+                item.CST_Idx = request.CST_Idx
+                item.PAT_Idx = request.PAT_Idx
+                item.RCP_Idx = request.RCP_Idx
+                item.MUR_Idx_DOC = request.MUR_Idx_DOC
 
-        item.PAT_ChartNo = retPAT.PAT_ChartNo
-        item.PAT_Name = retPAT.PAT_Name
-        item.PAT_Sex = retPAT.PAT_Sex
-        item.PAT_Age = retPAT.PAT_Age
+                item.PAT_ChartNo = retPAT.PAT_ChartNo
+                item.PAT_Name = retPAT.PAT_Name
+                item.PAT_Sex = retPAT.PAT_Sex
+                item.PAT_Age = retPAT.PAT_Age
 
-        item.CST_VisitType = request.CST_VisitType
-        item.CST_Status = request.CST_Status
-        item.CST_PayStatus = request.CST_PayStatus
-        item.CST_TreatResult = request.CST_TreatResult
-        item.CST_Subject = request.CST_Subject
-        item.CST_SubjectName = request.CST_SubjectName
-        item.CST_StartTime = request.CST_StartTime
-        item.CST_EndTime = request.CST_EndTime
-        item.CST_Opinion = request.CST_Opinion
-        item.CST_Memo = request.CST_Memo
-        item.CST_IsValid = request.CST_IsValid
-                
-        retCST : Consultation_Res = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_SetConsultation, item, session)
+                item.CST_VisitType = request.CST_VisitType
+                item.CST_Status = request.CST_Status
+                item.CST_PayStatus = request.CST_PayStatus
+                item.CST_TreatResult = request.CST_TreatResult
+                item.CST_Subject = request.CST_Subject
+                item.CST_SubjectName = request.CST_SubjectName
+                item.CST_StartTime = request.CST_StartTime
+                item.CST_EndTime = request.CST_EndTime
+                item.CST_Opinion = request.CST_Opinion
+                item.CST_Memo = request.CST_Memo
+                item.CST_IsValid = request.CST_IsValid
 
-        if not retCST or self.DbContext.retIsSuccess == False:
-            raise ApiException("진료 저장하는데 실패했습니다.")
+                retCST: Consultation_Res = await self.DbContext.GetItem[Consultation_Res](
+                    eSP.proc_Consultation_SetConsultation,
+                    item,
+                    session
+                )
 
-        # 진료 저장 후 보험 정보 저장
-        # 기준 보험
-        isNewCST = True if not request.CST_Idx or request.CST_Idx == 0 else False
-        source_insurance : Insurance_Res = retIRC if isNewCST else request.IRCItem 
+                if not retCST or self.DbContext.retIsSuccess == False:
+                    raise ApiException("진료 저장하는데 실패했습니다.")
 
-        # 신규 진료 생성 or 보험 변경된 경우 보험 업데이트
-        if isNewCST or retIRC.IRC_Type != request.IRCItem.IRC_Type:
-            # 비보험이 아닐 때만 보험 저장
-            if source_insurance.IRC_Type != "NON":
-                setIRC : Insurance = InsuranceFactory.create(source_insurance)
-                setIRC.IRC_Idx = 0 if isNewCST else retCST.IRC_Idx
+                # 진료 저장 후 보험 정보 저장
+                isNewCST = not request.CST_Idx or request.CST_Idx == 0
+                source_insurance: Insurance_Res = retIRC if isNewCST else request.IRCItem
 
-                retIRC : Insurance_Res = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC, session)
+                # 신규 진료 생성 또는 보험 변경된 경우 보험 업데이트
+                if isNewCST or retIRC.IRC_Type != request.IRCItem.IRC_Type:
 
-                if not retIRC or self.DbContext.retIsSuccess == False:
-                    raise ApiException("진료보험 저장에 실패했습니다.")    
+                    # 비보험이 아닐 때만 보험 저장
+                    if source_insurance.IRC_Type != "NON":
+                        setIRC: Insurance = InsuranceFactory.create(source_insurance)
+                        setIRC.IRC_Idx = 0 if isNewCST else retCST.IRC_Idx
 
-            # 비보험으로 변경된 경우 보험 데이터가 있다면 해당 보험 데이터 삭제
-            elif retCST.IRC_Idx:
-                setIRC : Insurance = Insurance()
-                setIRC.IRC_Idx = source_insurance.IRC_Idx
-                setIRC.IRC_IsValid = False
+                        retIRC: Insurance_Res = await self.DbContext.GetItem[Insurance_Res](
+                            eSP.proc_Insurance_SetInsurance,
+                            setIRC,
+                            session
+                        )
 
-                retIRC = await self.DbContext.GetItem[Insurance_Res](eSP.proc_Insurance_SetInsurance, setIRC, session)
+                        if not retIRC or self.DbContext.retIsSuccess == False:
+                            raise ApiException("진료보험 저장에 실패했습니다.")
 
-                if self.DbContext.retIsSuccess == False:
-                    raise ApiException("진료보험 삭제에 실패했습니다.")
+                    # 비보험으로 변경된 경우 보험 데이터가 있다면 해당 보험 데이터 삭제
+                    elif retCST.IRC_Idx:
+                        setIRC: Insurance = Insurance()
+                        setIRC.IRC_Idx = source_insurance.IRC_Idx
+                        setIRC.IRC_IsValid = False
 
-            # 진료 보험 데이터 갱신
-            setCSTByIRC = Consultation()    
-            setCSTByIRC.MUR_Idx = user.MUR_Idx
-            setCSTByIRC.CST_Idx = retCST.CST_Idx
-            setCSTByIRC.IRC_Idx = retIRC.IRC_Idx
-            setCSTByIRC.CST_InsuranceType = retIRC.IRC_Type
+                        retIRC = await self.DbContext.GetItem[Insurance_Res](
+                            eSP.proc_Insurance_SetInsurance,
+                            setIRC,
+                            session
+                        )
 
-            retCST = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_SetConsultationByIRC, setCSTByIRC)
+                        if self.DbContext.retIsSuccess == False:
+                            raise ApiException("진료보험 삭제에 실패했습니다.")
 
-            if not retCST or self.DbContext.retIsSuccess == False:
-                raise ApiException("보험 정보 업데이트에 실패했습니다")
+                    # 진료 보험 데이터 갱신
+                    setCSTByIRC = Consultation()
+                    setCSTByIRC.MUR_Idx = user.MUR_Idx
+                    setCSTByIRC.CST_Idx = retCST.CST_Idx
+                    setCSTByIRC.IRC_Idx = retIRC.IRC_Idx
+                    setCSTByIRC.CST_InsuranceType = retIRC.IRC_Type
 
-            retCST.IRCItem = retIRC    
+                    retCST = await self.DbContext.GetItem[Consultation_Res](
+                        eSP.proc_Consultation_SetConsultationByIRC,
+                        setCSTByIRC,
+                        session
+                    )
 
-        # 오더 저장
-        if request.CSTO_Property:
-            setCSTO = ConsultationOrder()
-            setCSTO.MEM_Idx = user.MEM_Idx  
-            setCSTO.MUR_Idx = user.MUR_Idx
-            setCSTO.CST_Idx = retCST.CST_Idx
-            setCSTO.PAT_Idx = retPAT.PAT_Idx
-            setCSTO.CSTO_Property = request.CSTO_Property
+                    if not retCST or self.DbContext.retIsSuccess == False:
+                        raise ApiException("보험 정보 업데이트에 실패했습니다")
 
-            await self.DbContext.GetItems[ConsultationOrder_Res](eSP.proc_ConsultationOrder_SetConsultationOrderProperty, setCSTO)
+                    retCST.IRCItem = retIRC
 
-            if self.DbContext.retIsSuccess == False:
-                raise ApiException("처방 저장에 실패했습니다.")
+                # 오더 저장
+                if request.CSTO_Property:
+                    setCSTO = ConsultationOrder()
+                    setCSTO.MEM_Idx = user.MEM_Idx
+                    setCSTO.MUR_Idx = user.MUR_Idx
+                    setCSTO.CST_Idx = retCST.CST_Idx
+                    setCSTO.PAT_Idx = retPAT.PAT_Idx
+                    setCSTO.CSTO_Property = request.CSTO_Property
 
-        # 수납 저장
-        setPAY = Pay()
-        setPAY.MEM_Idx = user.MEM_Idx
-        setPAY.MUR_Idx = user.MUR_Idx
-        setPAY.PAT_Idx = request.PAY_Idx
-        setPAY.CST_Idx = retCST.CST_Idx
-        setPAY.PAT_Idx = retPAT.PAT_Idx
-        setPAY.PAY_InsuredPrice = request.CST_InsuredPrice
-        setPAY.PAY_NonInsuredPrice = request.CST_NonInsuredPrice
-        setPAY.PAY_OwnPatientPrice = request.CST_OwnPatientPrice
-        setPAY.PAY_TotalPrice = request.CST_TotalPrice
+                    await self.DbContext.GetItems[ConsultationOrder_Res](
+                        eSP.proc_ConsultationOrder_SetConsultationOrderProperty,
+                        setCSTO,
+                        session
+                    )
 
-        retPAY = await self.DbContext.GetItem[Pay_Res](eSP.proc_Pay_SetPay, setPAY)
+                    if self.DbContext.retIsSuccess == False:
+                        raise ApiException("처방 저장에 실패했습니다.")
 
-        if not retPAY or self.DbContext.retIsSuccess == False:
-            raise ApiException("수납 저장에 실패했습니다.")
+                    # 수납 저장
+                    setPAY = Pay()
+                    setPAY.MEM_Idx = user.MEM_Idx
+                    setPAY.MUR_Idx = user.MUR_Idx
+                    setPAY.PAY_Idx = request.PAY_Idx
+                    setPAY.CST_Idx = retCST.CST_Idx
+                    setPAY.PAT_Idx = retPAT.PAT_Idx
+                    setPAY.PAY_InsuredPrice = request.CST_InsuredPrice
+                    setPAY.PAY_NonInsuredPrice = request.CST_NonInsuredPrice
+                    setPAY.PAY_OwnPatientPrice = request.CST_OwnPatientPrice
+                    setPAY.PAY_TotalPrice = request.CST_TotalPrice
+
+                    retPAY: Pay_Res = await self.DbContext.GetItem[Pay_Res](
+                        eSP.proc_Pay_SetPay,
+                        setPAY,
+                        session
+                    )
+
+                    if not retPAY or self.DbContext.retIsSuccess == False:
+                        raise ApiException("수납 저장에 실패했습니다.")
+
+                    # 진료 수납 정보 업데이트
+                    if retPAY.PAY_Idx:
+                        setCSTByPAY = Consultation()
+                        setCSTByPAY.MUR_Idx = user.MUR_Idx
+                        setCSTByPAY.CST_Idx = retCST.CST_Idx
+                        setCSTByPAY.PAY_Idx = retPAY.PAY_Idx
+                        setCSTByPAY.CST_PayStatus = retPAY.PAY_Status
+                        setCSTByPAY.CST_InsuredPrice = retPAY.PAY_InsuredPrice
+                        setCSTByPAY.CST_NonInsuredPrice = retPAY.PAY_NonInsuredPrice
+                        setCSTByPAY.CST_OwnPatientPrice = retPAY.PAY_OwnPatientPrice
+                        setCSTByPAY.CST_TotalPrice = retPAY.PAY_TotalPrice
+
+                        retCST = await self.DbContext.GetItem[Consultation_Res](
+                            eSP.proc_Consultation_SetConsultationByPAY,
+                            setCSTByPAY,
+                            session
+                        )
+
+                        if not retCST or self.DbContext.retIsSuccess == False:
+                            raise ApiException("수납 정보 업데이트에 실패했습니다.")
+
+                # 모든 저장 작업이 성공한 경우에만 commit
+                await session.commit()
+
+            except Exception:
+                await session.rollback()
+                raise       
             
         return DataResponse[Consultation_Res].CreateJsonResult(item=retCST, message=self.DbContext.retMessage)    
