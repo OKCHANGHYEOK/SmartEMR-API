@@ -11,6 +11,7 @@ class OrderDTO(BaseDTO):
     ORD_SugaCode : Optional[str] = None
     ORD_ClassCode : Optional[str] = None
     ORD_Name : Optional[str] = None
+    ORD_BizType : Optional[str] = None
     ORD_InsuranceType : Optional[str] = None
     ORD_SurgeryType : Optional[str] = None
     ORD_Price : Optional[int] = None

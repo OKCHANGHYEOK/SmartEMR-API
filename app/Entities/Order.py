@@ -12,6 +12,7 @@ class Order(BaseEntity):
     ORD_SugaCode = Column(String(3))
     ORD_ClassCode = Column(String(3))
     ORD_Name = Column(String(500))
+    ORD_BizType = Column(String(3))
     ORD_InsuranceType = Column(String(3))
     ORD_SurgeryType = Column(String(3))
     ORD_Price = Column(Integer)

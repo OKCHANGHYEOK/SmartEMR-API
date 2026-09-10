@@ -21,6 +21,7 @@ class OrderService(BaseService):
         item : Order = Order()
         item.ORD_SugaCode = request.ORD_SugaCode
         item.ORD_ClassCode = request.ORD_ClassCode
+        item.ORD_BizType = request.ORD_BizType
         item.ORD_InsuranceType = request.ORD_InsuranceType
         item.ORD_SurgeryType = request.ORD_SurgeryType
         item.ORDC_Cd = request.ORDC_Cd
