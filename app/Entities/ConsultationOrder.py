@@ -25,6 +25,7 @@ class ConsultationOrder(BaseEntity):
     CSTO_Price = Column(DECIMAL(10, 0))
     CSTO_TotalPrice = Column(DECIMAL(10, 0))
     CSTO_Memo = Column(String(500))
+    CSTO_ViewIndex = Column(Integer)
     CSTO_Date = Column(String(20))
     CSTO_YYMMDD = Column(String(10))
     CSTO_IsValid = Column(Boolean)
