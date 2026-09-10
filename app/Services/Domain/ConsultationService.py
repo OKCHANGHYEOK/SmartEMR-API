@@ -9,12 +9,14 @@ from app.Entities.Reception import Reception
 from app.Entities.Insurance import Insurance
 from app.Entities.Consultation import Consultation
 from app.Entities.ConsultationOrder import ConsultationOrder
+from app.Entities.Pay import Pay
 from app.Schemas.DataResponse import DataResponse
 from app.Schemas.PatientDTO import Patient_Res
 from app.Schemas.ReceptionDTO import Reception_Res
 from app.Schemas.InsuranceDTO import Insurance_Res
 from app.Schemas.ConsultationDTO import Consultation_Req, Consultation_Res
 from app.Schemas.ConsultationOrderDTO import ConsultationOrder_Req, ConsultationOrder_Res
+from app.Schemas.PayDTO import Pay_Req, Pay_Res
 from app.Factory.InsuranceFactory import InsuranceFactory
 
 class ConsultationService(BaseService):
@@ -247,9 +249,26 @@ class ConsultationService(BaseService):
             setCSTO.PAT_Idx = retPAT.PAT_Idx
             setCSTO.CSTO_Property = request.CSTO_Property
 
-            await self.DbContext.GetItems[ConsultationOrder_Req](eSP.proc_ConsultationOrder_SetConsultationOrderProperty, setCSTO)
+            await self.DbContext.GetItems[ConsultationOrder_Res](eSP.proc_ConsultationOrder_SetConsultationOrderProperty, setCSTO)
 
             if self.DbContext.retIsSuccess == False:
                 raise ApiException("처방 저장에 실패했습니다.")
+
+        # 수납 저장
+        setPAY = Pay()
+        setPAY.MEM_Idx = user.MEM_Idx
+        setPAY.MUR_Idx = user.MUR_Idx
+        setPAY.PAT_Idx = request.PAY_Idx
+        setPAY.CST_Idx = retCST.CST_Idx
+        setPAY.PAT_Idx = retPAT.PAT_Idx
+        setPAY.PAY_InsuredPrice = request.CST_InsuredPrice
+        setPAY.PAY_NonInsuredPrice = request.CST_NonInsuredPrice
+        setPAY.PAY_OwnPatientPrice = request.CST_OwnPatientPrice
+        setPAY.PAY_TotalPrice = request.CST_TotalPrice
+
+        retPAY = await self.DbContext.GetItem[Pay_Res](eSP.proc_Pay_SetPay, setPAY)
+
+        if not retPAY or self.DbContext.retIsSuccess == False:
+            raise ApiException("수납 저장에 실패했습니다.")
             
         return DataResponse[Consultation_Res].CreateJsonResult(item=retCST, message=self.DbContext.retMessage)    

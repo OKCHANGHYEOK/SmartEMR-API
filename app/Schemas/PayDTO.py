@@ -11,7 +11,7 @@ class PayDTO(BaseDTO):
     PAY_Status : Optional[str] = None
     PAY_TotalPrice : Optional[Decimal] = None
     PAY_InsuredPrice : Optional[Decimal] = None
-    PAY_NonInsurecPrice : Optional[Decimal] = None
+    PAY_NonInsuredPrice : Optional[Decimal] = None
     PAY_OwnPatientPrice : Optional[Decimal] = None
     PAY_PaidPrice : Optional[Decimal] = None
     PAY_RemainPrice : Optional[Decimal] = None

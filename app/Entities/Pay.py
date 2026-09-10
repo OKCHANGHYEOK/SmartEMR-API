@@ -12,7 +12,7 @@ class Pay(BaseEntity):
     PAY_Status = Column(String(3))
     PAY_TotalPrice = Column(DECIMAL(10, 0), default=0)
     PAY_InsuredPrice = Column(DECIMAL(10, 0), default=0)
-    PAY_NonInsurecPrice = Column(DECIMAL(10, 0), default=0)
+    PAY_NonInsuredPrice = Column(DECIMAL(10, 0), default=0)
     PAY_OwnPatientPrice = Column(DECIMAL(10, 0), default=0)
     PAY_PaidPrice = Column(DECIMAL(10, 0), default=0)
     PAY_RemainPrice = Column(DECIMAL(10, 0), default=0)

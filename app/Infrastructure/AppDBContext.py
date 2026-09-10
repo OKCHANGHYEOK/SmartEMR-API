@@ -250,15 +250,9 @@ class AppDBContext:
     # ==========================================================
 
     def __getDBConnectionString(self):
-        currentIP = (
-            settings.db.ip
-            if settings.db.ishome
-            else Common.getLocalIP()
-        )
-
         return (
             f"Driver={{ODBC Driver 17 for SQL Server}};"
-            f"Server={currentIP},{settings.db.port};"
+            f"Server={settings.db.ip},{settings.db.port};"
             f"Database={settings.db.name};"
             f"UID={settings.db.user};"
             f"PWD={settings.db.pw};"
