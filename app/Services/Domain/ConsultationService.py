@@ -249,57 +249,53 @@ class ConsultationService(BaseService):
 
                 # 진료 저장 후 보험 정보 저장
                 isNewCST = not request.CST_Idx or request.CST_Idx == 0
-                source_insurance: Insurance_Res = retIRC if isNewCST else request.IRCItem
+                source_insurance: Insurance_Res = request.IRCItem if request.IRCItem else retIRC
 
-                # 신규 진료 생성 또는 보험 변경된 경우 보험 업데이트
-                if isNewCST or retIRC.IRC_Type != request.IRCItem.IRC_Type:
-
-                    # 비보험이 아닐 때만 보험 저장
-                    if source_insurance.IRC_Type != "NON":
-                        setIRC: Insurance = InsuranceFactory.create(source_insurance)
-                        setIRC.IRC_Idx = 0 if isNewCST else retCST.IRC_Idx
-
-                        retIRC: Insurance_Res = await self.DbContext.GetItem[Insurance_Res](
-                            eSP.proc_Insurance_SetInsurance,
-                            setIRC,
-                            session
-                        )
-
-                        if not retIRC or self.DbContext.retIsSuccess == False:
-                            raise ApiException("진료보험 저장에 실패했습니다.")
-
-                    # 비보험으로 변경된 경우 보험 데이터가 있다면 해당 보험 데이터 삭제
-                    elif retCST.IRC_Idx:
-                        setIRC: Insurance = Insurance()
-                        setIRC.IRC_Idx = source_insurance.IRC_Idx
-                        setIRC.IRC_IsValid = False
-
-                        retIRC = await self.DbContext.GetItem[Insurance_Res](
-                            eSP.proc_Insurance_SetInsurance,
-                            setIRC,
-                            session
-                        )
-
-                        if self.DbContext.retIsSuccess == False:
-                            raise ApiException("진료보험 삭제에 실패했습니다.")
-
-                    # 진료 보험 데이터 갱신
-                    setCSTByIRC = Consultation()
-                    setCSTByIRC.MUR_Idx = user.MUR_Idx
-                    setCSTByIRC.CST_Idx = retCST.CST_Idx
-                    setCSTByIRC.IRC_Idx = retIRC.IRC_Idx
-                    setCSTByIRC.CST_InsuranceType = retIRC.IRC_Type
-
-                    retCST = await self.DbContext.GetItem[Consultation_Res](
-                        eSP.proc_Consultation_SetConsultationByIRC,
-                        setCSTByIRC,
+                # 비보험이 아닐 때만 보험 저장
+                if source_insurance.IRC_Type != "NON":
+                    setIRC: Insurance = InsuranceFactory.create(source_insurance)
+                    setIRC.IRC_Idx = 0 if isNewCST else retCST.IRC_Idx
+                
+                    retIRC: Insurance_Res = await self.DbContext.GetItem[Insurance_Res](
+                        eSP.proc_Insurance_SetInsurance,
+                        setIRC,
                         session
                     )
+                    
+                    if not retIRC or self.DbContext.retIsSuccess == False:
+                        raise ApiException("진료보험 저장에 실패했습니다.")
+                
+                # 비보험으로 변경된 경우 보험 데이터가 있다면 해당 보험 데이터 삭제
+                elif retCST.IRC_Idx:
+                    setIRC: Insurance = Insurance()
+                    setIRC.IRC_Idx = source_insurance.IRC_Idx
+                    setIRC.IRC_IsValid = False
+                    
+                    retIRC = await self.DbContext.GetItem[Insurance_Res](
+                        eSP.proc_Insurance_SetInsurance,
+                        setIRC,
+                        session
+                    )
+                    if self.DbContext.retIsSuccess == False:
+                        raise ApiException("진료보험 삭제에 실패했습니다.")
 
-                    if not retCST or self.DbContext.retIsSuccess == False:
-                        raise ApiException("보험 정보 업데이트에 실패했습니다")
+                # 진료 보험 데이터 갱신
+                setCSTByIRC = Consultation()
+                setCSTByIRC.MUR_Idx = user.MUR_Idx
+                setCSTByIRC.CST_Idx = retCST.CST_Idx
+                setCSTByIRC.IRC_Idx = retIRC.IRC_Idx
+                setCSTByIRC.CST_InsuranceType = retIRC.IRC_Type
+                
+                retCST = await self.DbContext.GetItem[Consultation_Res](
+                    eSP.proc_Consultation_SetConsultationByIRC,
+                    setCSTByIRC,
+                    session
+                )
 
-                    retCST.IRCItem = retIRC
+                if not retCST or self.DbContext.retIsSuccess == False:
+                    raise ApiException("보험 정보 업데이트에 실패했습니다")
+
+                retCST.IRCItem = retIRC
 
                 # 오더 저장
                 if request.CSTO_Property:
