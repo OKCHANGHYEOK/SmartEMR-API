@@ -102,6 +102,8 @@ class ConsultationService(BaseService):
         item.MUR_Idx = user.MUR_Idx
 
         item.CST_Idx = request.CST_Idx
+        item.RCP_Idx = request.RCP_Idx
+        item.IRC_Idx = request.IRC_Idx
 
         ret : Consultation_Res = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_CancelConsultation, item)
 
