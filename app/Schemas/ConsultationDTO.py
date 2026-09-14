@@ -49,4 +49,4 @@ class Consultation_Res(ConsultationDTO):
     PAT_ChartNo: Optional[str] = None
     PAT_Sex: Optional[str] = None
     PAT_Age: Optional[int] = None
-
+    PAT_Bigo: Optional[str] = None

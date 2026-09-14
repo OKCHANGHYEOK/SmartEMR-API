@@ -22,6 +22,9 @@ class InsuranceService(BaseService):
 
         item.IRC_Idx = request.IRC_Idx
         item.PAT_Idx = request.PAT_Idx
+        item.RCP_Idx = request.RCP_Idx
+        item.CST_Idx = request.CST_Idx
+
         item.IRC_Type = request.IRC_Type
 
         item.Keyword = request.Keyword

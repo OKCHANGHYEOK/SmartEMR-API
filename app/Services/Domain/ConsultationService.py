@@ -250,8 +250,10 @@ class ConsultationService(BaseService):
                     raise ApiException("진료 저장하는데 실패했습니다.")
 
                 # 진료 저장 후 보험 정보 저장
-                isNewCST = not request.CST_Idx or request.CST_Idx == 0
                 source_insurance: Insurance_Res = request.IRCItem if request.IRCItem else retIRC
+                
+                isNewCST = not request.CST_Idx or request.CST_Idx == 0
+                isNON = not source_insurance or source_insurance.IRC_Type == "NON"
 
                 # 비보험이 아닐 때만 보험 저장
                 if source_insurance.IRC_Type != "NON":
@@ -286,8 +288,8 @@ class ConsultationService(BaseService):
                 setCSTByIRC = Consultation()
                 setCSTByIRC.MUR_Idx = user.MUR_Idx
                 setCSTByIRC.CST_Idx = retCST.CST_Idx
-                setCSTByIRC.IRC_Idx = retIRC.IRC_Idx
-                setCSTByIRC.CST_InsuranceType = "NON" if not retIRC else retIRC.IRC_Type
+                setCSTByIRC.IRC_Idx = 0 if isNON else retIRC.IRC_Idx
+                setCSTByIRC.CST_InsuranceType = "NON" if isNON else retIRC.IRC_Type
                 
                 retCST = await self.DbContext.GetItem[Consultation_Res](
                     eSP.proc_Consultation_SetConsultationByIRC,

@@ -39,3 +39,4 @@ class Consultation(BaseEntity):
     PAT_ChartNo = Column(String(20))
     PAT_Sex = Column(String(1))
     PAT_Age = Column(Integer)
+    PAT_Bigo = Column(String(500))
