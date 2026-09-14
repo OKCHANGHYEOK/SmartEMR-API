@@ -10,6 +10,7 @@ class Insurance(BaseEntity):
     PAT_Idx = Column(Integer)
     RCP_Idx = Column(Integer)
     CST_Idx = Column(Integer)
+    IRC_Idx_From = Column(Integer)
     IRC_Type = Column(String(3))
     IRC_CertNum = Column(String(20))
     IRC_ContractorName = Column(String(20))

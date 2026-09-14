@@ -8,6 +8,7 @@ class InsuranceDTO(BaseDTO):
     PAT_Idx : Optional[int] = None
     RCP_Idx : Optional[int] = None
     CST_Idx : Optional[int] = None
+    IRC_Idx_From : Optional[int] = None
     IRC_Type : Optional[str] = None
     IRC_CertNum : Optional[str] = None
     IRC_ContractorName : Optional[str] = None

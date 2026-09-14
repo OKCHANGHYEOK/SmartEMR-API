@@ -9,6 +9,7 @@ class InsuranceFactory(BaseFactory):
         item.MUR_Idx = parameter.MUR_Idx
         item.IRC_Idx = parameter.IRC_Idx
         item.PAT_Idx = parameter.PAT_Idx
+        item.IRC_Idx_From = parameter.IRC_Idx_From
         item.IRC_Type = parameter.IRC_Type
         item.IRC_CertNum = parameter.IRC_CertNum
         item.IRC_ContractorName = parameter.IRC_ContractorName
