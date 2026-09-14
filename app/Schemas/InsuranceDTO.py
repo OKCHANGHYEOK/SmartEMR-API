@@ -4,6 +4,7 @@ from typing import Optional
 class InsuranceDTO(BaseDTO):
     IRC_Idx : Optional[int] = None
     MEM_Idx : Optional[int] = None
+    MUR_Idx : Optional[int] = None
     PAT_Idx : Optional[int] = None
     RCP_Idx : Optional[int] = None
     CST_Idx : Optional[int] = None

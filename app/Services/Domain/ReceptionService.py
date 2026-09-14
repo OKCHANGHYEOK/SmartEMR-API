@@ -142,7 +142,6 @@ class ReceptionService(BaseService):
                 isNewRCP = True if not request.RCP_Idx or request.RCP_Idx == 0 else False
 
                 # 접수 등록이고 예약키값이 존재하는 경우
-
                 if isNewRCP and request.RES_Idx and request.RES_Idx > 0:
                     ret = await self.DbContext.GetItem[Reception_Res](eSP.proc_Reception_SetReceptionByRES, item, session)
                 # 예약없이 접수 등록 or 접수 등록 이후인 경우
@@ -171,6 +170,7 @@ class ReceptionService(BaseService):
                     else:
                         setIRC = InsuranceFactory.create(IRCItem)
                         setIRC.MEM_Idx = user.MEM_Idx
+                        setIRC.MUR_Idx = user.MUR_Idx
                         setIRC.IRC_Idx = IRC_Idx
                         setIRC.PAT_Idx = ret.PAT_Idx                        
 
@@ -197,6 +197,9 @@ class ReceptionService(BaseService):
             except:
                 await session.rollback()
                 raise
+            
+            finally:
+                await session.close()
 
         return DataResponse[Reception_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
 

@@ -278,6 +278,7 @@ class ConsultationService(BaseService):
                         setIRC,
                         session
                     )
+                    
                     if self.DbContext.retIsSuccess == False:
                         raise ApiException("진료보험 삭제에 실패했습니다.")
 
@@ -286,7 +287,7 @@ class ConsultationService(BaseService):
                 setCSTByIRC.MUR_Idx = user.MUR_Idx
                 setCSTByIRC.CST_Idx = retCST.CST_Idx
                 setCSTByIRC.IRC_Idx = retIRC.IRC_Idx
-                setCSTByIRC.CST_InsuranceType = retIRC.IRC_Type
+                setCSTByIRC.CST_InsuranceType = "NON" if not retIRC else retIRC.IRC_Type
                 
                 retCST = await self.DbContext.GetItem[Consultation_Res](
                     eSP.proc_Consultation_SetConsultationByIRC,
