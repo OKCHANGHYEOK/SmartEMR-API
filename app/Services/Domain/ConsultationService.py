@@ -258,6 +258,9 @@ class ConsultationService(BaseService):
                 # 비보험이 아닐 때만 보험 저장
                 if source_insurance.IRC_Type != "NON":
                     setIRC: Insurance = InsuranceFactory.create(source_insurance)
+                    setIRC.MEM_Idx = user.MEM_Idx
+                    setIRC.MUR_Idx = user.MUR_Idx
+                    
                     setIRC.IRC_Idx = 0 if isNewCST else retCST.IRC_Idx
                 
                     retIRC: Insurance_Res = await self.DbContext.GetItem[Insurance_Res](
