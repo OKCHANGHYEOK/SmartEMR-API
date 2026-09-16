@@ -151,10 +151,14 @@ class ReceptionService(BaseService):
                 if ret is None or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
 
+                # 진료가 존재하는 경우 접수 보험은 변경할 수 없음
+                retCST : Consultation_Res = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_GetConsultation, Consultation(RCP_Idx = ret.RCP_Idx))
+
                 IRCItem = request.IRCItem
 
-                if IRCItem:
+                if not retCST and IRCItem:
                     IRC_Idx = IRCItem.IRC_Idx
+                    
                     isNewIRC = True if not IRC_Idx or IRC_Idx == 0 else False
 
                     setIRC : Insurance = None
