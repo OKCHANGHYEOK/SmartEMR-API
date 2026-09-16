@@ -11,6 +11,7 @@ class ReceptionDTO(BaseDTO):
     MUR_Idx_DOC: Optional[int] = None
     MUR_Idx_STF: Optional[int] = None
     RES_Idx : Optional[int] = None
+    CST_Idx : Optional[int] = None
     PAT_Name: Optional[str] = None
     PAT_ChartNo: Optional[str] = None
     PAT_Sex: Optional[str] = None

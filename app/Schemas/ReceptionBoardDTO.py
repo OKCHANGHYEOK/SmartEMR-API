@@ -43,3 +43,5 @@ class ReceptionBoard_Res(ReceptionBoardDTO):
     IRC_Specific : Optional[str] = None
     IRC_EffectiveYYMMDD : Optional[str] = None
     IRC_ExpiredYYMMDD : Optional[str] = None
+    
+    CST_Idx : Optional[int] = None
