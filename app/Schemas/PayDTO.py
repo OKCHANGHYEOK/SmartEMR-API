@@ -8,6 +8,7 @@ class PayDTO(BaseDTO):
     MUR_Idx : Optional[int] = None
     PAT_Idx : Optional[int] = None
     CST_Idx : Optional[int] = None
+    CST_Status : Optional[str] = None
     PAY_Status : Optional[str] = None
     PAY_TotalPrice : Optional[Decimal] = None
     PAY_InsuredPrice : Optional[Decimal] = None
@@ -21,8 +22,12 @@ class PayDTO(BaseDTO):
     PAY_IsValid : Optional[bool] = None
 
 class Pay_Req(PayDTO):
-    pass
+    sDay : Optional[str] = None
+    eDay : Optional[str] = None
 
 class Pay_Res(PayDTO):
-    pass
+    PAT_Name: Optional[str] = None
+    PAT_ChartNo: Optional[str] = None
+    PAT_Sex: Optional[str] = None
+    PAT_Age: Optional[int] = None
 

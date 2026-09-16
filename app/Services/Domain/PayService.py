@@ -27,9 +27,13 @@ class PayService(BaseService):
         item.PAT_Idx = request.PAT_Idx
         item.CST_Idx = request.CST_Idx
 
+        item.CST_Status = request.CST_Status
         item.PAY_Status = request.PAY_Status
         item.PAY_YYMMDD = request.PAY_YYMMDD
+        item.sDay = request.sDay
+        item.eDay = request.eDay
 
+        item.Keyword = request.Keyword
         item.SortField = request.SortField
         item.SortDir = request.SortDir
         item.PageSize = request.PageSize
@@ -37,9 +41,8 @@ class PayService(BaseService):
         
         ret : list[Pay_Res] = await self.DbContext.GetItems[Pay_Res](eSP.proc_Pay_GetPay, item)
 
-        if not ret or self.DbContext.retIsSuccess == False:
+        if self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
-    
 
         return DataResponse[Pay_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
     

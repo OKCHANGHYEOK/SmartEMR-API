@@ -9,6 +9,7 @@ class Pay(BaseEntity):
     MUR_Idx = Column(Integer)
     PAT_Idx = Column(Integer)
     CST_Idx = Column(Integer)
+    CST_Status = Column(String(3))
     PAY_Status = Column(String(3))
     PAY_TotalPrice = Column(DECIMAL(10, 0), default=0)
     PAY_InsuredPrice = Column(DECIMAL(10, 0), default=0)
@@ -20,3 +21,10 @@ class Pay(BaseEntity):
     PAY_Date = Column(String(20))
     PAY_YYMMDD = Column(String(10))
     PAY_IsValid = Column(Boolean)
+    
+    PAT_Name = Column(String(50))
+    PAT_ChartNo = Column(String(20))
+    PAT_Age = Column(Integer)
+    PAT_Sex = Column(String(1))
+    
+    
