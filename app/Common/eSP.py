@@ -31,23 +31,26 @@ class eSP(Enum):
     proc_Pay_GetPay = 20
     proc_Pay_SetPay = 21
 
-    proc_Reception_CancelReception = 22
-    proc_Reception_GetReception = 23
-    proc_Reception_GetReceptionBoard = 24
-    proc_Reception_SetReception = 25
-    proc_Reception_SetReceptionByIRC = 26
-    proc_Reception_SetReceptionByRES = 27
+    proc_PayItem_GetPayItem = 22
+    proc_PayItem_SetPayItem = 23
 
-    proc_RefreshToken_GetRefreshToken = 28
-    proc_RefreshToken_SetRefreshToken = 29
+    proc_Reception_CancelReception = 24
+    proc_Reception_GetReception = 25
+    proc_Reception_GetReceptionBoard = 26
+    proc_Reception_SetReception = 27
+    proc_Reception_SetReceptionByIRC = 28
+    proc_Reception_SetReceptionByRES = 29
 
-    proc_Reservation_GetReservation = 30
-    proc_Reservation_MoveReservationDate = 31
-    proc_Reservation_SetReservation = 32
-    proc_Reservation_SetReservationByStatus = 33
+    proc_RefreshToken_GetRefreshToken = 30
+    proc_RefreshToken_SetRefreshToken = 31
 
-    proc_Suga_GetSuga = 34
-    proc_Suga_SetSuga = 35
-    proc_Suga_SetSugaProperty = 36
+    proc_Reservation_GetReservation = 32
+    proc_Reservation_MoveReservationDate = 33
+    proc_Reservation_SetReservation = 34
+    proc_Reservation_SetReservationByStatus = 35
 
-    proc_Order_GetOrder = 37
+    proc_Suga_GetSuga = 36
+    proc_Suga_SetSuga = 37
+    proc_Suga_SetSugaProperty = 38
+
+    proc_Order_GetOrder = 39
