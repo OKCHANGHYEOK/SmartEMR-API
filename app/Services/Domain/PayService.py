@@ -61,12 +61,13 @@ class PayService(BaseService):
         item.PAT_Idx = request.PAT_Idx
         item.CST_Idx = request.CST_Idx
         
-        item.PAY_AMOUNT_TOT = request.PAY_AMOUNT_TOT
-        item.PAY_AMOUNT_INSURED = request.PAY_AMOUNT_INSURED
-        item.PAY_AMOUNT_NONINSURED = request.PAY_AMOUNT_NONINSURED
-        item.PAY_AMOUNT_PATIENT = request.PAY_AMOUNT_PATIENT
-        item.PAY_AMOUNT_PAID = request.PAY_AMOUNT_PAID
-        item.PAY_AMOUNT_REMAIN = request.PAY_AMOUNT_REMAIN
+        item.PAY_InsuredPrice = request.PAY_InsuredPrice
+        item.PAY_NonInsuredPrice = request.PAY_NonInsuredPrice
+        item.PAY_OwnPatientPrice = request.PAY_OwnPatientPrice
+        item.PAY_TotalPrice = request.PAY_TotalPrice
+        item.PAY_PaidPrice = request.PAY_PaidPrice
+        item.PAY_RemainPrice = request.PAY_RemainPrice
+        item.PAY_Memo = request.PAY_Memo
         item.PAY_IsValid = request.PAY_IsValid
 
         ret : Pay_Res = await self.DbContext.GetItem[Pay_Res](eSP.proc_Pay_SetPay, item)
