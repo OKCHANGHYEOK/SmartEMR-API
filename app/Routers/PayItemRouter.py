@@ -9,6 +9,6 @@ class PayItemRouter():
     async def GetPayItem(request : PayItem_Req, service : PayItemService = Depends(PayItemService)):
         return await service.GetPayItem(request)
     
-    @router.post("/SetPay", response_model=DataResponse[PayItem_Res])
-    async def SetPay(request : PayItem_Req, service : PayItemService = Depends(PayItemService)):
+    @router.post("/SetPayItem", response_model=DataResponse[PayItem_Res])
+    async def SetPayItem(request : PayItem_Req, service : PayItemService = Depends(PayItemService)):
         return await service.SetPayItem(request)

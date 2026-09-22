@@ -12,3 +12,7 @@ class PayRouter():
     @router.post("/SetPay", response_model=DataResponse[Pay_Res])
     async def SetPay(request : Pay_Req, service : PayService = Depends(PayService)):
         return await service.SetPay(request)
+
+    @router.post("/CancelPay", response_model=DataResponse[Pay_Res])
+    async def CancelPay(request : Pay_Req, service : PayService = Depends(PayService)):
+        return await service.CancelPay(request)

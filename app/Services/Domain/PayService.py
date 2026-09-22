@@ -76,3 +76,21 @@ class PayService(BaseService):
             raise ApiException("수납 저장에 실패했습니다.")
         
         return DataResponse[Pay_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+
+    async def CancelPay(self, request : Pay_Req) -> DataResponse[Pay_Res]:
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("유저가 올바르지 않습니다.")
+        
+        item : Pay = Pay()
+        item.MEM_Idx = user.MEM_Idx
+        item.MUR_Idx = user.MUR_Idx
+        item.PAY_Idx = request.PAY_Idx
+
+        ret : Pay_Res = await self.DbContext.GetItem[Pay_Res](eSP.proc_Pay_CancelPay, item)
+
+        if not ret or self.DbContext.retIsSuccess == False:
+            raise ApiException("수납 취소에 실패했습니다.")
+        
+        return DataResponse[Pay_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
