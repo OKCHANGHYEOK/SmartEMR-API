@@ -73,4 +73,11 @@ class PayItemService(BaseService):
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
 
+        setPAY : Pay = Pay()
+        setPAY.MEM_Idx = user.MEM_Idx
+        setPAY.MUR_Idx = user.MUR_Idx
+        setPAY.PAY_Idx = request.PAY_Idx
+
+        retPAY : Pay_Res = await self.DbContext.GetItem[Pay_Res](eSP.proc_Pay_UpdatePayByPrice, setPAY)
+
         return DataResponse[PayItem_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)

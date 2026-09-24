@@ -31,27 +31,28 @@ class eSP(Enum):
     proc_Pay_GetPay = 20
     proc_Pay_SetPay = 21
     proc_Pay_CancelPay = 22
+    proc_Pay_UpdatePayByPrice = 23
 
-    proc_PayItem_GetPayItem = 23
-    proc_PayItem_SetPayItem = 24
+    proc_PayItem_GetPayItem = 24
+    proc_PayItem_SetPayItem = 25
 
-    proc_Reception_CancelReception = 25
-    proc_Reception_GetReception = 26
-    proc_Reception_GetReceptionBoard = 27
-    proc_Reception_SetReception = 28
-    proc_Reception_SetReceptionByIRC = 29
-    proc_Reception_SetReceptionByRES = 30
+    proc_Reception_CancelReception = 26
+    proc_Reception_GetReception = 27
+    proc_Reception_GetReceptionBoard = 28
+    proc_Reception_SetReception = 29
+    proc_Reception_SetReceptionByIRC = 30
+    proc_Reception_SetReceptionByRES = 31
 
-    proc_RefreshToken_GetRefreshToken = 31
-    proc_RefreshToken_SetRefreshToken = 32
+    proc_RefreshToken_GetRefreshToken = 32
+    proc_RefreshToken_SetRefreshToken = 33
 
-    proc_Reservation_GetReservation = 33
-    proc_Reservation_MoveReservationDate = 34
-    proc_Reservation_SetReservation = 35
-    proc_Reservation_SetReservationByStatus = 36
+    proc_Reservation_GetReservation = 34
+    proc_Reservation_MoveReservationDate = 35
+    proc_Reservation_SetReservation = 36
+    proc_Reservation_SetReservationByStatus = 37
 
-    proc_Suga_GetSuga = 37
-    proc_Suga_SetSuga = 38
-    proc_Suga_SetSugaProperty = 39
+    proc_Suga_GetSuga = 38
+    proc_Suga_SetSuga = 39
+    proc_Suga_SetSugaProperty = 40
 
-    proc_Order_GetOrder = 40
+    proc_Order_GetOrder = 41

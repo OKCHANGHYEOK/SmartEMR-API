@@ -21,4 +21,4 @@ class PayItem_Req(PayItemDTO):
     pass
 
 class PayItem_Res(PayItemDTO):
-    pass
+    MUR_Name : Optional[str] = None

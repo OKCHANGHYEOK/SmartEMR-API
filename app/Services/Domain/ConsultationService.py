@@ -334,6 +334,7 @@ class ConsultationService(BaseService):
                     setPAY.PAY_NonInsuredPrice = request.CST_NonInsuredPrice
                     setPAY.PAY_OwnPatientPrice = request.CST_OwnPatientPrice
                     setPAY.PAY_TotalPrice = request.CST_TotalPrice
+                    setPAY.PAY_RemainPrice = request.CST_TotalPrice
 
                     retPAY: Pay_Res = await self.DbContext.GetItem[Pay_Res](
                         eSP.proc_Pay_SetPay,
