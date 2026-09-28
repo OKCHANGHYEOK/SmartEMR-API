@@ -56,3 +56,5 @@ class eSP(Enum):
     proc_Suga_SetSugaProperty = 40
 
     proc_Order_GetOrder = 41
+    
+    proc_NaverPay_SetNaverPay = 42

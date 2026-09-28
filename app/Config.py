@@ -43,10 +43,24 @@ class CryptoSettings(BaseSettings):
             env_prefix='CRYPTO_',
             extra="ignore"
         )
+    
+class NaverPaySettings(BaseSettings):
+    apply_url : str
+    client_id : str
+    client_secret : str
+    chain_id : str
+
+    model_config = SettingsConfigDict(
+            env_file=env_url,
+            env_file_encoding="utf-8",
+            env_prefix='NAVERPAY_',
+            extra="ignore"
+        )    
 
 class Settings(BaseSettings):
     jwt : JWTSettings = JWTSettings()
     db : DBSesttings = DBSesttings()
+    naverpay : NaverPaySettings = NaverPaySettings()
     crypto : CryptoSettings = CryptoSettings()
 
 settings = Settings()
