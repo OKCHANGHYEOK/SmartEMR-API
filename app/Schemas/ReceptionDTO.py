@@ -53,3 +53,6 @@ class Reception_Res(ReceptionDTO):
     IRC_ExpiredYYMMDD : Optional[str] = None
 
     IRCItem : Insurance_Res = None
+    
+    CST_Idx : Optional[int] = None
+    CST_Status : Optional[str] = None

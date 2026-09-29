@@ -45,3 +45,4 @@ class ReceptionBoard_Res(ReceptionBoardDTO):
     IRC_ExpiredYYMMDD : Optional[str] = None
     
     CST_Idx : Optional[int] = None
+    CST_Status : Optional[str] = None
