@@ -10,6 +10,7 @@ from app.Schemas.DataResponse import DataResponse
 from app.Schemas.PayDTO import Pay_Req, Pay_Res
 from app.Schemas.NaverPayDTO import NaverPay_Req, NaverPay_Res
 from app.Common import eSP
+from app.Common.Enums import NaverPayResponseCode
 from app.Config import settings
 
 class NaverPayService(BaseService):
@@ -26,12 +27,8 @@ class NaverPayService(BaseService):
             raise ApiException("유저가 올바르지 않습니다.")
         
         result = await self.ApplyNaverPaymentAsync(request.paymentId)
-        
-        if result.status_code != 200:
-            raise ApiException(f"네이버페이 결제승인 실패. 서버 내부 오류")
-        
-        params = result.json()
-        detail = params['body']['detail']
+
+        detail = result['body']['detail']
         
         if not detail:
             raise ApiException(f"네이버페이 결제승인 실패. 응답 데이터가 올바르지 않습니다.")
@@ -79,9 +76,9 @@ class NaverPayService(BaseService):
         headers = {
             "X-Naver-Client-Id": settings.naverpay.client_id,
             "X-Naver-Client-Secret": settings.naverpay.client_secret,
-            "X-Naver-Chain-Id": settings.naverpay.chain_id,
-            "X-Naver-Idempotency-Key": self.CreateIdempotencyKey(paymentId),
-            "Content-Type": "x-www-form-urlencoded"
+            "X-NaverPay-Chain-Id": settings.naverpay.chain_id,
+            "X-NaverPay-Idempotency-Key": self.CreateIdempotencyKey(paymentId),
+            "Content-Type": "application/x-www-form-urlencoded"
         }
         
         data = {
@@ -89,8 +86,18 @@ class NaverPayService(BaseService):
         }
         
         async with AsyncClient() as client:
-            return await client.post(settings.naverpay.apply_url, headers=headers, data=data)
-        
+            result = await client.post(settings.naverpay.apply_url, headers=headers, data=data)
+
+            if result.status_code != 200:
+                raise ApiException(f"네이버페이 결제승인 실패. 응답이 올바르지 않습니다.")
+
+            response = result.json()
+
+            if response['code'] != NaverPayResponseCode.Success.value:
+                raise ApiException(f"네이버페이 결제승인 실패. 서버 내부 오류가 발생했습니다. {response['message']}")
+
+            return response
+
     def CreateIdempotencyKey(self, paymentId : str) -> str:
         if not paymentId:
             raise ApiException("결제승인번호가 올바르지 않습니다.")

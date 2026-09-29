@@ -18,3 +18,17 @@ class eResponseCode(Enum):
     
     # 서버 오류
     INTERNAL_SERVER_ERROR = 9999
+
+class NaverPayResponseCode(Enum):
+    Success = 'Success'                                     # 성공
+    Fail = 'Fail'                                           # PG, 은행 및 기타 오류 발생 시
+    InvalidMerchantAuth = 'InvalidMerchantAuth'                     # 유효하지 않은 가맹점인 경우
+    TimeExpired = 'TimeExpired'                             # 결제 승인 가능 시간 초과 시 (10분 초과시)
+    AlreadyOnGoing = 'AlreadyOnGoing'                       # 해당 결제번호로 결제가 이미 진행 중일 때
+    AlreadyComplete = 'AlreadyComplete'                     # 해당 결제번호로 이미 결제가 완료되었을 때
+    OwnerAuthFail = 'OwnerAuthFail'                         # 본인 카드 인증 오류 시
+    BankMaintenance = 'BankMaintenance'                     # 충전 계좌 점검 시 
+    NotEnoughAccountBalance = 'NotEnoughAccountBalance'     # 충전 계좌 잔고 부족
+    MaintenanceOngoing = 'MaintenanceOngoing'               # 서비스 점검중
+    FaultCheckOngoing = 'FaultCheckOngoing'                 # 원천사 시스템 점검으로 해당 결제수단을 이용할 수 없을 때
+
