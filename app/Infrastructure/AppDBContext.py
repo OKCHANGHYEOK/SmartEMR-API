@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 from aioodbc.cursor import Cursor
 
-from app.Common import Common
+from app.Common.Enums import eResponseCode
 from app.Common.loggerService import LoggerService
 from app.Config import settings
 from app.Exceptions.ApiException import ApiException
@@ -12,11 +12,13 @@ from app.Exceptions.ApiException import ApiException
 TReq = TypeVar("TReq")
 TRes = TypeVar("TRes")
 
+output_columns = {"ReturnCode", "TotalQuery", "sVal"}
 
-class AppDBContext:
-    retMessage = ""
-    retCount = 0
-    retIsSuccess = False
+class AppDBContext: 
+    retCode = 0          # 프로시저 내부 반환값 확인용
+    retMessage = ""      # 프로시저 오류 메세지
+    retCount = 0         # 프로시저 실행결과행수
+    retIsSuccess = False # 성공 여부 플래그
 
     def __init__(self, logger=None):
         self.logger = logger or LoggerService.getLogger()
@@ -125,15 +127,17 @@ class AppDBContext:
             )
 
             sql_str = f"""
-                DECLARE @t int,
-                        @s nvarchar(250);
+                DECLARE @t int = 0,
+                        @s nvarchar(250) = N'',
+                        @r int = 0;
 
-                EXEC [dbo].[{proc_name}]
+                EXEC @r = [dbo].[{proc_name}]
                     {param_placeholders},
                     @TotalQuery = @t OUTPUT,
                     @sVal = @s OUTPUT;
 
                 SELECT
+                    @r as ReturnCode,
                     @t AS TotalQuery,
                     @s AS sVal;
             """
@@ -151,22 +155,27 @@ class AppDBContext:
             rows = []
             column_names = []
 
-            if cursor.description:
-                rows = await cursor.fetchall()
-                column_names = [column[0] for column in cursor.description]
+            while True:
+                if cursor.description:
+                    columns = [column[0] for column in cursor.description]
+                    result = await cursor.fetchall()
+                    
+                    if output_columns.issubset(columns):
+                        output_dict = dict(zip(columns, result[0]))
 
-            while await cursor.nextset():
-                if not cursor.description:
-                    continue
+                        self.retCode = output_dict.get("ReturnCode") or 0
+                        self.retCount = output_dict.get("TotalQuery") or 0
+                        self.retMessage = output_dict.get("sVal") or ""
 
-                output_rows = await cursor.fetchall()
-
-                if output_rows:
-                    output_columns = [col[0] for col in cursor.description]
-                    output_dict = dict(zip(output_columns, output_rows[0]))
-
-                    self.retCount = output_dict.get("TotalQuery") or 0
-                    self.retMessage = output_dict.get("sVal") or ""
+                    else:
+                        rows = result
+                        column_names = columns
+                    
+                if not await cursor.nextset():
+                    break
+            
+            if self.retCode != 0:
+                raise
 
             # 외부에서 Session을 전달받은 경우에는
             # 여기서 commit하지 않는다.
@@ -208,7 +217,7 @@ class AppDBContext:
                 e
             )
 
-            raise ApiException(self.retMessage)
+            raise ApiException(self.retMessage, res_code=eResponseCode.BADREQUEST)
 
         finally:
             if self.retIsSuccess:
@@ -220,7 +229,7 @@ class AppDBContext:
             # Session을 직접 생성한 경우에만 종료한다.
             if own_session:
                 await session.close()
-
+                
     # ==========================================================
     # Internal Classes
     # ==========================================================

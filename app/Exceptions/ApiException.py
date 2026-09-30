@@ -11,4 +11,5 @@ class ApiException(HTTPException):
         super().__init__(status_code=status_code, detail=msg)
         
         self.message = msg
+        self.status_code = status_code
         self.responseCode = res_code

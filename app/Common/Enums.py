@@ -5,6 +5,9 @@ class eResponseCode(Enum):
     SUCCESS = 200
     CREATE_SUCCESS = 201
     
+    # 잘못된 요청
+    BADREQUEST = 400
+    
     # 인증 관련 
     UNAUTHORIZED = 4001     # 인증 안됨
     TOKEN_EXPIRED = 4002    # 토큰 만료
