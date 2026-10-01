@@ -31,3 +31,4 @@ class Pay_Res(PayDTO):
     PAT_Sex: Optional[str] = None
     PAT_Age: Optional[int] = None
 
+    IRC_Type : Optional[str] = None
