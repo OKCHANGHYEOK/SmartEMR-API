@@ -1,3 +1,4 @@
+from fastapi import Depends
 from app.Entities.MemberUser import MemberUser
 from app.Services.Authentication.HashService import HashService
 from app.Services.Domain.BaseService import BaseService
@@ -7,6 +8,18 @@ from app.Common import eSP
 from app.Exceptions import ApiException
 
 class MemberUserService(BaseService):
+   async def GetMemberUserByCheckDuplicateId(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
+      item = MemberUser()
+
+      item.MUR_Id = request.MUR_Id
+
+      ret : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, item)
+
+      if self.DbContext.retIsSuccess == False:
+         raise ApiException(self.DbContext.retMessage)
+      
+      return DataResponse[MemberUser_Res](Item=ret, Message=self.DbContext.retMessage, IsSuccess=self.DbContext.retIsSuccess)
+   
    async def GetMemberUserForLogin(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
       item = MemberUser()
 
