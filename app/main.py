@@ -4,6 +4,7 @@ from app.MiddleWares import ExceptionMiddleWare, LogRequestBodyMiddleware
 from app.Routers import v1_router
 from app.Routers.LoginRouter import router as LoginRouter
 from app.Routers.AuthRouter import router as AuthRouter
+from app.Routers.MemberRouter import router as MemberRouter
 from app.Services.Authentication.AuthenticateService import AuthenticateService 
 from app.Exceptions.Handlers import RegisterExceptionHandlers
 
@@ -16,6 +17,7 @@ app.add_middleware(LogRequestBodyMiddleware)
 # 라우터 설정
 app.include_router(LoginRouter, prefix="/Login", tags=["Login"])
 app.include_router(AuthRouter, prefix="/Auth", tags=["Auth"])
+app.include_router(MemberRouter, prefix="/Member", tags=["Member"])
 app.include_router(
     v1_router,
     dependencies=[Depends(AuthenticateService.verify_jwt_token)] # 👈 클래스 메서드가 아닌 함수형 의존성으로 교체!
