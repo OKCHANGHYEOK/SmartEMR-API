@@ -4,12 +4,14 @@ from typing import Optional
 class MemberUserDTO(BaseDTO):
     MUR_Idx : Optional[int] = None
     MEM_Idx : Optional[int] = None
-    MUR_Id : Optional[str] = None
-    MUR_PassWord : Optional[str] = None
-    MUR_Name : Optional[str] = None
+    MUR_Department : Optional[str] = None
     MUR_Role : Optional[str] = None
     MUR_JobCode : Optional[str] = None
     MUR_Gender : Optional[str] = None
+    MUR_Id : Optional[str] = None
+    MUR_PassWord : Optional[str] = None
+    MUR_Name : Optional[str] = None
+    MUR_LicenseNo : Optional[str] = None
     MUR_Address1 : Optional[str] = None
     MUR_Address2 : Optional[str] = None
     MUR_Address3 : Optional[str] = None

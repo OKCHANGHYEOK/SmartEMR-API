@@ -81,3 +81,31 @@ class MemberUserService(BaseService):
       
       return DataResponse[MemberUser_Res].CreateJsonResult(items=ret)
 
+   async def SignUp(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
+      if not request.MEM_Idx or request.MEM_Idx == 0:
+         raise ApiException("회원사키값이 올바르지 않습니다.")
+      
+      retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, MemberUser(MUR_Id=request.MUR_Id))
+      if retMUR and retMUR.MUR_Idx > 0:
+         raise ApiException("이미 사용중인 아이디입니다. 아이디 변경후 다시 시도허세요.")
+      
+      item : MemberUser = MemberUser()
+      item.MEM_Idx = request.MEM_Idx
+      item.MUR_Idx = 0
+      item.MUR_Name = request.MUR_Name
+      item.MUR_Id = request.MUR_Id
+      item.MUR_PassWord = HashService.HashPassword(request.MUR_PassWord)
+      item.MUR_Department = request.MUR_Department
+      item.MUR_Role =  request.MUR_Role if request.MUR_Role else "USR"
+      item.MUR_JobCode = request.MUR_JobCode
+      item.MUR_LicenseNo = request.MUR_LicenseNo
+      item.MUR_IsValid = True
+      
+      ret : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, item)
+      
+      if not ret or self.DbContext.retIsSuccess == False:
+         raise ApiException(self.DbContext.retMessage)
+
+      return DataResponse[MemberUser_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)      
+      
+       

@@ -31,6 +31,18 @@ class MemberService(BaseService):
 
         return DataResponse[Member_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)     
 
+    async def GetMemberByCheckDuplicateMediNo(self, request : Member_Req):
+        item : Member = Member()
+        
+        item.MEM_MediNo = request.MEM_MediNo
+        
+        ret = await self.DbContext.GetItem[Member](eSP.proc_Member_GetMember, item)
+        
+        if self.DbContext.retIsSuccess == False:
+            raise ApiException(self.DbContext.retMessage)
+        
+        return DataResponse[Member_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+
     async def SetMember(self, request : Member_Req):
         item : Member = Member()
         item.MEM_Idx = request.MEM_Idx
@@ -52,3 +64,6 @@ class MemberService(BaseService):
             raise ApiException(self.DbContext.retMessage)
         
         return DataResponse[Member_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+    
+    async def SignUp(self, request : Member_Req) -> DataResponse[Member_Res]:
+        pass

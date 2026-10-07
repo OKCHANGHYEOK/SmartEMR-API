@@ -1,5 +1,6 @@
 from .BaseDTO import BaseDTO
 from typing import Optional
+from .MemberUserDTO import MemberUser_Req
 
 class MemberDTO(BaseDTO):
     MEM_Idx : Optional[int] = None
@@ -28,6 +29,8 @@ class Member_Req(MemberDTO):
     eStartDay : Optional[str] = None
     sEndDay : Optional[str] = None
     eEndDay : Optional[str] = None
+    
+    MURItem : MemberUser_Req = None
 
 class Member_Res(MemberDTO):
     MEM_AdminUserName : Optional[str] = None

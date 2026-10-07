@@ -18,3 +18,7 @@ class MemberUserRouter():
     @router.post("/SetMemberUser", response_model=DataResponse[MemberUser_Res], dependencies=[Depends(AuthenticateService.verify_jwt_token)])
     async def SetMemberUser(request : MemberUser_Req, service : MemberUserService = Depends(MemberUserService)):
         return await service.SetMemberUser(request)
+    
+    @router.post("/SignUp", response_model=DataResponse[MemberUser_Res])
+    async def SignUp(request : MemberUser_Req, service : MemberUserService = Depends(MemberUserService)):
+        return await service.SignUp(request)

@@ -11,9 +11,19 @@ class MemberRouter():
     async def GetMember(request : Member_Req, 
                         service : MemberService = Depends(MemberService)):
         return await service.GetMember(request)
+    
+    @router.post("/GetMemberByCheckDuplicateMediNo", response_model=DataResponse[Member_Res])
+    async def GetMemberByCheckDuplicateMediNo(request : Member_Req,
+                                         service : MemberService = Depends(MemberService)):
+        return await service.GetMemberByCheckDuplicateMediNo(request)
         
     @router.post("/SetMember", response_model=DataResponse[Member_Res], dependencies=[Depends(AuthenticateService.verify_jwt_token)])
     async def SetMember(request : Member_Req,
                         serivce : MemberService = Depends(MemberService)):
         return await serivce.SetMember(request)
+
+    @router.post("/SignUp", response_model=DataResponse[Member_Res])
+    async def SignUp(request : Member_Req,
+                     service : MemberService = Depends(MemberService)):
+        return await service.SignUp(request)
         
