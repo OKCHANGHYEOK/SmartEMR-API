@@ -1,8 +1,9 @@
-from fastapi import Depends
-from .BaseRouter import router
+from fastapi import APIRouter, Depends
 from app.Schemas.DataResponse import DataResponse
 from app.Schemas.ReservationDTO import Reservation_Req, Reservation_Res
 from app.Services.Domain import ReservationService
+
+router = APIRouter()
 
 class ReservationRouter():
     @router.post("/GetReservation", response_model=DataResponse[Reservation_Res])

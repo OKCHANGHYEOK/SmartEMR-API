@@ -1,8 +1,9 @@
-from fastapi import Depends
-from .BaseRouter import router
+from fastapi import APIRouter, Depends
 from app.Schemas.DataResponse import DataResponse
 from app.Schemas.OrderDTO import Order_Req, Order_Res
 from app.Services.Domain import OrderService
+
+router = APIRouter()
 
 class OrderRouter():
     @router.post("/GetOrder", response_model=DataResponse[Order_Res])

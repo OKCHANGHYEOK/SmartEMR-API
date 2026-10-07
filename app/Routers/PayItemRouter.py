@@ -1,8 +1,9 @@
-from fastapi import Depends
-from .BaseRouter import router
+from fastapi import APIRouter, Depends
 from app.Schemas.DataResponse import DataResponse
 from app.Schemas.PayItemDTO import PayItem_Req, PayItem_Res
 from app.Services.Domain import PayItemService
+
+router = APIRouter()
 
 class PayItemRouter():
     @router.post("/GetPayItem", response_model=DataResponse[PayItem_Res])

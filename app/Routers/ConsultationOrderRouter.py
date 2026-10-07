@@ -1,8 +1,9 @@
-from fastapi import Depends
-from .BaseRouter import router
+from fastapi import APIRouter, Depends
 from app.Schemas.ConsultationOrderDTO import ConsultationOrder_Req, ConsultationOrder_Res
 from app.Schemas.DataResponse import DataResponse
 from app.Services.Domain import ConsultationOrderService
+
+router = APIRouter()
 
 class ConsultationOrderRouter():
     @router.post("/GetConsultationOrder", response_model=DataResponse[ConsultationOrder_Res])

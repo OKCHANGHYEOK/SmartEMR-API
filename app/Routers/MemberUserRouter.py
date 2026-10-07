@@ -1,9 +1,10 @@
-from fastapi import Depends
-from .BaseRouter import router
+from fastapi import APIRouter, Depends
 from app.Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
 from app.Schemas.DataResponse import DataResponse
 from app.Services.Authentication.AuthenticateService import AuthenticateService
 from app.Services.Domain import MemberUserService
+
+router = APIRouter()
 
 class MemberUserRouter():
     @router.post("/GetMemberUserByCheckDuplicateId", response_model=DataResponse[MemberUser_Res])

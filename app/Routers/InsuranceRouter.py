@@ -1,8 +1,9 @@
-from fastapi import Depends
-from .BaseRouter import router
+from fastapi import APIRouter, Depends
 from app.Schemas.DataResponse import DataResponse
 from app.Schemas.InsuranceDTO import Insurance_Req, Insurance_Res
 from app.Services.Domain import InsuranceService
+
+router = APIRouter()
 
 class InsuranceRouter():
     @router.post("/GetInsurance", response_model=DataResponse[Insurance_Res])

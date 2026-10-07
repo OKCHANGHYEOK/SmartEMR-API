@@ -4,7 +4,7 @@ from fastapi import APIRouter
 
 v1_router = APIRouter()
 
-EXCLUDE_ROUTERS = ["LoginRouter", "AuthRouter", "MemberRouter", "MemberUserRouter"] 
+EXCLUDE_ROUTERS = ["BaseRouter", "LoginRouter", "AuthRouter", "MemberRouter", "MemberUserRouter"] 
 
 for loader, moduleName, isPkg in pkgutil.walk_packages(__path__):
     # 제외 목록에 포함된 모듈은 건너뜁니다.

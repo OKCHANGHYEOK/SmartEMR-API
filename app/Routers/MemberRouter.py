@@ -1,9 +1,10 @@
-from fastapi import Depends
-from .BaseRouter import router
+from fastapi import APIRouter, Depends
 from app.Schemas.MemberDTO import Member_Req, Member_Res
 from app.Schemas.DataResponse import DataResponse
 from app.Services.Domain import MemberService
 from app.Services.Authentication.AuthenticateService import AuthenticateService
+
+router = APIRouter()
 
 class MemberRouter():    
     @router.post("/GetMember", response_model=DataResponse[Member_Res])
