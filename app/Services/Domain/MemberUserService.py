@@ -29,7 +29,7 @@ class MemberUserService(BaseService):
       ret : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUserForLogin, item)
 
       if ret is None or self.DbContext.retIsSuccess == False:
-         raise ApiException(self.DbContext.retMessage)
+         raise ApiException("아이디 또는 패스워드가 일치하지 않습니다.", status_code=401)
       
       return DataResponse[MemberUser_Res](Item=ret, Message=self.DbContext.retMessage, IsSuccess=self.DbContext.retIsSuccess)
    
