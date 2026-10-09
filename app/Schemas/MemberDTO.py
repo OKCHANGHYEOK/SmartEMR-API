@@ -1,6 +1,6 @@
 from .BaseDTO import BaseDTO
 from typing import Optional
-from .MemberUserDTO import MemberUser_Req
+from .MemberUserDTO import MemberUser_Req, MemberUser_Res
 
 class MemberDTO(BaseDTO):
     MEM_Idx : Optional[int] = None
@@ -34,3 +34,5 @@ class Member_Req(MemberDTO):
 
 class Member_Res(MemberDTO):
     MEM_AdminUserName : Optional[str] = None
+    
+    MURItem : MemberUser_Res = None
