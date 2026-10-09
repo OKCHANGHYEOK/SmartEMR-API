@@ -57,10 +57,25 @@ class NaverPaySettings(BaseSettings):
             extra="ignore"
         )    
 
+class EmailSettings(BaseSettings):
+    smtp_host : str
+    smtp_port : int
+    smtp_user : str
+    smtp_password : str
+    smtp_from : str
+
+    model_config = SettingsConfigDict(
+        env_file=env_url,
+        env_file_encoding="utf-8",
+        env_prefix='EMAIL_',
+        extra="ignore"
+    )
+
 class Settings(BaseSettings):
     jwt : JWTSettings = JWTSettings()
     db : DBSesttings = DBSesttings()
     naverpay : NaverPaySettings = NaverPaySettings()
     crypto : CryptoSettings = CryptoSettings()
+    email : EmailSettings = EmailSettings()
 
 settings = Settings()

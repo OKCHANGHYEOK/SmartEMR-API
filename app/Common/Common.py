@@ -51,3 +51,9 @@ async def GenerateChartNo() -> str:
     chartNo = f"{strDT}{strSeq}"
 
     return chartNo
+
+@staticmethod
+def GenerateVerificationCode() -> str:
+    import secrets
+    
+    return f"{secrets.randbelow(1_000_000):06d}"
