@@ -12,7 +12,7 @@ from app.Exceptions.Handlers import RegisterExceptionHandlers
 app = FastAPI()
 
 # 미들웨어 설정
-app.add_middleware(ExceptionMiddleWare)
+# app.add_middleware(ExceptionMiddleWare)
 app.add_middleware(LogRequestBodyMiddleware)
 
 # 라우터 설정

@@ -9,11 +9,12 @@ from app.Schemas.TokenDTO import Token_Req, Token_Res
 from app.Schemas.TokenResponse import TokenResponse
 from app.Schemas.DataResponse import DataResponse
 from app.Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
+from app.Schemas.EmailVerificationDTO import EmailVerification_Req, EmailVerification_Res
 from app.Exceptions import ApiException
 
 class AuthRouter():
     @router.post("/RequestVerifyCode")
-    async def RequestVerifyCode(request : dict, emailService : EmailService = Depends(EmailService),):
+    async def RequestVerifyCode(request : dict, emailService : EmailService = Depends(EmailService)):
         MUR_Email : str = request.get("MUR_Email")
 
         if not MUR_Email:
@@ -25,6 +26,10 @@ class AuthRouter():
             raise ApiException("이메일 발송에 실패했습니다.")
 
         return DataResponse[object].CreateDefaultResult()
+
+    @router.post("/RequestVerifyCheck")
+    async def RequestVerifyCheck(request : EmailVerification_Req, emailService : EmailService = Depends(EmailService)) -> DataResponse[EmailVerification_Res]:
+        return EmailService.VerifyCheck(request)
 
     @router.post("/refresh_access_token")
     async def RefreshToken(request : Token_Req,                

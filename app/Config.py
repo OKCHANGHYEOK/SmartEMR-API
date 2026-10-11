@@ -63,6 +63,7 @@ class EmailSettings(BaseSettings):
     smtp_user : str
     smtp_password : str
     smtp_from : str
+    smtp_secret : str
 
     model_config = SettingsConfigDict(
         env_file=env_url,

@@ -1,4 +1,7 @@
 import bcrypt
+import hmac
+import hashlib
+from app.Config import settings
 
 class HashService:
     @staticmethod
@@ -20,4 +23,19 @@ class HashService:
             plainPW.encode('utf-8'),
             hashedPW.encode('utf-8')
         )
-        
+
+    @staticmethod
+    def HashVerificationCode(verifyCode: str) -> str:
+        secretKey = settings.email.smtp_secret
+        return hmac.new(
+            secretKey.encode('utf-8'),
+            verifyCode.encode('utf-8'),
+            hashlib.sha256
+        ).hexdigest()
+
+    @staticmethod
+    def VerifyVerificationCode(verifyCode: str, hashedCode: str) -> bool:
+        return hmac.compare_digest(
+            HashService.HashVerificationCode(verifyCode),
+            hashedCode
+        )
