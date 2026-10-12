@@ -31,7 +31,7 @@ class PatientDTO(BaseDTO):
     PAT_FirstVisitDate: Optional[str] = None
     PAT_LastVisitDate: Optional[str] = None
     PAT_Bigo : Optional[str] = None
-    PAT_IsSolar: Optional[str] = None
+    PAT_CalendarType: Optional[str] = None
     PAT_IsAgreePersonalInfo: Optional[str] = None
     PAT_IsForeign: Optional[str] = None
     PAT_IsSMS: Optional[str] = None

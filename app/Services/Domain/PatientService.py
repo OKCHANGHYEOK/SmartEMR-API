@@ -83,7 +83,7 @@ class PatientService(BaseService):
         item.PAT_FirstVisitDate = request.PAT_FirstVisitDate
         item.PAT_LastVisitDate = request.PAT_LastVisitDate
         item.PAT_Bigo = request.PAT_Bigo
-        item.PAT_IsSolar = request.PAT_IsSolar
+        item.PAT_CalendarType = request.PAT_CalendarType
         item.PAT_IsAgreePersonalInfo = request.PAT_IsAgreePersonalInfo
         item.PAT_IsForeign = request.PAT_IsForeign
         item.PAT_IsSMS = request.PAT_IsSMS

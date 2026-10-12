@@ -30,7 +30,7 @@ class Patient(BaseEntity):
     PAT_LastVisitDate = Column(String(10))
     PAT_ImageSource = Column(BINARY)
     PAT_Bigo = Column(String(500))
-    PAT_IsSolar = Column(String(1))
+    PAT_CalendarType = Column(String(1))
     PAT_IsAgreePersonalInfo = Column(String(1))
     PAT_IsForeign = Column(String(1))
     PAT_IsSMS = Column(String(1))
