@@ -28,7 +28,7 @@ class MemberUserDTO(BaseDTO):
     MUR_IsValid : Optional[bool] = None
 
 class MemberUser_Req(MemberUserDTO):
-    pass
+    EV_Idx_Verified : Optional[int] = None
 
 class MemberUser_Res(MemberUserDTO):
     MUR_Idx_DOC : Optional[int] = None

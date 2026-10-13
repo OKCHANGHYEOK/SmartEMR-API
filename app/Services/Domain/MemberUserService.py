@@ -1,9 +1,11 @@
 from fastapi import Depends
-from app.Entities.MemberUser import MemberUser
 from app.Services.Authentication.HashService import HashService
 from app.Services.Domain.BaseService import BaseService
 from app.Schemas.DataResponse import DataResponse
+from app.Schemas.EmailVerificationDTO import EmailVerification_Req, EmailVerification_Res
 from app.Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
+from app.Entities.EmailVerification import EmailVerification
+from app.Entities.MemberUser import MemberUser
 from app.Common import eSP
 from app.Exceptions import ApiException
 
@@ -86,8 +88,22 @@ class MemberUserService(BaseService):
          raise ApiException("회원사키값이 올바르지 않습니다.")
       
       retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, MemberUser(MUR_Id=request.MUR_Id))
+      
       if retMUR and retMUR.MUR_Idx > 0:
-         raise ApiException("이미 사용중인 아이디입니다. 아이디 변경후 다시 시도허세요.")
+         raise ApiException("이미 사용중인 아이디입니다. 아이디 변경후 다시 시도하세요.")
+
+      if not request.EV_Idx_Verified:
+         raise ApiException("이메일 본인인증을 완료하지 않았습니다. 본인인증후 다시 시도하세요.")
+
+      getEV = EmailVerification()
+      getEV.EV_Idx = request.EV_Idx_Verified
+      getEV.EV_Email = request.MUR_Email
+      getEV.EV_IsVerified = True
+
+      retEV : EmailVerification_Res = await self.DbContext.GetItem[EmailVerification_Res](eSP.proc_EmailVerification_GetEmailVerification, getEV)
+
+      if not retEV or self.DbContext.retIsSuccess == False:
+         raise ApiException("본인인증을 진행한 이메일이 아닙니다.")
       
       item : MemberUser = MemberUser()
       item.MEM_Idx = request.MEM_Idx
@@ -99,6 +115,7 @@ class MemberUserService(BaseService):
       item.MUR_Role =  request.MUR_Role if request.MUR_Role else "USR"
       item.MUR_JobCode = request.MUR_JobCode
       item.MUR_LicenseNo = request.MUR_LicenseNo
+      item.MUR_Email = request.MUR_Email
       item.MUR_IsValid = True
       
       ret : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, item)

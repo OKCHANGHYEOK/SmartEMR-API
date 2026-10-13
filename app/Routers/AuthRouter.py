@@ -20,16 +20,11 @@ class AuthRouter():
         if not MUR_Email:
             raise ApiException("이메일이 올바르지 않습니다.")
 
-        isSuccess = await emailService.SendVerificationCodeAsync(recipient=MUR_Email, verify_code=Common.GenerateVerificationCode())
-
-        if not isSuccess:
-            raise ApiException("이메일 발송에 실패했습니다.")
-
-        return DataResponse[object].CreateDefaultResult()
+        return await emailService.RequestVerifyCode(recipient=MUR_Email, verify_code=Common.GenerateVerificationCode())
 
     @router.post("/RequestVerifyCheck")
     async def RequestVerifyCheck(request : EmailVerification_Req, emailService : EmailService = Depends(EmailService)) -> DataResponse[EmailVerification_Res]:
-        return EmailService.VerifyCheck(request)
+        return await EmailService.VerifyCheck(request)
 
     @router.post("/refresh_access_token")
     async def RefreshToken(request : Token_Req,                
