@@ -6,7 +6,7 @@ class ApiException(HTTPException):
             self, 
             msg: str = "", 
             status_code: int = 400, 
-            res_code: eResponseCode = eResponseCode.INTERNAL_SERVER_ERROR
+            res_code: eResponseCode = eResponseCode.BADREQUEST
         ):
         super().__init__(status_code=status_code, detail=msg)
         
