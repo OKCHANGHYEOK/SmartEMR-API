@@ -217,7 +217,7 @@ class AppDBContext:
                 e
             )
 
-            raise ApiException(self.retMessage, res_code=eResponseCode.BADREQUEST)
+            raise ApiException(self.retMessage, res_code=eResponseCode.INTERNAL_SERVER_ERROR)
 
         finally:
             if self.retIsSuccess:
