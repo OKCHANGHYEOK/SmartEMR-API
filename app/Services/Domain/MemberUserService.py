@@ -1,4 +1,5 @@
 from fastapi import Depends
+from app.Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
 from app.Services.Authentication.HashService import HashService
 from app.Services.Domain.BaseService import BaseService
 from app.Schemas.DataResponse import DataResponse
@@ -10,6 +11,9 @@ from app.Common import eSP
 from app.Exceptions import ApiException
 
 class MemberUserService(BaseService):
+   def __init__(self, authenticatedUserService : AuthenticatedUserService = Depends(AuthenticatedUserService)):
+      self.authenticatedUserService = authenticatedUserService
+   
    async def GetMemberUserByCheckDuplicateId(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
       item = MemberUser()
 
@@ -50,38 +54,42 @@ class MemberUserService(BaseService):
       return DataResponse[MemberUser_Res].CreateJsonResult(items=ret)
 
    async def SetMemberUser(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
+      user = self.authenticatedUserService.GetUser()
+
+      if not user:
+         raise ApiException("유저가 올바르지 않습니다.")
+      
       item = MemberUser()
 
-      item.MEM_Idx = request.MEM_Idx
+      item.MEM_Idx = user.MEM_Idx   
       item.MUR_Idx = request.MUR_Idx
-      item.MUR_Role = request.MUR_Role
-      item.MUR_Id = request.MUR_Id 
+      item.MUR_Department = request.MUR_Department
+      item.MUR_JobCode = request.MUR_JobCode
       item.MUR_Name = request.MUR_Name
       item.MUR_Gender = request.MUR_Gender
       item.MUR_Address1 = request.MUR_Address1
       item.MUR_Address2 = request.MUR_Address2
       item.MUR_Address3 = request.MUR_Address3
-      item.MUR_BirthYear = request.MUR_BirthYear
-      item.MUR_BirthMonth = request.MUR_BirthMonth
-      item.MUR_BirthDay = request.MUR_BirthDay  
-      item.MUR_PhoneNum1 = request.MUR_PhoneNum1
-      item.MUR_PhoneNum2 = request.MUR_PhoneNum2
-      item.MUR_PhoneNum3 = request.MUR_PhoneNum3
       item.MUR_Email = request.MUR_Email
-      item.MUR_IsValid = request.MUR_IsValid
+      
+      if request.MUR_PhoneNum and request.MUR_PhoneNum.isdigit() and len(request.MUR_PhoneNum) == 11:
+         item.MUR_PhoneNum1 = request.MUR_PhoneNum[0:3]
+         item.MUR_PhoneNum2 = request.MUR_PhoneNum[3:7]
+         item.MUR_PhoneNum3 = request.MUR_PhoneNum[7:11]
+      
+      if request.MUR_BirthDate and request.MUR_BirthDate.isdigit() and len(request.MUR_BirthDate) == 8:
+         item.MUR_BirthYear = request.MUR_BirthDate[0:4]
+         item.MUR_BirthMonth = request.MUR_BirthDate[4:6]
+         item.MUR_BirthDay = request.MUR_BirthDate[6:8]
 
-      # 비밀번호 해시 처리
-      if not item.MUR_Idx or item.MUR_Idx == 0:
-         item.MUR_PassWord = HashService.HashPassword(request.MUR_PassWord)
-      else:
-         pass   
+      item.MUR_IsValid = request.MUR_IsValid
 
       ret = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, item)
 
       if ret is None or self.DbContext.retIsSuccess == False:
          raise ApiException(self.DbContext.retMessage)
       
-      return DataResponse[MemberUser_Res].CreateJsonResult(items=ret)
+      return DataResponse[MemberUser_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
 
    async def SignUp(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
       if not request.MEM_Idx or request.MEM_Idx == 0:
@@ -125,4 +133,38 @@ class MemberUserService(BaseService):
 
       return DataResponse[MemberUser_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)      
       
-       
+   async def ChangePassword(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
+      user = self.authenticatedUserService.GetUser()
+
+      if not user:
+         raise ApiException("유저가 올바르지 않습니다.")
+      
+      getMUR = MemberUser()
+      getMUR.MEM_Idx = user.MEM_Idx
+      getMUR.MUR_Idx = user.MUR_Idx
+      
+      retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, getMUR)
+      
+      if not retMUR or self.DbContext.retIsSuccess == False:
+         raise ApiException(self.DbContext.retMessage)
+      
+      isPasswordMatch = HashService.VerifyPassword(request.MUR_PasswordCurrent, retMUR.MUR_PassWord)
+      
+      if not isPasswordMatch:
+         raise ApiException("현재 비밀번호가 일치하지 않습니다.")
+      
+      isSamePassword = HashService.VerifyPassword(request.MUR_PassWord, retMUR.MUR_PassWord)
+
+      if isSamePassword:
+         raise ApiException("기존 비밀번호와 동일한 비밀번호는 사용할 수 없습니다.")
+
+      item = MemberUser()
+      item.MUR_Idx = user.MUR_Idx
+      item.MUR_PassWord = HashService.HashPassword(request.MUR_PassWord)
+
+      ret : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_ChangePassword, item)
+
+      if not ret or self.DbContext.retIsSuccess == False:
+         raise ApiException(self.DbContext.retMessage)
+
+      return DataResponse[MemberUser_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)

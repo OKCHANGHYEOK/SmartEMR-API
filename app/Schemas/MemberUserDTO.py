@@ -16,9 +16,11 @@ class MemberUserDTO(BaseDTO):
     MUR_Address2 : Optional[str] = None
     MUR_Address3 : Optional[str] = None
     MUR_Age : Optional[int] = None
+    MUR_BirthDate : Optional[str] = None
     MUR_BirthYear : Optional[str] = None
     MUR_BirthMonth : Optional[str] = None
     MUR_BirthDay : Optional[str] = None
+    MUR_PhoneNum : Optional[str] = None
     MUR_PhoneNum1 : Optional[str] = None
     MUR_PhoneNum2 : Optional[str] = None
     MUR_PhoneNum3 : Optional[str] = None
@@ -29,6 +31,8 @@ class MemberUserDTO(BaseDTO):
 
 class MemberUser_Req(MemberUserDTO):
     EV_Idx_Verified : Optional[int] = None
+    
+    MUR_PasswordCurrent : Optional[str] = None
 
 class MemberUser_Res(MemberUserDTO):
     MUR_Idx_DOC : Optional[int] = None
