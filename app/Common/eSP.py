@@ -24,42 +24,43 @@ class eSP(Enum):
 
     proc_Member_GetMember = 16
     proc_Member_SetMember = 17
+    proc_Member_SetAdminUser = 18
 
-    proc_MemberUser_GetMemberUser = 18
-    proc_MemberUser_GetMemberUserForLogin = 19
-    proc_MemberUser_SetMemberUser = 20
-    proc_MemberUser_ChangePassword = 21
+    proc_MemberUser_GetMemberUser = 19
+    proc_MemberUser_GetMemberUserForLogin = 20
+    proc_MemberUser_SetMemberUser = 21
+    proc_MemberUser_ChangePassword = 22
 
-    proc_Patient_GetPatient = 22
-    proc_Patient_SetPatient = 23
+    proc_Patient_GetPatient = 23
+    proc_Patient_SetPatient = 24
 
-    proc_Pay_GetPay = 24
-    proc_Pay_SetPay = 25
-    proc_Pay_CancelPay = 26
-    proc_Pay_UpdatePayByPrice = 27
+    proc_Pay_GetPay = 25
+    proc_Pay_SetPay = 26
+    proc_Pay_CancelPay = 27
+    proc_Pay_UpdatePayByPrice = 28
 
-    proc_PayItem_GetPayItem = 28
-    proc_PayItem_SetPayItem = 29
+    proc_PayItem_GetPayItem = 29
+    proc_PayItem_SetPayItem = 30
 
-    proc_Reception_CancelReception = 30
-    proc_Reception_GetReception = 31
-    proc_Reception_GetReceptionBoard = 32
-    proc_Reception_SetReception = 33
-    proc_Reception_SetReceptionByIRC = 34
-    proc_Reception_SetReceptionByRES = 35
+    proc_Reception_CancelReception = 31
+    proc_Reception_GetReception = 32
+    proc_Reception_GetReceptionBoard = 33
+    proc_Reception_SetReception = 34
+    proc_Reception_SetReceptionByIRC = 35
+    proc_Reception_SetReceptionByRES = 36
 
-    proc_RefreshToken_GetRefreshToken = 36
-    proc_RefreshToken_SetRefreshToken = 37
+    proc_RefreshToken_GetRefreshToken = 37
+    proc_RefreshToken_SetRefreshToken = 38
 
-    proc_Reservation_GetReservation = 38
-    proc_Reservation_MoveReservationDate = 39
-    proc_Reservation_SetReservation = 40
-    proc_Reservation_SetReservationByStatus = 41
+    proc_Reservation_GetReservation = 39
+    proc_Reservation_MoveReservationDate = 40
+    proc_Reservation_SetReservation = 41
+    proc_Reservation_SetReservationByStatus = 42
 
-    proc_Suga_GetSuga = 42
-    proc_Suga_SetSuga = 43
-    proc_Suga_SetSugaProperty = 44
+    proc_Suga_GetSuga = 43
+    proc_Suga_SetSuga = 44
+    proc_Suga_SetSugaProperty = 45
 
-    proc_Order_GetOrder = 45
+    proc_Order_GetOrder = 46
     
-    proc_NaverPay_SetNaverPay = 46
+    proc_NaverPay_SetNaverPay = 47

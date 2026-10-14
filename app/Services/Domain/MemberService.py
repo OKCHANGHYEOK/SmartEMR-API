@@ -104,14 +104,23 @@ class MemberService(BaseService):
                 setMUR.MUR_Name = MURItem.MUR_Name
                 setMUR.MUR_Id = MURItem.MUR_Id
                 setMUR.MUR_PassWord = HashService.HashPassword(MURItem.MUR_PassWord)
-                setMUR.MUR_Role = MURItem.MUR_Role if MURItem.MUR_Role else "USR"
+                setMUR.MUR_Role = MURItem.MUR_Role if MURItem.MUR_Role else "ADM"
                 setMUR.MUR_Department = MURItem.MUR_Department
                 setMUR.MUR_JobCode = MURItem.MUR_JobCode
                 setMUR.MUR_LicenseNo = MURItem.MUR_LicenseNo
                 
                 retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, setMUR)
-                
                 if not retMUR or self.DbContext.retIsSuccess == False:
+                    raise ApiException(self.DbContext.retMessage)
+                
+                # 관리자 정보 업데이트
+                setADM : Member = Member()
+                setADM.MEM_Idx = retMEM.MEM_Idx
+                setADM.MUR_Idx = retMUR.MUR_Idx
+                
+                retADM : Member_Res = await self.DbContext.GetItem[Member_Res](eSP.proc_Member_SetAdminUser, setADM, session)
+                
+                if not retADM or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
                 
                 await session.commit()

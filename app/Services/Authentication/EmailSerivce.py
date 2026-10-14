@@ -89,7 +89,6 @@ class EmailService:
             if not retEV or dbContext.retIsSuccess == False:
                 raise ApiException("이메일 인증 요청을 저장하지 못했습니다.")
 
-
             await asyncio.to_thread(
                 self.send_email_sync,
                 recipient,
@@ -110,12 +109,15 @@ class EmailService:
         ret : EmailVerification_Res = await dbContext.GetItem[EmailVerification_Res](eSP.proc_EmailVerification_GetEmailVerificationByVerify, item)
 
         if not ret or dbContext.retIsSuccess == False:
-            raise ApiException("이미 인증된 코드이거나 인증요청이 만료되었습니다.")
+            raise ApiException("인증코드가 올바르지 않습니다.")
 
         isSuccess = HashService.VerifyVerificationCode(request.EV_CodeOrigin, ret.EV_CodeHash)
 
         if not isSuccess:
             raise ApiException("인증코드가 올바르지 않습니다.")
+
+        if ret.EV_ExpiredAt < datetime.now().strftime('%Y-%m-%d %H:%M:%S'):
+            raise ApiException("인증코드가 만료되었습니다. 다시 인증요청을 진행해주세요.")
 
         setEV = EmailVerification()
         setEV.EV_Idx = ret.EV_Idx
