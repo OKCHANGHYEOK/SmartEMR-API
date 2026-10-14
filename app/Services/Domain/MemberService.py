@@ -108,8 +108,11 @@ class MemberService(BaseService):
                 setMUR.MUR_Department = MURItem.MUR_Department
                 setMUR.MUR_JobCode = MURItem.MUR_JobCode
                 setMUR.MUR_LicenseNo = MURItem.MUR_LicenseNo
+                setMUR.MUR_Email = MURItem.MUR_Email
+                setMUR.MUR_IsValid = True
                 
                 retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, setMUR)
+                
                 if not retMUR or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
                 
