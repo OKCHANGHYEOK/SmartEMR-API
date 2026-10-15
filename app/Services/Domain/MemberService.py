@@ -1,3 +1,4 @@
+from fastapi import Depends
 from app.Exceptions.ApiException import ApiException
 from app.Schemas.MemberDTO import Member_Req, Member_Res
 from app.Schemas.MemberUserDTO import MemberUser_Req, MemberUser_Res
@@ -6,9 +7,13 @@ from app.Entities.Member import Member
 from app.Entities.MemberUser import MemberUser
 from app.Common import eSP
 from app.Services.Domain.BaseService import BaseService
+from app.Services.Authentication.AuthenticatedUserService import AuthenticatedUserService
 from app.Services.Authentication.HashService import HashService
 
 class MemberService(BaseService):
+    def __init__(self, _authenicatedUserService : AuthenticatedUserService = Depends(AuthenticatedUserService)):
+        self.authenticatedUserService = _authenicatedUserService
+
     async def GetMember(self, request : Member_Req):
         item : Member = Member()
         item.MEM_Idx = request.MEM_Idx
@@ -36,7 +41,6 @@ class MemberService(BaseService):
 
     async def GetMemberByCheckDuplicateMediNo(self, request : Member_Req):
         item : Member = Member()
-        
         item.MEM_MediNo = request.MEM_MediNo
         
         ret = await self.DbContext.GetItem[Member](eSP.proc_Member_GetMember, item)
@@ -46,9 +50,27 @@ class MemberService(BaseService):
         
         return DataResponse[Member_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
 
-    async def SetMember(self, request : Member_Req):
+    async def GetMemberByCheckDuplicateBizNum(self, request : Member_Req):
         item : Member = Member()
-        item.MEM_Idx = request.MEM_Idx
+        item.MEM_BizNum = request.MEM_BizNum
+        
+        ret = await self.DbContext.GetItem[Member](eSP.proc_Member_GetMember, item)
+        
+        if self.DbContext.retIsSuccess == False:
+            raise ApiException(self.DbContext.retMessage)
+        
+        return DataResponse[Member_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+
+    async def SetMember(self, request : Member_Req):
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("유저가 올바르지 않습니다.")
+
+        item : Member = Member()
+        item.MEM_Idx = user.MEM_Idx
+        item.MUR_Idx = user.MUR_Idx
+
         item.MEM_Name = request.MEM_Name
         item.MEM_OperationStatus = request.MEM_OperationStatus
         item.MEM_Address1 = request.MEM_Address1
