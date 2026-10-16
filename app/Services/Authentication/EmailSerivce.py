@@ -54,8 +54,11 @@ class EmailService(BaseService):
         if request.EV_Purpose == 'SIGNUP' and await self.alreay_exists(request.EV_Email):
             raise ApiException("이미 가입된 이메일입니다.")
 
-        if request.EV_Purpose == 'FINDID' and await self.no_such_user(request.MUR_Name, request.EV_Email):
-            raise ApiException("가입 정보를 찾을 수 없습니다. 이름과 이메일을 확인해주세요.")
+        if request.EV_Purpose == 'FINDID' and await self.no_such_user('', request.MUR_Name, request.EV_Email):
+            raise ApiException("가입 정보를 찾을 수 없습니다. 입력하신 정보를 확인해주세요.")
+        
+        if request.EV_Purpose == 'FINDPW' and await self.no_such_user(request.MUR_Id, request.MUR_Name, request.EV_Email):
+            raise ApiException("가입 정보를 찾을 수 없습니다. 입력하신 정보를 확인해주세요.")
 
         getEV = EmailVerification()
         getEV.EV_Email = request.EV_Email
@@ -150,8 +153,9 @@ class EmailService(BaseService):
         
         return False
 
-    async def no_such_user(self, name : str, email : str) -> bool:
+    async def no_such_user(self, id : str, name : str, email : str) -> bool:
         item = MemberUser()
+        item.MUR_Id = id
         item.MUR_Name = name
         item.MUR_Email = email
 

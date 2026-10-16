@@ -169,6 +169,34 @@ class MemberUserService(BaseService):
 
       return DataResponse[MemberUser_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
    
+   async def ResetPassword(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
+      if not request.EV_Idx_Verified:
+         raise ApiException("이메일 본인인증을 완료하지 않았습니다. 본인인증후 다시 시도하세요.")
+      
+      if not request.MUR_Id or not request.MUR_Name or not request.MUR_Email:
+         raise ApiException("아이디, 이름, 이메일은 필수 입력값입니다. 입력후 다시 시도하세요.")
+      
+      getMUR = MemberUser()
+      getMUR.MUR_Id = request.MUR_Id
+      getMUR.MUR_Name = request.MUR_Name
+      getMUR.MUR_Email = request.MUR_Email
+      
+      retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, getMUR)
+      
+      if not retMUR or self.DbContext.retIsSuccess == False:
+         raise ApiException("가입 정보를 찾을 수 없습니다. 입력하신 정보를 확인해주세요.")
+      
+      item = MemberUser()
+      item.MUR_Idx = retMUR.MUR_Idx
+      item.MUR_PassWord = HashService.HashPassword(request.MUR_PassWord)
+
+      ret : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_ChangePassword, item)
+
+      if not ret or self.DbContext.retIsSuccess == False:
+         raise ApiException(self.DbContext.retMessage)
+
+      return DataResponse[MemberUser_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+   
    async def FindId(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
       if not request.EV_Idx_Verified:
          raise ApiException("이메일 본인인증을 완료하지 않았습니다. 본인인증후 다시 시도하세요.")

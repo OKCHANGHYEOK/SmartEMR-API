@@ -27,6 +27,10 @@ class MemberUserRouter():
     async def ChangePassword(request : MemberUser_Req, service : MemberUserService = Depends(MemberUserService)):
         return await service.ChangePassword(request)
     
+    @router.post("/ResetPassword", response_model=DataResponse[MemberUser_Res])
+    async def ResetPassword(request : MemberUser_Req, service : MemberUserService = Depends(MemberUserService)):
+        return await service.ResetPassword(request)
+
     @router.post("/FindId", response_model=DataResponse[MemberUser_Res])
     async def FindId(request : MemberUser_Req, service : MemberUserService = Depends(MemberUserService)):
         return await service.FindId(request)
