@@ -43,7 +43,7 @@ class MemberService(BaseService):
         item : Member = Member()
         item.MEM_MediNo = request.MEM_MediNo
         
-        ret = await self.DbContext.GetItem[Member](eSP.proc_Member_GetMember, item)
+        ret = await self.DbContext.GetItem[Member_Res](eSP.proc_Member_GetMember, item)
         
         if self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
@@ -54,7 +54,7 @@ class MemberService(BaseService):
         item : Member = Member()
         item.MEM_BizNum = request.MEM_BizNum
         
-        ret = await self.DbContext.GetItem[Member](eSP.proc_Member_GetMember, item)
+        ret = await self.DbContext.GetItem[Member_Res](eSP.proc_Member_GetMember, item)
         
         if self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
@@ -104,6 +104,14 @@ class MemberService(BaseService):
                 if retMEMByMediNo and retMEMByMediNo.MEM_Idx > 0 :
                     raise ApiException("요양기관번호 중복된 회원사가 존재합니다.")                 
                         
+                getMemberByBizNum = Member()
+                getMemberByBizNum.MEM_BizNum = request.MEM_BizNum
+                
+                retMEMByBizNum : Member_Res = await self.DbContext.GetItem[Member_Res](eSP.proc_Member_GetMember, getMemberByBizNum, session)        
+                        
+                if retMEMByBizNum and retMEMByBizNum.MEM_Idx > 0 :
+                    raise ApiException("사업자등록번호 중복된 회원사가 존재합니다.")        
+                        
                 item : Member = Member()
                 
                 item.MEM_Idx = 0
@@ -133,7 +141,7 @@ class MemberService(BaseService):
                 setMUR.MUR_Email = MURItem.MUR_Email
                 setMUR.MUR_IsValid = True
                 
-                retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, setMUR)
+                retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_SetMemberUser, setMUR, session)
                 
                 if not retMUR or self.DbContext.retIsSuccess == False:
                     raise ApiException(self.DbContext.retMessage)
