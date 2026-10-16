@@ -26,3 +26,7 @@ class MemberUserRouter():
     @router.post("/ChangePassword", response_model=DataResponse[MemberUser_Res], dependencies=[Depends(AuthenticateService.verify_jwt_token)])
     async def ChangePassword(request : MemberUser_Req, service : MemberUserService = Depends(MemberUserService)):
         return await service.ChangePassword(request)
+    
+    @router.post("/FindId", response_model=DataResponse[MemberUser_Res])
+    async def FindId(request : MemberUser_Req, service : MemberUserService = Depends(MemberUserService)):
+        return await service.FindId(request)

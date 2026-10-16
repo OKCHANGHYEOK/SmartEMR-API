@@ -14,13 +14,8 @@ from app.Exceptions import ApiException
 
 class AuthRouter():
     @router.post("/RequestVerifyCode")
-    async def RequestVerifyCode(request : dict, emailService : EmailService = Depends(EmailService)):
-        MUR_Email : str = request.get("MUR_Email")
-
-        if not MUR_Email:
-            raise ApiException("이메일이 올바르지 않습니다.")
-
-        return await emailService.RequestVerifyCode(recipient=MUR_Email, verify_code=Common.GenerateVerificationCode())
+    async def RequestVerifyCode(request : EmailVerification_Req, emailService : EmailService = Depends(EmailService)):
+        return await emailService.RequestVerifyCode(request)
 
     @router.post("/RequestVerifyCheck")
     async def RequestVerifyCheck(request : EmailVerification_Req, emailService : EmailService = Depends(EmailService)) -> DataResponse[EmailVerification_Res]:

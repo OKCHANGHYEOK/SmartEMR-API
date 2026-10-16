@@ -15,7 +15,8 @@ class EmailVerificationDTO(BaseDTO):
     EV_IsValid : Optional[bool] = None
 
 class EmailVerification_Req(EmailVerificationDTO):
-    pass
+    MUR_Name : Optional[str] = None
+    MUR_Id : Optional[str] = None
 
 class EmailVerification_Res(EmailVerificationDTO):
     pass

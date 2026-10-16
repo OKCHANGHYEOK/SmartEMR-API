@@ -168,3 +168,18 @@ class MemberUserService(BaseService):
          raise ApiException(self.DbContext.retMessage)
 
       return DataResponse[MemberUser_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+   
+   async def FindId(self, request : MemberUser_Req) -> DataResponse[MemberUser_Res]:
+      if not request.EV_Idx_Verified:
+         raise ApiException("이메일 본인인증을 완료하지 않았습니다. 본인인증후 다시 시도하세요.")
+      
+      getMUR = MemberUser()
+      getMUR.MUR_Name = request.MUR_Name
+      getMUR.MUR_Email = request.MUR_Email
+      
+      retMUR : MemberUser_Res = await self.DbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, getMUR)
+      
+      if not retMUR or self.DbContext.retIsSuccess == False:
+         raise ApiException("해당 유저를 찾을 수 없습니다.")
+      
+      return DataResponse[MemberUser_Res].CreateJsonResult(item=retMUR, message=self.DbContext.retMessage)
