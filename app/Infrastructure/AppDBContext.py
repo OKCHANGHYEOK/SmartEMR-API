@@ -175,7 +175,7 @@ class AppDBContext:
                     break
             
             if self.retCode != 0:
-                raise
+                raise ApiException(self.retMessage, res_code=eResponseCode.INTERNAL_SERVER_ERROR)
 
             # 외부에서 Session을 전달받은 경우에는
             # 여기서 commit하지 않는다.
