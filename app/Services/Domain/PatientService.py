@@ -24,9 +24,17 @@ class PatientService(BaseService):
         
         item.MEM_Idx = user.MEM_Idx
         item.PAT_Idx = request.PAT_Idx
+        item.PAT_SourceType = request.PAT_SourceType
+        item.PAT_CalendarType = request.PAT_CalendarType
         item.PAT_Name = request.PAT_Name
         item.PAT_ChartNo = request.PAT_ChartNo
-        item.PAT_Sex = request.PAT_Sex
+        item.PAT_Sex = request.PAT_Sex 
+        item.PAT_Age = request.PAT_Age
+        item.PAT_IsForeign = request.PAT_IsForeign
+        item.PAT_IsAgreePersonalInfo = request.PAT_IsAgreePersonalInfo
+        item.PAT_IsSMS = request.PAT_IsSMS
+        item.PAT_IsEmail = request.PAT_IsEmail
+
         item.Keyword = request.Keyword
         item.PageSize = request.PageSize
         item.PageIndex = request.PageIndex
