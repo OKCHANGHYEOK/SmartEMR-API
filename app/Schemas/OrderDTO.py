@@ -20,6 +20,9 @@ class OrderDTO(BaseDTO):
     ORD_EffectiveToDay : Optional[datetime] = None
     ORD_IsUse : Optional[bool] = None
     ORD_IsQuickOrder : Optional[bool] = None
+    
+    SUGAC_Cd : Optional[str] = None
+    SUGAC_Name : Optional[str] = None
 
 class Order_Req(OrderDTO):
     pass

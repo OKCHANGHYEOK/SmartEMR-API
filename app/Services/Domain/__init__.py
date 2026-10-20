@@ -12,6 +12,7 @@ from .ConsultationOrderService import ConsultationOrderService
 from .PayService import PayService
 from .PayItemService import PayItemService
 from .NaverPayService import NaverPayService
+from .SugaService import SugaService
 
 __all__ = ['BaseService', 
            'MemberService', 
@@ -26,4 +27,5 @@ __all__ = ['BaseService',
            'ConsultationOrderService',
            'PayService',
            'PayItemService',
-           'NaverPayService']
+           'NaverPayService',
+           'SugaService']

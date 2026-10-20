@@ -58,9 +58,10 @@ class eSP(Enum):
     proc_Reservation_SetReservationByStatus = 42
 
     proc_Suga_GetSuga = 43
-    proc_Suga_SetSuga = 44
-    proc_Suga_SetSugaProperty = 45
+    proc_Suga_GetSugaCategory = 44
+    proc_Suga_SetSuga = 45
+    proc_Suga_SetSugaProperty = 46
 
-    proc_Order_GetOrder = 46
+    proc_Order_GetOrder = 47
     
-    proc_NaverPay_SetNaverPay = 47
+    proc_NaverPay_SetNaverPay = 48

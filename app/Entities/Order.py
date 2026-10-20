@@ -21,3 +21,5 @@ class Order(BaseEntity):
     ORD_EffectiveToDay = Column(DateTime)
     ORD_IsUse = Column(Boolean)
     ORD_IsQuickOrder = Column(Boolean)
+
+    SUGAC_Cd = Column(String(3))
