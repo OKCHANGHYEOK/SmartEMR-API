@@ -36,6 +36,9 @@ class ConsultationService(BaseService):
         item.PAT_Idx = request.PAT_Idx
         item.RCP_Idx = request.RCP_Idx
 
+        item.PAT_Sex = request.PAT_Sex
+        item.PAT_Age = request.PAT_Age
+
         item.CST_Status = request.CST_Status
         item.CST_PayStatus = request.CST_PayStatus
         item.CST_TreatResult = request.CST_TreatResult

@@ -40,7 +40,8 @@ class ConsultationDTO(BaseDTO):
     eDay : Optional[str] = None
 
 class Consultation_Req(ConsultationDTO):
-    pass
+    PAT_Age : Optional[int] = None
+    PAT_Sex : Optional[str] = None
 
 class Consultation_Res(ConsultationDTO):
     MUR_Name_DOC : Optional[str] = None

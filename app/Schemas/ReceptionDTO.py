@@ -32,6 +32,9 @@ class ReceptionDTO(BaseDTO):
 
 class Reception_Req(ReceptionDTO):
     IRCItem : Optional[Insurance_Req] = None
+    
+    sDay : Optional[str] = None
+    eDay : Optional[str] = None
 
 class Reception_Res(ReceptionDTO):
     MUR_Name_DOC : Optional[str] = None

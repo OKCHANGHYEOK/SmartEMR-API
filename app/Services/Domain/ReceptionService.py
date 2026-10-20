@@ -29,12 +29,19 @@ class ReceptionService(BaseService):
 
         item : Reception = Reception()
         item.MEM_Idx = user.MEM_Idx
+        item.RCP_Idx = request.RCP_Idx
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.PAT_Idx = request.PAT_Idx
+
+        item.PAT_Sex = request.PAT_Sex
+        item.PAT_Age = request.PAT_Age
 
         item.RCP_Status = request.RCP_Status
         item.RCP_Route = request.RCP_Route
         item.RCP_YYMMDD = request.RCP_YYMMDD
+
+        item.sDay = request.sDay
+        item.eDay = request.eDay
 
         item.Keyword = request.Keyword
         item.PageSize = request.PageSize
