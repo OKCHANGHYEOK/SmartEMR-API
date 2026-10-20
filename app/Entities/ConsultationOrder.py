@@ -30,3 +30,6 @@ class ConsultationOrder(BaseEntity):
     CSTO_YYMMDD = Column(String(10))
     CSTO_IsValid = Column(Boolean)
     CSTO_Property = Column(String)
+
+    PAT_Sex = Column(String(1))
+    PAT_Age = Column(Integer)

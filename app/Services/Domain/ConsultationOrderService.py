@@ -25,8 +25,12 @@ class ConsultationOrderService(BaseService):
         item.PAT_Idx = request.PAT_Idx
         item.CST_Idx = request.CST_Idx
 
+        item.PAT_Sex = request.PAT_Sex
+        item.PAT_Age = request.PAT_Age
+
         item.CSTO_Status = request.CSTO_Status
         item.CSTO_InsuranceType = request.CSTO_InsuranceType
+        item.ORDC_Cd = request.ORDC_Cd
 
         item.sDay = request.sDay
         item.eDay = request.eDay

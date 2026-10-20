@@ -32,8 +32,12 @@ class ConsultationOrderDTO(BaseDTO):
     sDay : Optional[str] = None
     eDay : Optional[str] = None
 
+    PAT_Sex : Optional[str] = None
+    PAT_Age : Optional[int] = None
+
 class ConsultationOrder_Req(ConsultationOrderDTO):
     pass
 
 class ConsultationOrder_Res(ConsultationOrderDTO):
-    pass
+    PAT_ChartNo : Optional[str] = None
+    PAT_Name : Optional[str] = None
