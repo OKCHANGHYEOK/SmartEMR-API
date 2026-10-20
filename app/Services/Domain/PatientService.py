@@ -35,6 +35,9 @@ class PatientService(BaseService):
         item.PAT_IsSMS = request.PAT_IsSMS
         item.PAT_IsEmail = request.PAT_IsEmail
 
+        item.sDay = request.sDay
+        item.eDay = request.eDay
+
         item.Keyword = request.Keyword
         item.PageSize = request.PageSize
         item.PageIndex = request.PageIndex

@@ -28,6 +28,8 @@ class ReservationService(BaseService):
         item.MEM_Idx = user.MEM_Idx
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.PAT_Idx = request.PAT_Idx
+        item.PAT_Sex = request.PAT_Sex
+        item.PAT_Age = request.PAT_Age
 
         item.RES_Idx = request.RES_Idx
         item.RES_Status = request.RES_Status

@@ -48,7 +48,8 @@ class PatientDTO(BaseDTO):
         return v
 
 class Patient_Req(PatientDTO):
-    pass
+    sDay : Optional[str] = None
+    eDay : Optional[str] = None
 
 class Patient_Res(PatientDTO):
     pass   
