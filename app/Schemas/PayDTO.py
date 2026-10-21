@@ -21,6 +21,9 @@ class PayDTO(BaseDTO):
     PAY_YYMMDD : Optional[str] = None
     PAY_IsValid : Optional[bool] = None
 
+    PAT_Sex: Optional[str] = None
+    PAT_Age: Optional[int] = None
+
 class Pay_Req(PayDTO):
     sDay : Optional[str] = None
     eDay : Optional[str] = None
@@ -28,7 +31,5 @@ class Pay_Req(PayDTO):
 class Pay_Res(PayDTO):
     PAT_Name: Optional[str] = None
     PAT_ChartNo: Optional[str] = None
-    PAT_Sex: Optional[str] = None
-    PAT_Age: Optional[int] = None
 
     IRC_Type : Optional[str] = None

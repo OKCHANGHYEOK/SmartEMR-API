@@ -54,7 +54,7 @@ class ReceptionService(BaseService):
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
         
-        return DataResponse[Reception_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[Reception_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
     
     async def GetReceptionBoard(self, request: ReceptionBoard_Req) -> DataResponse[ReceptionBoard_Res]:
             user = self.authenticatedUserService.GetUser()
@@ -89,7 +89,7 @@ class ReceptionService(BaseService):
             if self.DbContext.retIsSuccess == False:
                 raise ApiException(self.DbContext.retMessage)
             
-            return DataResponse[ReceptionBoard_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+            return DataResponse[ReceptionBoard_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
 
     async def SetReception(self, request: Reception_Req) -> DataResponse[Reception_Res]:
         user = self.authenticatedUserService.GetUser()

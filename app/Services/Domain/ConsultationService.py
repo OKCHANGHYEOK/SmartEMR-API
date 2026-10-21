@@ -32,6 +32,7 @@ class ConsultationService(BaseService):
         item : Consultation = Consultation()
         item.MEM_Idx = user.MEM_Idx
 
+        item.CST_Idx = request.CST_Idx
         item.MUR_Idx_DOC = request.MUR_Idx_DOC
         item.PAT_Idx = request.PAT_Idx
         item.RCP_Idx = request.RCP_Idx
@@ -58,7 +59,7 @@ class ConsultationService(BaseService):
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException("진료 조회에 실패했습니다.")
 
-        return DataResponse[Consultation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[Consultation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
 
     async def GetConsultationByRCP(self, request : Consultation_Req) -> DataResponse[Consultation_Res]:
         user = self.authenticatedUserService.GetUser()

@@ -51,7 +51,7 @@ class ReservationService(BaseService):
         if self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
         
-        return DataResponse[Reservation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[Reservation_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
     
     async def SetReservation(self, request : Reservation_Req) -> DataResponse[Reservation_Res]:
         user = self.authenticatedUserService.GetUser()
@@ -111,7 +111,7 @@ class ReservationService(BaseService):
         if not ret or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
         
-        return DataResponse[Reservation_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage)
+        return DataResponse[Reservation_Res].CreateJsonResult(item=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
 
     async def SetReservationByStatus(self, request : Reservation_Req) -> DataResponse[Reservation_Res]:
         user = self.authenticatedUserService.GetUser()

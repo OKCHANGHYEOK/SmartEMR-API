@@ -45,7 +45,7 @@ class ConsultationOrderService(BaseService):
         if self.DbContext.retIsSuccess == False:
             raise ApiException("처방 조회에 실패했습니다.")
 
-        return DataResponse[ConsultationOrder_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[ConsultationOrder_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
 
     async def SetConsultationOrder(self, request : ConsultationOrder_Req) -> DataResponse[ConsultationOrder_Res]:
         user = self.authenticatedUserService.GetUser()

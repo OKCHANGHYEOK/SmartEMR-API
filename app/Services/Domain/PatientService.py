@@ -49,7 +49,7 @@ class PatientService(BaseService):
         if ret is None or self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
         
-        return DataResponse[Patient_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[Patient_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
     
     async def SetPatient(self, request: Patient_Req):
         item : Patient = Patient()

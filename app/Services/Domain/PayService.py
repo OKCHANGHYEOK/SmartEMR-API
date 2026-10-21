@@ -26,6 +26,9 @@ class PayService(BaseService):
         item.PAY_Idx = request.PAY_Idx
         item.PAT_Idx = request.PAT_Idx
         item.CST_Idx = request.CST_Idx
+        
+        item.PAT_Sex = request.PAT_Sex
+        item.PAT_Age = request.PAT_Age
 
         item.CST_Status = request.CST_Status
         item.PAY_Status = request.PAY_Status
@@ -44,7 +47,7 @@ class PayService(BaseService):
         if self.DbContext.retIsSuccess == False:
             raise ApiException(self.DbContext.retMessage)
 
-        return DataResponse[Pay_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage)
+        return DataResponse[Pay_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
     
     async def SetPay(self, request : Pay_Req) -> DataResponse[Pay_Res]:
         item : Pay = Pay()
