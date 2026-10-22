@@ -51,13 +51,13 @@ class EmailService(BaseService):
         if request.EV_Purpose not in ['SIGNUP', 'FINDID', 'FINDPW']:
             raise ApiException("인증목적이 올바르지 않습니다.")
         
-        if request.EV_Purpose == 'SIGNUP' and await self.alreay_exists(request.EV_Email):
+        if request.EV_Purpose == 'SIGNUP' and await self.exists_user('', '', request.EV_Email):
             raise ApiException("이미 가입된 이메일입니다.")
 
-        if request.EV_Purpose == 'FINDID' and await self.no_such_user('', request.MUR_Name, request.EV_Email):
+        if request.EV_Purpose == 'FINDID' and not await self.exists_user('', request.MUR_Name, request.EV_Email):
             raise ApiException("가입 정보를 찾을 수 없습니다. 입력하신 정보를 확인해주세요.")
         
-        if request.EV_Purpose == 'FINDPW' and await self.no_such_user(request.MUR_Id, request.MUR_Name, request.EV_Email):
+        if request.EV_Purpose == 'FINDPW' and not await self.exists_user(request.MUR_Id, request.MUR_Name, request.EV_Email):
             raise ApiException("가입 정보를 찾을 수 없습니다. 입력하신 정보를 확인해주세요.")
 
         getEV = EmailVerification()
@@ -141,19 +141,7 @@ class EmailService(BaseService):
 
         return DataResponse[EmailVerification_Res].CreateJsonResult(item=ret)
 
-    async def alreay_exists(self, email : str) -> bool:
-        item = EmailVerification()
-        item.EV_Email = email
-        item.EV_Purpose = 'SIGNUP'
-
-        ret : EmailVerification_Res = await self._dbContext.GetItem[EmailVerification_Res](eSP.proc_EmailVerification_GetEmailVerification, item)
-
-        if ret and ret.EV_Idx > 0:
-            return True
-        
-        return False
-
-    async def no_such_user(self, id : str, name : str, email : str) -> bool:
+    async def exists_user(self, id : str, name : str, email : str) -> bool:
         item = MemberUser()
         item.MUR_Id = id
         item.MUR_Name = name
@@ -161,7 +149,7 @@ class EmailService(BaseService):
 
         ret : MemberUser_Res = await self._dbContext.GetItem[MemberUser_Res](eSP.proc_MemberUser_GetMemberUser, item)
 
-        if not ret or ret.MUR_Idx <= 0:
-            return True
+        if not ret or self._dbContext.retIsSuccess == False:
+            return False
         
-        return False
+        return True
