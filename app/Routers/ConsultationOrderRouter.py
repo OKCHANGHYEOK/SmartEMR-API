@@ -9,6 +9,10 @@ class ConsultationOrderRouter():
     @router.post("/GetConsultationOrder", response_model=DataResponse[ConsultationOrder_Res])
     async def GetConsultationOrder(request : ConsultationOrder_Req, service : ConsultationOrderService = Depends(ConsultationOrderService)):
         return await service.GetConsultationOrder(request)
+    
+    @router.post("/GetConsultationOrderByRecent", response_model=DataResponse[ConsultationOrder_Res])
+    async def GetConsultationOrderByRecent(request : ConsultationOrder_Req, service : ConsultationOrderService = Depends(ConsultationOrderService)):
+        return await service.GetConsultationOrderByRecent(request)
 
     @router.post("/SetConsultationOrder", response_model=DataResponse[ConsultationOrder_Res])
     async def SetConsultationOrder(request : ConsultationOrder_Req, service : ConsultationOrderService = Depends(ConsultationOrderService)):

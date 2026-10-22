@@ -47,6 +47,24 @@ class ConsultationOrderService(BaseService):
 
         return DataResponse[ConsultationOrder_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
 
+    async def GetConsultationOrderByRecent(self, request : ConsultationOrder_Req) -> DataResponse[ConsultationOrder_Res]:
+        user = self.authenticatedUserService.GetUser()
+
+        if not user:
+            raise ApiException("유저가 올바르지 않습니다.")
+
+        item : ConsultationOrder = ConsultationOrder()
+        item.MEM_Idx = user.MEM_Idx
+        item.PAT_Idx = request.PAT_Idx
+        item.CSTO_YYMMDD = request.CSTO_YYMMDD
+        
+        ret : list[ConsultationOrder_Res] = await self.DbContext.GetItems[ConsultationOrder_Res](eSP.proc_ConsultationOrder_GetConsultationOrderByRecent, item)
+
+        if self.DbContext.retIsSuccess == False:
+            raise ApiException("이전 처방 내역이 존재하지 않습니다.")
+
+        return DataResponse[ConsultationOrder_Res].CreateJsonResult(items=ret, message=self.DbContext.retMessage, totalCount=self.DbContext.retCount)
+
     async def SetConsultationOrder(self, request : ConsultationOrder_Req) -> DataResponse[ConsultationOrder_Res]:
         user = self.authenticatedUserService.GetUser()
 

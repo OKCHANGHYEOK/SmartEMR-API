@@ -112,7 +112,7 @@ class ConsultationService(BaseService):
         ret : Consultation_Res = await self.DbContext.GetItem[Consultation_Res](eSP.proc_Consultation_CancelConsultation, item)
 
         if not ret or self.DbContext.retIsSuccess == False:
-            raise ApiException("진료 취소에 실패했습니다.")
+            raise ApiException(self.DbContext.retMessage)
 
         return DataResponse[Consultation_Res](item=ret, Message=self.DbContext.retMessage)
 

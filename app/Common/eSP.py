@@ -11,57 +11,58 @@ class eSP(Enum):
     proc_Consultation_SetConsultationByPAY = 6
 
     proc_ConsultationOrder_GetConsultationOrder = 7
-    proc_ConsultationOrder_SetConsultationOrder = 8
-    proc_ConsultationOrder_SetConsultationOrderProperty = 9
+    proc_ConsultationOrder_GetConsultationOrderByRecent = 8
+    proc_ConsultationOrder_SetConsultationOrder = 9
+    proc_ConsultationOrder_SetConsultationOrderProperty = 10
 
-    proc_EmailVerification_GetEmailVerification = 10
-    proc_EmailVerification_GetEmailVerificationByVerify = 11
-    proc_EmailVerification_SetEmailVerification = 12
+    proc_EmailVerification_GetEmailVerification = 11
+    proc_EmailVerification_GetEmailVerificationByVerify = 12
+    proc_EmailVerification_SetEmailVerification = 13
 
-    proc_Insurance_GetInsurance = 13
-    proc_Insurance_GetRecentInsurance = 14
-    proc_Insurance_SetInsurance = 15
+    proc_Insurance_GetInsurance = 14
+    proc_Insurance_GetRecentInsurance = 15
+    proc_Insurance_SetInsurance = 16
 
-    proc_Member_GetMember = 16
-    proc_Member_SetMember = 17
-    proc_Member_SetAdminUser = 18
+    proc_Member_GetMember = 17
+    proc_Member_SetMember = 18
+    proc_Member_SetAdminUser = 19
 
-    proc_MemberUser_GetMemberUser = 19
-    proc_MemberUser_GetMemberUserForLogin = 20
-    proc_MemberUser_SetMemberUser = 21
-    proc_MemberUser_ChangePassword = 22
+    proc_MemberUser_GetMemberUser = 20
+    proc_MemberUser_GetMemberUserForLogin = 21
+    proc_MemberUser_SetMemberUser = 22
+    proc_MemberUser_ChangePassword = 23
 
-    proc_Patient_GetPatient = 23
-    proc_Patient_SetPatient = 24
+    proc_Patient_GetPatient = 24
+    proc_Patient_SetPatient = 25
 
-    proc_Pay_GetPay = 25
-    proc_Pay_SetPay = 26
-    proc_Pay_CancelPay = 27
-    proc_Pay_UpdatePayByPrice = 28
+    proc_Pay_GetPay = 26
+    proc_Pay_SetPay = 27
+    proc_Pay_CancelPay = 28
+    proc_Pay_UpdatePayByPrice = 29
 
-    proc_PayItem_GetPayItem = 29
-    proc_PayItem_SetPayItem = 30
+    proc_PayItem_GetPayItem = 30
+    proc_PayItem_SetPayItem = 31
 
-    proc_Reception_CancelReception = 31
-    proc_Reception_GetReception = 32
-    proc_Reception_GetReceptionBoard = 33
-    proc_Reception_SetReception = 34
-    proc_Reception_SetReceptionByIRC = 35
-    proc_Reception_SetReceptionByRES = 36
+    proc_Reception_CancelReception = 32
+    proc_Reception_GetReception = 33
+    proc_Reception_GetReceptionBoard = 34
+    proc_Reception_SetReception = 35
+    proc_Reception_SetReceptionByIRC = 36
+    proc_Reception_SetReceptionByRES = 37
 
-    proc_RefreshToken_GetRefreshToken = 37
-    proc_RefreshToken_SetRefreshToken = 38
+    proc_RefreshToken_GetRefreshToken = 38
+    proc_RefreshToken_SetRefreshToken = 39
 
-    proc_Reservation_GetReservation = 39
-    proc_Reservation_MoveReservationDate = 40
-    proc_Reservation_SetReservation = 41
-    proc_Reservation_SetReservationByStatus = 42
+    proc_Reservation_GetReservation = 40
+    proc_Reservation_MoveReservationDate = 41
+    proc_Reservation_SetReservation = 42
+    proc_Reservation_SetReservationByStatus = 43
 
-    proc_Suga_GetSuga = 43
-    proc_Suga_GetSugaCategory = 44
-    proc_Suga_SetSuga = 45
-    proc_Suga_SetSugaProperty = 46
+    proc_Suga_GetSuga = 44
+    proc_Suga_GetSugaCategory = 45
+    proc_Suga_SetSuga = 46
+    proc_Suga_SetSugaProperty = 47
 
-    proc_Order_GetOrder = 47
+    proc_Order_GetOrder = 48
     
-    proc_NaverPay_SetNaverPay = 48
+    proc_NaverPay_SetNaverPay = 49
