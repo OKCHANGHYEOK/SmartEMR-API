@@ -18,6 +18,7 @@ class JWTSettings(BaseSettings):
         )
 
 class DBSesttings(BaseSettings):
+    driver : str = ""
     ip : str = ""
     user : str 
     pw : str

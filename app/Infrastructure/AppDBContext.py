@@ -260,7 +260,7 @@ class AppDBContext:
 
     def __getDBConnectionString(self):
         return (
-            f"Driver={{ODBC Driver 17 for SQL Server}};"
+            f"Driver={settings.db.driver};"
             f"Server={settings.db.ip},{settings.db.port};"
             f"Database={settings.db.name};"
             f"UID={settings.db.user};"
