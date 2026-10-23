@@ -72,11 +72,23 @@ class EmailSettings(BaseSettings):
         extra="ignore"
     )
 
+class RedisSettings(BaseSettings):
+    host: str = "127.0.0.1"
+    port: int = 6379
+
+    model_config = SettingsConfigDict(
+        env_file=env_url,
+        env_file_encoding="utf-8",
+        env_prefix="REDIS_",
+        extra="ignore"
+    )
+
 class Settings(BaseSettings):
     jwt : JWTSettings = JWTSettings()
     db : DBSesttings = DBSesttings()
     naverpay : NaverPaySettings = NaverPaySettings()
     crypto : CryptoSettings = CryptoSettings()
     email : EmailSettings = EmailSettings()
+    redis: RedisSettings = RedisSettings()
 
 settings = Settings()

@@ -1,10 +1,11 @@
 import socket
 import redis.asyncio as aioredis
 from datetime import datetime
+from app.Config import settings
 
 redis_client = aioredis.Redis(
-    host="127.0.0.1",
-    port=6379,
+    host=settings.redis.host,
+    port=settings.redis.port,
     decode_responses=True,
     protocol=2,
     socket_timeout=3.0
