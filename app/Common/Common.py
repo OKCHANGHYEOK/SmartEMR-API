@@ -42,7 +42,7 @@ async def GenerateChartNo() -> str:
 
     # 처음 생성된 키라면 다음날 데이터 정리를 위해 24시간 뒤에 만료되도록 설정
     if seqNo == 1:
-        redis_client.expire(redis_key, 86400)
+        await redis_client.expire(redis_key, 86400)
 
     # 순번을 4자리 문자열로 패딩
     strSeq = f"{seqNo:04d}"
