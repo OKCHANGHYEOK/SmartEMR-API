@@ -265,4 +265,6 @@ class AppDBContext:
             f"Database={settings.db.name};"
             f"UID={settings.db.user};"
             f"PWD={settings.db.pw};"
+            f"Encrypt=yes;"
+            f"TrustServerCertificate=yes;"
         )
